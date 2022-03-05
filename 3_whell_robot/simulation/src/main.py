@@ -1,9 +1,6 @@
 from simulation import Simulation
-import cv2 as cv
 
-
-sm = Simulation(cv)
-
+sm = Simulation()
 
 sm.generate_image_project()
 
