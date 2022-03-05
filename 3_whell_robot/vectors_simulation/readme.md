@@ -2,7 +2,7 @@
 
 ## Modelo matemático
 
-\(E=mc^2\)
+\(\begin{pmatrix}\dot{Vw_1}\\\dot{Vw_2}\\\ \dot{Vw_3}\end{pmatrix}\)
 
 
 Matriz de transformação
