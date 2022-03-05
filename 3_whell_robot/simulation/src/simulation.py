@@ -1,11 +1,27 @@
 import numpy as np
 import ctypes
+import math
 
 
 class Simulation:
 
     def __init__(self, cv):
         self.cv = cv
+
+    def inverse_matriz(self, linear_speed_x, linear_speed_y, algular_speed) -> list:
+        entry_params = np.array([linear_speed_x, 
+                                linear_speed_y, 
+                                algular_speed])
+
+        matriz = np.array([np.array([0, 2/3, 1/3]),
+                np.array([1/math.sqrt(3), -1/3, 1/3]),
+                np.array([-1/math.sqrt(3), -1/3, 1/3])])
+
+        wheel_speeds = (matriz * entry_params).sum(axis=1)
+
+        print(wheel_speeds)
+
+        return wheel_speeds
 
 
     def create_image_size(self) -> list:
@@ -19,20 +35,29 @@ class Simulation:
 
     def draw_vectors(self, event,x,y,flags,params):
     
-        start_point = (int(self.x_length/2), int(self.y_length/2))
-        end_point = (x, y)
-        color = (255, 255, 255)
-        thickness = 2
-
         if event == self.cv.EVENT_MOUSEMOVE:
             self.generate_image_project()
 
-            self.cv.arrowedLine(self.image, 
-                        start_point, 
-                        end_point,
-                        color, 
-                        thickness, 
+            self.cv.arrowedLine(img = self.image, 
+                        pt1 = (int(self.x_length/2), int(self.y_length/2)), 
+                        pt2 = (x, y),
+                        color = (255, 255, 255), 
+                        thickness = 2, 
                         tipLength=0.05)
+
+            #print(x-int(self.x_length/2) , int(self.y_length/2)-y)
+
+            wheel_speeds_1 = self.inverse_matriz(x-int(self.x_length/2),y-int(self.y_length/2),0)[0]
+
+            # w_x = wheel_speeds_1*math.cos(3.1415*2/3)+int(self.x_length/4)
+            # w_y = wheel_speeds_1*math.sin(3.1415*2/3)+int(3*self.y_length/4)
+
+            # self.cv.arrowedLine(img = self.image, 
+            #             pt1 = (int(self.x_length/4), int(3*self.y_length/4)), 
+            #             pt2 = (w_x, w_y),
+            #             color = (255, 0, 0), 
+            #             thickness = 2, 
+            #             tipLength=0.05)
 
     def generate_simulation(self):
 
