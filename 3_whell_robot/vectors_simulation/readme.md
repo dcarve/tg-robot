@@ -2,6 +2,9 @@
 
 ## Modelo matemático
 
+\(E=mc^2\)
+
+
 Matriz de transformação
 
 <br>
