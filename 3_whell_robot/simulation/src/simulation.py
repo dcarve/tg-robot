@@ -42,22 +42,44 @@ class Simulation:
                         pt1 = (int(self.x_length/2), int(self.y_length/2)), 
                         pt2 = (x, y),
                         color = (255, 255, 255), 
-                        thickness = 2, 
+                        thickness = 3, 
                         tipLength=0.05)
 
-            #print(x-int(self.x_length/2) , int(self.y_length/2)-y)
 
-            wheel_speeds_1 = self.inverse_matriz(x-int(self.x_length/2),y-int(self.y_length/2),0)[0]
 
-            # w_x = wheel_speeds_1*math.cos(3.1415*2/3)+int(self.x_length/4)
-            # w_y = wheel_speeds_1*math.sin(3.1415*2/3)+int(3*self.y_length/4)
+            wheel_speeds_1, wheel_speeds_2, wheel_speeds_3 = self.inverse_matriz(x-int(self.x_length/2),y-int(self.y_length/2),0)
 
-            # self.cv.arrowedLine(img = self.image, 
-            #             pt1 = (int(self.x_length/4), int(3*self.y_length/4)), 
-            #             pt2 = (w_x, w_y),
-            #             color = (255, 0, 0), 
-            #             thickness = 2, 
-            #             tipLength=0.05)
+            w_x = int(wheel_speeds_1*math.cos(-3.1415/2)+(self.x_length/4))
+            w_y = int((self.y_length/2) - wheel_speeds_1*math.sin(-3.1415/2))
+
+            self.cv.arrowedLine(img = self.image, 
+                         pt1 = (int(self.x_length/4), int(self.y_length/2)), 
+                         pt2 = (w_x, w_y),
+                         color = (255,0, 255), 
+                         thickness = 2, 
+                         tipLength=0.05)
+
+
+            w_x = int(wheel_speeds_2*math.cos(3.1415/6)+(self.x_length/4))
+            w_y = int((self.y_length/2) - wheel_speeds_2*math.sin(3.1415/6))
+
+            self.cv.arrowedLine(img = self.image, 
+                         pt1 = (int(self.x_length/4), int(self.y_length/2)), 
+                         pt2 = (w_x, w_y),
+                         color = (0, 255, 255), 
+                         thickness = 2, 
+                         tipLength=0.05)
+
+
+            w_x = int(wheel_speeds_3*math.cos(5*3.1415/6)+(self.x_length/4))
+            w_y = int((self.y_length/2) - wheel_speeds_3*math.sin(5*3.1415/6))
+
+            self.cv.arrowedLine(img = self.image, 
+                         pt1 = (int(self.x_length/4), int(self.y_length/2)), 
+                         pt2 = (w_x, w_y),
+                         color = (0, 0, 255), 
+                         thickness = 2, 
+                         tipLength=0.05)
 
     def generate_simulation(self):
 
