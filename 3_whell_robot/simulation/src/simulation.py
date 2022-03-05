@@ -1,9 +1,11 @@
 import numpy as np
 import ctypes
 import math
+from params import Positions, whell_1, whell_2, whell_3
+import params
 
 
-class Simulation:
+class Simulation(Positions):
 
     def __init__(self, cv):
         self.cv = cv
@@ -19,18 +21,24 @@ class Simulation:
 
         wheel_speeds = (matriz * entry_params).sum(axis=1)
 
-        print(wheel_speeds)
-
         return wheel_speeds
 
 
-    def create_image_size(self) -> list:
-        user32 = ctypes.windll.user32
-        self.x_length = user32.GetSystemMetrics(0)-100
-        self.y_length = user32.GetSystemMetrics(1)-100
 
     def generate_image_project(self) -> np.ndarray:
-        self.image = np.zeros((self.y_length,self.x_length,3))
+        self.image = np.zeros((super().image_size_y,
+                              super().image_size_x,
+                              3))
+
+
+        self.image = self.cv.circle(img = self.image, 
+                                center = (super().image_center_x, super().image_center_y), 
+                                radius=super().center_offset, 
+                                color=(255, 255, 255), 
+                                thickness=1)
+
+
+
 
 
     def draw_vectors(self, event,x,y,flags,params):
@@ -39,46 +47,47 @@ class Simulation:
             self.generate_image_project()
 
             self.cv.arrowedLine(img = self.image, 
-                        pt1 = (int(self.x_length/2), int(self.y_length/2)), 
+                        pt1 = (super().image_center_x, super().image_center_y), 
                         pt2 = (x, y),
                         color = (255, 255, 255), 
-                        thickness = 3, 
+                        thickness = super().thickness_vectors, 
                         tipLength=0.05)
 
 
+            wheel_speeds_1, wheel_speeds_2, wheel_speeds_3 = self.inverse_matriz(x-super().image_center_x,
+                                                                                y-super().image_center_y,
+                                                                                0)
 
-            wheel_speeds_1, wheel_speeds_2, wheel_speeds_3 = self.inverse_matriz(x-int(self.x_length/2),y-int(self.y_length/2),0)
-
-            w_x = int(wheel_speeds_1*math.cos(-3.1415/2)+(self.x_length/4))
-            w_y = int((self.y_length/2) - wheel_speeds_1*math.sin(-3.1415/2))
-
+            w_x = int(super().wheel_1_global_position[0] + wheel_speeds_1*math.cos(whell_1.angular_speed_diretion))
+            w_y = int(super().wheel_1_global_position[1] - wheel_speeds_1*math.sin(whell_1.angular_speed_diretion))
+  
             self.cv.arrowedLine(img = self.image, 
-                         pt1 = (int(self.x_length/4), int(self.y_length/2)), 
+                         pt1 = (super().wheel_1_global_position[0], super().wheel_1_global_position[1]), 
                          pt2 = (w_x, w_y),
-                         color = (255,0, 255), 
-                         thickness = 2, 
+                         color = whell_1.color_speed_direction_vector, 
+                        thickness = super().thickness_vectors, 
                          tipLength=0.05)
 
 
-            w_x = int(wheel_speeds_2*math.cos(3.1415/6)+(self.x_length/4))
-            w_y = int((self.y_length/2) - wheel_speeds_2*math.sin(3.1415/6))
+            w_x = int(super().wheel_2_global_position[0] + wheel_speeds_2*math.cos(whell_2.angular_speed_diretion))
+            w_y = int(super().wheel_2_global_position[1] - wheel_speeds_2*math.sin(whell_2.angular_speed_diretion))
 
             self.cv.arrowedLine(img = self.image, 
-                         pt1 = (int(self.x_length/4), int(self.y_length/2)), 
+                         pt1 = (super().wheel_2_global_position[0], super().wheel_2_global_position[1]), 
                          pt2 = (w_x, w_y),
-                         color = (0, 255, 255), 
-                         thickness = 2, 
+                         color = whell_2.color_speed_direction_vector, 
+                        thickness = super().thickness_vectors, 
                          tipLength=0.05)
 
 
-            w_x = int(wheel_speeds_3*math.cos(5*3.1415/6)+(self.x_length/4))
-            w_y = int((self.y_length/2) - wheel_speeds_3*math.sin(5*3.1415/6))
+            w_x = int(super().wheel_3_global_position[0] + wheel_speeds_3*math.cos(whell_3.angular_speed_diretion))
+            w_y = int(super().wheel_3_global_position[1] - wheel_speeds_3*math.sin(whell_3.angular_speed_diretion))
 
             self.cv.arrowedLine(img = self.image, 
-                         pt1 = (int(self.x_length/4), int(self.y_length/2)), 
+                         pt1 = (super().wheel_3_global_position[0], super().wheel_3_global_position[1]), 
                          pt2 = (w_x, w_y),
-                         color = (0, 0, 255), 
-                         thickness = 2, 
+                         color = whell_3.color_speed_direction_vector, 
+                        thickness = super().thickness_vectors, 
                          tipLength=0.05)
 
     def generate_simulation(self):
