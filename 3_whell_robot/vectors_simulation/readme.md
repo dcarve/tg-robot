@@ -12,3 +12,6 @@ $$\begin{pmatrix}\dot{Vw_1}\\\dot{Vw_2}\\\ \dot{Vw_3}\end{pmatrix} =
 \begin{pmatrix}\dot{V_lx}\\\ \dot{V_ly}\\\ \dot{ω}\end{pmatrix}$$
 
 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+
+
+![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
