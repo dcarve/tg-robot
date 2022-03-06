@@ -36,9 +36,9 @@ class Simulation():
 
     def generate_simulation(self):
 
-        cv.namedWindow("Window")
+        cv.namedWindow("Window")  #, cv.WND_PROP_FULLSCREEN)
+        #cv.setWindowProperty("Window",cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
         cv.setMouseCallback("Window",self.action)
-        cv.setWindowProperty("GetFocus", cv.CV_WND_PROP_FULLSCREEN, cv.CV_WINDOW_NORMAL)
 
         while(True):
 
