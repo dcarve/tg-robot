@@ -1,7 +1,9 @@
+import numpy as np
 import cv2 as cv
 from draw_robot import Robot
 from draw_speed_vectors import Vectors
 from external_functions import ScreenSize
+
 
 
 class Simulation():
@@ -13,25 +15,21 @@ class Simulation():
         self.ss = ScreenSize()
         self.ss.get_screen_settings()
 
-        self.rb = Robot(self.ss.proportion)
+        self.rb = Robot(self.ss.proportion/2)
+
+        self.rb.calc_wheels_angle(0)
+
+        self.image = np.zeros((self.ss.image_size[1],self.ss.image_size[0],3), dtype = "uint8")
         
-        self.vt = Vectors(robot_class = self.rb, center_object = self.ss.center_object)
-
-
-        self.image = self.rb.generate_image_project(image_size = self.ss.image_size,
+        self.image = self.rb.generate_image_project(image = self.image,
                                                 center_object = self.ss.center_object)
 
 
     def action(self, event,x,y,flags,params):
     
-        if event == cv.EVENT_MOUSEMOVE:
-
-            self.image = self.rb.generate_image_project(image_size = self.ss.image_size,
-                                                center_object = self.ss.center_object )
-
-            self.image = self.vt.draw_speed_vectors(self.image, 
-                                                    x_mouse=x, 
-                                                    y_mouse=y)
+       
+        self.image = self.rb.generate_image_project(image = self.image,
+                                            center_object = self.ss.center_object )
 
 
     def generate_simulation(self):

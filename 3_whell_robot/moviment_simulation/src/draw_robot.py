@@ -10,10 +10,11 @@ class Robot:
         self.center_offset =   int( 75 *  proportion)
         self.wheel_diameter =  int( 40 *  proportion)
         self.wheel_width =     int( 20 *  proportion)
-        self.angular_position_wheel_1 = 0
-        self.angular_position_wheel_2 = 120
-        self.angular_position_wheel_3 = 240
 
+    def calc_wheels_angle(self, angle_object):
+        self.angular_position_wheel_1 = 0 + angle_object
+        self.angular_position_wheel_2 = 120 + angle_object
+        self.angular_position_wheel_3 = 240 + angle_object
 
 
     def __calc_center_position_wheel__(self, angle, center_object):
@@ -31,7 +32,7 @@ class Robot:
                 -angle)
 
         box = np.int0(cv.boxPoints(rect))
-        return  cv.drawContours(image,[box],0,(255,255,255),1)
+        return  cv.drawContours(image,[box],0,(150, 150, 150),-1)
 
 
     def __generate_robot_main_body__(self, image, center_object):
@@ -39,16 +40,12 @@ class Robot:
         return cv.circle(img = image, 
                                 center = center_object, 
                                 radius=self.center_offset, 
-                                color=(255, 255, 255), 
-                                thickness=1)
+                                color=(240, 240, 240), 
+                                thickness=-1)
 
 
     
-    def generate_image_project(self, image_size, center_object) -> np.ndarray:
-        image_size_x = image_size[0]
-        image_size_y = image_size[1]
-
-        image = np.zeros((image_size_y,image_size_x,3))
+    def generate_image_project(self, image, center_object) -> np.ndarray:
 
         image = self.__generate_robot_main_body__(image, center_object)
         image = self.__generate_wheel__(image, self.angular_position_wheel_1, center_object)
