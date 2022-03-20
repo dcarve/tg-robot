@@ -31,7 +31,7 @@ class Robot:
                 -angle)
 
         box = np.int0(cv.boxPoints(rect))
-        return  cv.drawContours(image,[box],0,(255,255,255),1)
+        return  cv.drawContours(image,[box],0,(93,81,98),-1)
 
 
     def __generate_robot_main_body__(self, image, center_object):
@@ -39,8 +39,8 @@ class Robot:
         return cv.circle(img = image, 
                                 center = center_object, 
                                 radius=self.center_offset, 
-                                color=(255, 255, 255), 
-                                thickness=1)
+                                color=(156, 156, 156), 
+                                thickness=-1)
 
 
     
@@ -48,7 +48,7 @@ class Robot:
         image_size_x = image_size[0]
         image_size_y = image_size[1]
 
-        image = np.zeros((image_size_y,image_size_x,3))
+        image = np.zeros((image_size_y,image_size_x,3), dtype = "uint8")
 
         image = self.__generate_robot_main_body__(image, center_object)
         image = self.__generate_wheel__(image, self.angular_position_wheel_1, center_object)

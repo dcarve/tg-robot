@@ -8,9 +8,9 @@ class Vectors:
 
     def __init__(self, robot_class, center_object):
         self.thickness_vectors = 2
-        self.vector_wheel_1_color = (255,0, 0)
-        self.vector_wheel_2_color = (0, 255, 0)
-        self.vector_wheel_3_color = (0, 0, 255)
+        self.vector_wheel_1_color = (255,115, 5)
+        self.vector_wheel_2_color = (78, 255, 54)
+        self.vector_wheel_3_color = (7, 7, 195)
         self.rb = robot_class
         self.center_object = center_object
 
