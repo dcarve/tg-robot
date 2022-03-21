@@ -1,10 +1,10 @@
 import numpy as np
 import cv2 as cv
 from draw_robot import Robot
-from draw_track import Track
+from draw_plan_2d import Plan2D
 from external_functions import ScreenSize
-from external_functions import TransformationMatrix
 import math
+import time
 
 
 class Simulation():
@@ -13,49 +13,43 @@ class Simulation():
 
         self.ss = ScreenSize()
         self.ss.get_screen_settings()
-
-        self.rb = Robot(self.ss.proportion/2)
-
-        self.image = np.zeros((self.ss.image_size[1],self.ss.image_size[0],3), dtype = "uint8")
+        self.rb = Robot(self.ss.proportion)
+        self.plan2d = Plan2D()
 
     def calc_moviment(self, linear_speed, direction_speed, angular_speed):
 
-        self.x_speed = int(linear_speed * math.cos(math.radians(direction_speed)))
-        self.y_speed = int(linear_speed * math.sin(math.radians(direction_speed)))
+        self.x_speed = linear_speed * math.cos(math.radians(direction_speed))
+        self.y_speed = linear_speed * math.sin(math.radians(direction_speed))
         self.angular_speed = angular_speed
-        
-        #wheel_speeds_1, wheel_speeds_2, wheel_speeds_3 = TransformationMatrix().inverse_matriz(self.x_speed,
-        #                                                                                        self.y_speed,
-        #                                                                                        self.angular_speed)
-        #return wheel_speeds_1, wheel_speeds_2, wheel_speeds_3
 
-    def move_robot(self, add_angle):
 
-        self.image  = Track().generate_track(self.ss.image_size, (0,0))
-        
-        self.image = self.rb.generate_robot_image(image = self.image,
-                                                 center_object = self.ss.center_object,
-                                                 angle_object = add_angle)
+    def move_plan_2d(self, next_x_position, next_y_position, next_angle):
+        return self.plan2d.generate_plan_2d(self.ss.image_size, (-next_x_position, -next_y_position, -next_angle))
 
+    def move_robot(self, image, add_angle):
+        return self.rb.generate_robot_image(image = image,
+                                                center_object = self.ss.center_object,
+                                                angle_object = add_angle)
 
 
     def generate_simulation(self):
 
-        self.calc_moviment(2,50,1)
+        self.calc_moviment(50,20,2)
 
         cv.namedWindow("animation") 
 
-        i=0
-
         while True:
-            i += 1
+            time.sleep(0.05)
 
-            next_angle = self.angular_speed*i*2
-            
-            self.move_robot(next_angle)
+            next_angle = self.angular_speed
+            next_x_position = self.x_speed
+            next_y_position = self.y_speed
+                        
+            image  = self.move_plan_2d(next_x_position, next_y_position, next_angle)
+            image  = self.move_robot(image, next_angle)
 
-            cv.imshow('animation', self.image)
+            cv.imshow('animation', image)
             if cv.waitKey(1) == ord('q'):
                 break
-            
+
         cv.destroyAllWindows()
