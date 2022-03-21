@@ -1,5 +1,6 @@
 import math
 import numpy as np
+from draw_track import Track
 import cv2 as cv
 
 
@@ -11,7 +12,7 @@ class Robot:
         self.wheel_diameter =  int( 40 *  proportion)
         self.wheel_width =     int( 20 *  proportion)
 
-    def calc_wheels_angle(self, angle_object):
+    def __calc_wheels_angle__(self, angle_object):
         self.angular_position_wheel_1 = 0 + angle_object
         self.angular_position_wheel_2 = 120 + angle_object
         self.angular_position_wheel_3 = 240 + angle_object
@@ -45,7 +46,9 @@ class Robot:
 
 
     
-    def generate_image_project(self, image, center_object) -> np.ndarray:
+    def generate_robot_image(self, image, center_object, angle_object) -> np.ndarray:
+
+        self.__calc_wheels_angle__(angle_object)
 
         image = self.__generate_robot_main_body__(image, center_object)
         image = self.__generate_wheel__(image, self.angular_position_wheel_1, center_object)

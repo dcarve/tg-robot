@@ -7,9 +7,7 @@ from external_functions import ScreenSize
 class Simulation():
 
     def __init__(self):
-        """    
-        not yet 
-        """
+
         self.ss = ScreenSize()
         self.ss.get_screen_settings()
 
@@ -36,8 +34,7 @@ class Simulation():
 
     def generate_simulation(self):
 
-        cv.namedWindow("Window")  #, cv.WND_PROP_FULLSCREEN)
-        #cv.setWindowProperty("Window",cv.WND_PROP_FULLSCREEN,cv.WINDOW_FULLSCREEN)
+        cv.namedWindow("Window") 
         cv.setMouseCallback("Window",self.action)
 
         while(True):

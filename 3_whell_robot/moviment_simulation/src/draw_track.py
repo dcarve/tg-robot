@@ -3,30 +3,25 @@ import cv2 as cv
 
 class Track:
 
-    def generate_track(self, image, image_size):
+    def generate_track(self, image_size, position):
 
-        
-        def draw_line(image, image_size, axis, steps):
-            
-            if axis==0:
-                gap = int(image_size[0]/steps)
-                
-                for i in range(steps):
-                    image = cv.line(image, (i*gap, 0) , (i*gap, image_size[1]) , (255, 255, 255) , 1) 
-                
 
-            elif axis==1:
-                gap = int(image_size[1]/steps)
-                
-                for i in range(steps):
-                    image = cv.line(image, (0, i*gap) , (image_size[0], i*gap) , (255, 255, 255) , 1) 
-                
+
+
+        def get_grid():
+
+            img = cv.imread("files_images/grid.png")
             
+            y = position[1] + int(img.shape[0]/2)
+            x = position[0] + int(img.shape[1]/2)
+
+            image = img[y:y+image_size[1], 
+                        x:x+image_size[0]]
+                
             return image
-                
+
 
         
-        image = draw_line(image, image_size=image_size, axis=0, steps=10)
-        image = draw_line(image, image_size=image_size, axis=1, steps=10)
-    
-        return image
+        
+
+        return get_grid()
