@@ -34,12 +34,12 @@ class Simulation():
 
     def generate_simulation(self):
 
-        self.calc_moviment(50,20,2)
+        self.calc_moviment(10,45,0)
 
         cv.namedWindow("animation") 
 
         while True:
-            time.sleep(0.05)
+
 
             next_angle = self.angular_speed
             next_x_position = self.x_speed
