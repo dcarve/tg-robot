@@ -44,7 +44,9 @@ class Vectors:
                             tipLength=0.05)
 
 
-        wheel_speeds_1, wheel_speeds_2, wheel_speeds_3 = TransformationMatrix().inverse_matriz(x_mouse-self.center_object[0],
+        tm = TransformationMatrix(self.rb.center_offset)
+
+        wheel_speeds_1, wheel_speeds_2, wheel_speeds_3 = tm.inverse_matriz(x_mouse-self.center_object[0],
                                                                                                 y_mouse-self.center_object[1],
                                                                                                 0)
 

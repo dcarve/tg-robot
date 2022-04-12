@@ -28,14 +28,20 @@ class ScreenSize:
 
 class TransformationMatrix:
 
+    def __init__(self, center_offset):
+        self.center_offset = center_offset
+
     def inverse_matriz(self, linear_speed_x, linear_speed_y, algular_speed) -> list:
+
+        l = self.center_offset
+
         entry_params = np.array([linear_speed_x, 
                                 linear_speed_y, 
                                 algular_speed])
 
-        matriz = np.array([np.array([0, 2/3, 1/3]),
-                np.array([1/math.sqrt(3), -1/3, 1/3]),
-                np.array([-1/math.sqrt(3), -1/3, 1/3])])
+        matriz = np.array([np.array([0, 2/3, l/3]),
+                np.array([1/math.sqrt(3), -1/3, l/3]),
+                np.array([-1/math.sqrt(3), -1/3, l/3])])
 
         wheel_speeds = (matriz * entry_params).sum(axis=1)
 
