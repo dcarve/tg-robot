@@ -278,66 +278,58 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 % ----------------------------------------------------------
 \textual
 
-% ----------------------------------------------------------
-% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
-% ----------------------------------------------------------
-\chapter{Introdução}
-\input{sections/introduction.tex}
+	% ----------------------------------------------------------
+	% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
+	% ----------------------------------------------------------
+	\chapter{Introdução}
+	\input{chapters/introduction.tex}
 
-% Capitulo com exemplos de comandos inseridos de arquivo externo 
-\include{abntex2-modelo-include-comandos}
+	% Capitulo com exemplos de comandos inseridos de arquivo externo 
+	\include{abntex2-modelo-include-comandos}
 
-\chapter{Robô de 3 rodas}\label{cap_trabalho_academico}
-\input{sections/robo_3_rodas.tex}
+	\chapter{Robô de 3 rodas}
+	\input{chapters/robo_3_rodas.tex}
 
-\chapter{Outro Capítulo}
-\input{sections/outro_capitulo.tex}
-
-
+	\chapter{Outro Capítulo}
+	\input{chapters/outro_capitulo.tex}
 
 
-% ----------------------------------------------------------
-% Finaliza a parte no bookmark do PDF
-% para que se inicie o bookmark na raiz
-% e adiciona espaço de parte no Sumário
-% ----------------------------------------------------------
-\phantompart
+	% ----------------------------------------------------------
+	% Finaliza a parte no bookmark do PDF
+	% para que se inicie o bookmark na raiz
+	% e adiciona espaço de parte no Sumário
+	% ----------------------------------------------------------
+	\phantompart
 
-% ---
-% Conclusão
-% ---
-\chapter{Conclusão}
-% ---
 
-\lipsum[31-33]
+	% Conclusão
+	\input{chapters/conclusion.tex}
 
-% ----------------------------------------------------------
+
+	
+
 % ELEMENTOS PÓS-TEXTUAIS
-% ----------------------------------------------------------
 \postextual
-% ----------------------------------------------------------
 
-% ----------------------------------------------------------
-% Referências bibliográficas
-% ----------------------------------------------------------
-\bibliography{abntex2-modelo-references}
+	% Referências bibliográficas
+	\input{bibliography/bibliography.tex}
+
+	% Glossário
+	\input{glossary/glossary_class.tex}
+
+	% Apêndices
+	\input{apendices/apendices_class.tex}
+
+	% Anexos
+	\input{attachments/attachments_class.tex}
 
 
-% Glossário
-\input{glossary/glossary_class.tex}
-
-
-% Apêndices
-\input{apendices/apendices_class.tex}
-
-% Anexos
-\input{attachments/attachments_class.tex}
 
 %---------------------------------------------------------------------
 % INDICE REMISSIVO
 %---------------------------------------------------------------------
 \phantompart
 \printindex
-%---------------------------------------------------------------------
+
 
 \end{document}
