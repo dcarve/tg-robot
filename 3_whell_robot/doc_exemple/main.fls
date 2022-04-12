@@ -1,6 +1,6 @@
-PWD d:\19_UFABC\TG\tg-robot\3_whell_robot\doc
+PWD d:\19_UFABC\TG\tg-robot\3_whell_robot\doc_exemple
 INPUT C:\Users\daniel carvalho\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\19_UFABC\TG\tg-robot\3_whell_robot\doc\main.tex
+INPUT d:\19_UFABC\TG\tg-robot\3_whell_robot\doc_exemple\main.tex
 OUTPUT main.log
 INPUT C:\Users\daniel carvalho\AppData\Local\Programs\MiKTeX\tex\latex\abntex2\abntex2.cls
 INPUT C:\Users\daniel carvalho\AppData\Local\Programs\MiKTeX\tex\latex\abntex2\abntex2.cls

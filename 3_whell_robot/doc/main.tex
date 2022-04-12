@@ -281,72 +281,18 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 \chapter{Introdução}
 \input{sections/introduction.tex}
 
-% ---
+
 % Capitulo com exemplos de comandos inseridos de arquivo externo 
-% ---
 \include{abntex2-modelo-include-comandos}
-% ---
 
 \chapter{Robô de 3 rodas}\label{cap_trabalho_academico}
+\input{sections/robo_3_rodas.tex}
 
-\section{Robô}
-robo etc.
-
-\section{Modelo matemático}
-
-\begin{gather}
-	\begin{bmatrix} \dot{V}{w1} \\  \dot{V}{w2} \\  \dot{V}{w3} \end{bmatrix}
-	=
-	\begin{bmatrix}
-		0 & 2/3 & 1/3 \\
-		-1/\sqrt{3} & -1/3 & 1/3\\
-		1/\sqrt{3} & -1/3 & 1/3
-	\end{bmatrix}
-	\cdot
-	\begin{bmatrix} \dot{V}\cdot \cos{\theta} \\  \dot{V}\cdot \sin{\theta} \\  \dot{\omega} \end{bmatrix}
-   \end{gather}
+\chapter{Outro Capítulo}
+\input{sections/outro_capitulo.tex}
 
 
-% ---
-% Capitulo de revisão de literatura
-% ---
-\chapter{Lorem ipsum dolor sit amet}
-% ---
 
-% ---
-\section{Aliquam vestibulum fringilla lorem}
-% ---
-
-\lipsum[1]
-
-\lipsum[2-3]
-
-
-% ---
-% primeiro capitulo de Resultados
-% ---
-\chapter{Lectus lobortis condimentum}
-% ---
-
-% ---
-\section{Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-posuere cubilia Curae}
-% ---
-
-\lipsum[21-22]
-
-% ---
-% segundo capitulo de Resultados
-% ---
-\chapter{Nam sed tellus sit amet lectus urna ullamcorper tristique interdum
-elementum}
-% ---
-
-% ---
-\section{Pellentesque sit amet pede ac sem eleifend consectetuer}
-% ---
-
-\lipsum[24]
 
 % ----------------------------------------------------------
 % Finaliza a parte no bookmark do PDF

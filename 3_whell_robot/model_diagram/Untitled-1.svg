@@ -1,0 +1,20 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414.99 428.53">
+   <defs>
+      <style>.cls-1{fill:#fff;}.cls-2{fill:none;stroke:#000;stroke-miterlimit:10;}</style>
+   </defs>
+   <title>Untitled-1</title>
+   <path class="cls-1" d="M421.83,593.53a185.43,185.43,0,1,1,91.56-24.07A185.45,185.45,0,0,1,421.83,593.53Z" transform="translate(-235.97 -182.5)"/>
+   <path name="body" d="M422.18,223a184.91,184.91,0,1,1-91.33,24,184.87,184.87,0,0,1,91.33-24h0m0-1a185.92,185.92,0,0,0-161.25,93C209.56,404,240,517.72,329,569.08A185.92,185.92,0,0,0,583.08,501C634.44,412,604,298.28,515,246.92A185.16,185.16,0,0,0,422.17,222Z" transform="translate(-235.97 -182.5)"/>
+   <rect class="cls-1" x="291.41" y="222.02" width="75" height="51" transform="translate(-315.66 15.12) rotate(-30)"/>
+   <path d="M348.45,207.37l25,43.3-64.08,37-25-43.3,64.08-37m.37-1.37L283,244l26,45,65.82-38-26-45Z" transform="translate(-235.97 -182.5)"/>
+   <rect class="cls-1" x="303.59" y="532.02" width="51" height="75" transform="translate(-564.64 387.26) rotate(-60)"/>
+   <path d="M309.55,529.37l64.08,37-25,43.3-64.08-37,25-43.3m-.37-1.37-26,45L349,611l26-45-65.82-38Z" transform="translate(-235.97 -182.5)"/>
+   <rect class="cls-1" x="346.53" y="188" width="51" height="75"/>
+   <path d="M633,371v74H583V371h50m1-1H582v76h52V370Z" transform="translate(-235.97 -182.5)"/>
+   <path class="cls-2" d="M647,407.5C646.72,283.47,546.1,183,422,183a224,224,0,0,0-112.14,29.89" transform="translate(-235.97 -182.5)"/>
+   <polyline class="cls-2" points="293.53 226 186.53 226 186.53 125"/>
+   <line class="cls-2" x1="74.53" y1="30" x2="80.53" y2="23"/>
+   <line class="cls-2" x1="83.53" y1="29" x2="74.53" y2="30"/>
+   <line class="cls-2" x1="411.53" y1="224" x2="414.53" y2="217"/>
+   <line class="cls-2" x1="407.53" y1="217" x2="410.53" y2="224"/>
+</svg>

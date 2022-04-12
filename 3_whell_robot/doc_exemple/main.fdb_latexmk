@@ -1,20 +1,20 @@
 # Fdb version 3
-["bibtex main"] 1649773072 "main.aux" "main.bbl" "main" 1649773072
+["bibtex main"] 1649784090 "main.aux" "main.bbl" "main" 1649784093
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/bibtex/bib/abntex2/abntex2-options.bib" 1543103229 5396 4eb260dac60f150ae608d45252853090 ""
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/bibtex/bst/abntex2/abntex2-alf.bst" 1543103230 60064 0819ac8568f9a482510a46e3a8a6f605 ""
-  "abntex2-modelo-include-comandos.aux" 1649773071 1896 fd63dcdc6332938a07334f8cb0d0d023 "pdflatex"
+  "abntex2-modelo-include-comandos.aux" 1649784092 1896 fd63dcdc6332938a07334f8cb0d0d023 "pdflatex"
   "abntex2-modelo-references.bib" 0 -1 0 ""
-  "main.aux" 1649773071 22367 452a294c73223d2359a475ed97a1376a "pdflatex"
+  "main.aux" 1649784092 22367 452a294c73223d2359a475ed97a1376a "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["makeindex main.idx"] 1649773063 "main.idx" "main.ind" "main" 1649773072
+["makeindex main.idx"] 1649773063 "main.idx" "main.ind" "main" 1649784093
   "main.idx" 0 -1 0 "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
-["pdflatex"] 1649773069 "d:/19_UFABC/TG/tg-robot/3_whell_robot/doc/main.tex" "main.pdf" "main" 1649773072
-  "C:/Users/daniel carvalho/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1649773061 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1649784090 "d:/19_UFABC/TG/tg-robot/3_whell_robot/doc_exemple/main.tex" "main.pdf" "main" 1649784093
+  "C:/Users/daniel carvalho/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1649775141 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/daniel carvalho/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1649772438 10251717 b2ebed4491e7b6017a0c0e2771292f55 ""
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1254938640 2375 baa924870cfb487815765f9094cf3728 ""
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc" 1254938640 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -156,17 +156,17 @@
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/tex/latex/tools/indentfirst.sty" 1636710260 1618 786b14c5a3e144c3a51452d08232d18b ""
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1636710260 7147 5ac8a9ef36411064b1a501137af0fa54 ""
   "C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "abntex2-modelo-include-comandos.aux" 1649773071 1896 fd63dcdc6332938a07334f8cb0d0d023 "pdflatex"
+  "abntex2-modelo-include-comandos.aux" 1649784092 1896 fd63dcdc6332938a07334f8cb0d0d023 "pdflatex"
   "abntex2-modelo-include-comandos.tex" 0 -1 0 ""
-  "d:/19_UFABC/TG/tg-robot/3_whell_robot/doc/main.tex" 1649773049 22262 2321ef02e5ee892ec4c3a41b57ef2e1c ""
-  "main.aux" 1649773071 22367 452a294c73223d2359a475ed97a1376a "pdflatex"
+  "d:/19_UFABC/TG/tg-robot/3_whell_robot/doc_exemple/main.tex" 1649773049 22262 2321ef02e5ee892ec4c3a41b57ef2e1c ""
+  "main.aux" 1649784092 22367 452a294c73223d2359a475ed97a1376a "pdflatex"
   "main.bbl" 0 -1 0 "bibtex main"
   "main.ind" 0 -1 0 "makeindex main.idx"
-  "main.lof" 1649773071 58 29d9d42ff4957e64b6fbf83bd5f476ea "pdflatex"
-  "main.loq" 1649773071 90 0e4075feff846e8ef245f4c94a4b9362 "pdflatex"
-  "main.lot" 1649773071 58 29d9d42ff4957e64b6fbf83bd5f476ea "pdflatex"
+  "main.lof" 1649784092 58 29d9d42ff4957e64b6fbf83bd5f476ea "pdflatex"
+  "main.loq" 1649784092 90 0e4075feff846e8ef245f4c94a4b9362 "pdflatex"
+  "main.lot" 1649784092 58 29d9d42ff4957e64b6fbf83bd5f476ea "pdflatex"
   "main.tex" 1649773049 22262 2321ef02e5ee892ec4c3a41b57ef2e1c ""
-  "main.toc" 1649773071 5082 ea47286c6dc10dc559bc000ad117d0df "pdflatex"
+  "main.toc" 1649784092 5082 ea47286c6dc10dc559bc000ad117d0df "pdflatex"
   (generated)
   "abntex2-modelo-include-comandos.aux"
   "main.aux"

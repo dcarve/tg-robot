@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.12)  12 APR 2022 11:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.12)  12 APR 2022 14:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/19_UFABC/TG/tg-robot/3_whell_robot/doc/main.tex
-(d:/19_UFABC/TG/tg-robot/3_whell_robot/doc/main.tex
+**d:/19_UFABC/TG/tg-robot/3_whell_robot/doc_exemple/main.tex
+(d:/19_UFABC/TG/tg-robot/3_whell_robot/doc_exemple/main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (C:\Users\daniel carvalho\AppData\Local\Programs\MiKTeX\tex/latex/abntex2\abntex2.cls
 Document Class: abntex2 2018/11/24 v-1.9.7 abnTeX2
@@ -1005,12 +1005,12 @@ LaTeX Warning: There were undefined references.
  ) 
 Here is how much of TeX's memory you used:
  18792 strings out of 478582
- 308807 string characters out of 2839588
+ 308919 string characters out of 2839588
  758038 words of memory out of 3000000
  36392 multiletter control sequences out of 15000+600000
  557208 words of font info for 161 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,77p,1623b,542s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 75i,12n,77p,1631b,542s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}<C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss10.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss17.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/daniel carvalho/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
 Output written on main.pdf (65 pages, 411031 bytes).
 PDF statistics:
