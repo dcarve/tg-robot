@@ -34,7 +34,7 @@ class Simulation():
 
     def generate_simulation(self):
 
-        self.calc_moviment(10,45,0)
+        self.calc_moviment(25,45,2)
 
         cv.namedWindow("animation") 
 
