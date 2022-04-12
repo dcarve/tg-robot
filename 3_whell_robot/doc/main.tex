@@ -3,7 +3,7 @@
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
 	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
-	twoside,			% para impressão em recto e verso. Oposto a oneside
+	oneside,			% para impressão em recto e verso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
 	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
@@ -70,18 +70,17 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Modelo Canônico de\\ Trabalho Acadêmico com \abnTeX}
-\autor{Equipe \abnTeX}
+\titulo{Robô omnidirecional de 3 rodas}
+\autor{Daniel Ermelino Carvalho \\ Lucas Lima Pereira}
 \local{Brasil}
-\data{2018, v<VERSION>}
+\data{2022}
 \orientador{Lauro César Araujo}
-\coorientador{Equipe \abnTeX}
 \instituicao{%
-  Universidade do Brasil -- UBr
+  Universidade Federal do ABC
   \par
-  Faculdade de Arquitetura da Informação
+  CECS
   \par
-  Programa de Pós-Graduação}
+   Engenharia de Instrumentação, Automação e Robótica}
 \tipotrabalho{Tese (Doutorado)}
 % O preambulo deve conter o tipo do trabalho, o objetivo, 
 % o nome da instituição e a área de concentração 
@@ -94,7 +93,7 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 % Configurações de aparência do PDF final
 
 % alterando o aspecto da cor azul
-\definecolor{blue}{RGB}{41,5,195}
+\definecolor{blue}{RGB}{5,5,180}
 
 % informações do PDF
 \makeatletter
@@ -285,7 +284,6 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 \chapter{Introdução}
 \input{sections/introduction.tex}
 
-
 % Capitulo com exemplos de comandos inseridos de arquivo externo 
 \include{abntex2-modelo-include-comandos}
 
@@ -324,72 +322,16 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 % ----------------------------------------------------------
 \bibliography{abntex2-modelo-references}
 
-% ----------------------------------------------------------
+
 % Glossário
-% ----------------------------------------------------------
-%
-% Consulte o manual da classe abntex2 para orientações sobre o glossário.
-%
-%\glossary
+\input{glossary/glossary_class.tex}
 
-% ----------------------------------------------------------
+
 % Apêndices
-% ----------------------------------------------------------
+\input{apendices/apendices_class.tex}
 
-% ---
-% Inicia os apêndices
-% ---
-\begin{apendicesenv}
-
-% Imprime uma página indicando o início dos apêndices
-\partapendices
-
-\chapter{quisque libero justo}
-
-
-\lipsum[50]
-
-% ----------------------------------------------------------
-\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
-ac pretium ante justo a nulla curabitur tristique arcu eu metus}
-% ----------------------------------------------------------
-\lipsum[55-57]
-
-\end{apendicesenv}
-% ---
-
-
-% ----------------------------------------------------------
 % Anexos
-% ----------------------------------------------------------
-
-% ---
-% Inicia os anexos
-% ---
-\begin{anexosenv}
-
-% Imprime uma página indicando o início dos anexos
-\partanexos
-
-% ---
-\chapter{morbi ultrices rutrum lorem.}
-% ---
-\lipsum[30]
-
-% ---
-\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
-parturient montes nascetur ridiculus mus}
-% ---
-
-\lipsum[31]
-
-% ---
-\chapter{Fusce facilisis lacinia dui}
-% ---
-
-\lipsum[32]
-
-\end{anexosenv}
+\input{attachments/attachments_class.tex}
 
 %---------------------------------------------------------------------
 % INDICE REMISSIVO

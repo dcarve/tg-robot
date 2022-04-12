@@ -1,0 +1,6 @@
+https://www.hindawi.com/journals/jat/2017/4961383/
+https://ijiset.com/vol2/v2s11/IJISET_V2_I11_84.pdf
+https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite.pdf
+https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
+https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2.pdf
+https://i0.statig.com.br/educacao/trabalhosacademicos/Recomendacoes_elaboracao_monografia.pdf
