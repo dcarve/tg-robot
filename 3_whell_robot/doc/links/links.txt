@@ -4,3 +4,7 @@ https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite.pdf
 https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
 https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2.pdf
 https://i0.statig.com.br/educacao/trabalhosacademicos/Recomendacoes_elaboracao_monografia.pdf
+https://www.scitepress.org/Papers/2008/14892/14892.pdf
+file:///D:/19_UFABC/TG/tg-robot/3_whell_robot/doc/sensors-16-01658.pdf
+https://pdfs.semanticscholar.org/ed22/2105a1e4c42d64c207bcc55dec5aacd70275.pdf
+https://www.hindawi.com/journals/jat/2017/4961383/
