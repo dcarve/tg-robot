@@ -21,4 +21,5 @@ https://www.youtube.com/watch?v=3ozgxPi_tl0
 
 https://www.filipeflop.com/produto/motor-dc-6v-com-encoder/?utm_source=google&utm_medium=organic&utm_campaign=shopping&utm_content=surfaces_across_google&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfwaZJi1dtTgmcQlx0Ek4V8H0DLmAFnfne4I5bXzTKzEbF1OnKbWEMBoCWjEQAvD_BwE
 https://www.filipeflop.com/blog/motor-dc-arduino-ponte-h-l298n/
+https://www.arduinoecia.com.br/motor-dc-com-encoder-arduino/
 https://www.filipeflop.com/produto/driver-motor-ponte-h-l298n/#tab-blogrelacionados
