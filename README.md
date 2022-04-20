@@ -56,10 +56,11 @@
 
 
 
-## Documentação Latex ABNT
+## Recomenrações de TG e Documentação Latex ABNT
 
 - [Estilos bibliográficos compatíveis com a ABNT NBR 6023](https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite.pdf)
 - [Github exemplo latex abnt](https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex)
 - [Documentos técnicos e científicos brasileiros compatíveis com as normas ABNT](https://linorg.usp.br/CTAN/macros/latex/contrib/abntex2/doc/abntex2.pdf)
 - [RECOMENDAÇÕES PARA ELABORAÇÃO DA MONOGRAFIA DO TRABALHO DE GRADUAÇÃO (TG)](https://i0.statig.com.br/educacao/trabalhosacademicos/Recomendacoes_elaboracao_monografia.pdf)
+- [Como fazer uma revisão sistemática de literatura?](https://blog.mettzer.com/revisao-sistematica/)
 
