@@ -74,3 +74,9 @@ file:///C:/Users/daniel%20carvalho/Desktop/2018-Jeba-2.pdf
 https://worldwide.espacenet.com/patent/search/family/003373065/publication/US1305535A?q=pn%3DUS1305535
 
 https://worldwide.espacenet.com/patent/search/family/022923089/publication/US3789947A?q=pn%3DUS3789947
+
+
+https://www.embarcados.com.br/introducao-ao-microcontrolador-arm-cortex-m3/#A-Familia-de-Processadores-Cortex-M
+
+
+https://www.vexrobotics.com/omni-wheels.html#attr-vex_drawings
