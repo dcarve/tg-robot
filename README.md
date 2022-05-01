@@ -53,6 +53,8 @@
   
 - [Driver Motor Ponte H L298n](https://www.filipeflop.com/produto/driver-motor-ponte-h-l298n/)
 
+- [STM32F103C8](https://stm32-base.org/boards/STM32F103C8T6-Blue-Pill.html)
+
 
 
 
@@ -64,3 +66,11 @@
 - [RECOMENDAÇÕES PARA ELABORAÇÃO DA MONOGRAFIA DO TRABALHO DE GRADUAÇÃO (TG)](https://i0.statig.com.br/educacao/trabalhosacademicos/Recomendacoes_elaboracao_monografia.pdf)
 - [Como fazer uma revisão sistemática de literatura?](https://blog.mettzer.com/revisao-sistematica/)
 
+file:///C:/Users/daniel%20carvalho/Desktop/2018-Jeba-2.pdf
+
+
+## patents
+
+https://worldwide.espacenet.com/patent/search/family/003373065/publication/US1305535A?q=pn%3DUS1305535
+
+https://worldwide.espacenet.com/patent/search/family/022923089/publication/US3789947A?q=pn%3DUS3789947

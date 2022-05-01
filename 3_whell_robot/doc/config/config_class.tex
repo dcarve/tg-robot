@@ -1,4 +1,7 @@
 
+
+
+
 \documentclass[
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
@@ -31,26 +34,22 @@
 \usepackage{amsmath}			% lib para equacoes
 \usepackage{svg}
 %\usepackage{float}
-\usepackage{graphicx}
-% ---
-		
-% ---
+
+
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
-% ---
+
 \usepackage{lipsum}				% para geração de dummy text
-% ---
 
-% ---
+
+
 % Pacotes de citações
-% ---
+\usepackage[num, backend=biblatex]{abntex2cite}	% Citações padrão ABNT
 \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
 
-% --- 
+
+ 
 % CONFIGURAÇÕES DE PACOTES
-% --- 
 
-% ---
 % Configurações do pacote backref
 % Usado sem a opção hyperpageref de backref
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
@@ -66,6 +65,8 @@
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
 % ---
+
+
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
@@ -86,10 +87,9 @@
 % o nome da instituição e a área de concentração 
 \preambulo{Modelo canônico de trabalho monográfico acadêmico em conformidade com
 as normas ABNT apresentado à comunidade de usuários \LaTeX.}
-% ---
 
 
-% ---
+
 % Configurações de aparência do PDF final
 
 % alterando o aspecto da cor azul
@@ -112,20 +112,19 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 		bookmarksdepth=4
 }
 \makeatother
-% --- 
 
-% ---
+
 % Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
 % em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
 \makeatletter
 \setlength{\@fptop}{5pt} % Set distance from top of page to first float
 \makeatother
-% ---
 
-% ---
+
+
 % Possibilita criação de Quadros e Lista de quadros.
 % Ver https://github.com/abntex/abntex2/issues/176
-%
+
 \newcommand{\quadroname}{Quadro}
 \newcommand{\listofquadrosname}{Lista de quadros}
 
@@ -140,11 +139,11 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 \renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
 
 \setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
-% ---
 
-% --- 
+
+
 % Espaçamentos entre linhas e parágrafos 
-% --- 
+
 
 % O tamanho do parágrafo é dado por:
 \setlength{\parindent}{1.3cm}
@@ -152,8 +151,7 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 % Controle do espaçamento entre um parágrafo e outro:
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
-% ---
+
 % compila o indice
-% ---
 \makeindex
-% ---
+
