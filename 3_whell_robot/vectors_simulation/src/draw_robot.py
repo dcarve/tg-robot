@@ -5,7 +5,7 @@ import cv2 as cv
 
 class Robot:
 
-    def __init__(self,proportion=1.0):
+    def __init__(self,proportion=3.0):
 
         self.center_offset =   int( 75 *  proportion)
         self.wheel_diameter =  int( 40 *  proportion)
