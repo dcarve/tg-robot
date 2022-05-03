@@ -101,3 +101,9 @@ https://www.youtube.com/watch?v=jTIRUXJKMX4
 
 
 https://www.banggood.com/pt/CHIHAI-MOTOR-6V-210RPM-Encoder-Motor-DC-Gear-Motor-with-Mounting-Bracket-and-Wheel-p-1044064.html?utm_source=googleshopping&utm_medium=cpc_organic&gmcCountry=BR&utm_content=minha&utm_campaign=minha-br-pt-pc&currency=BRL&cur_warehouse=CN&createTmp=1&utm_source=googleshopping&utm_medium=cpc_pt&utm_campaign=aceng-pmax-br-main-roas5-all-220407&utm_content=kawhi&ad_id=&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIWsWcD5MV9VxdWcRutbZPqLftCYN4WGCsRkPi_GJtY4J-5SVenmRihoCPRMQAvD_BwE
+
+
+
+https://howtomechatronics.com/tutorials/arduino/arduino-dc-motor-control-tutorial-l298n-pwm-h-bridge/
+
+http://www.ijsrp.org/research-paper-1118/ijsrp-p8321.pdfqq
