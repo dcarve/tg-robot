@@ -80,3 +80,24 @@ https://www.embarcados.com.br/introducao-ao-microcontrolador-arm-cortex-m3/#A-Fa
 
 
 https://www.vexrobotics.com/omni-wheels.html#attr-vex_drawings
+
+
+
+
+
+https://he.aliexpress.com/item/32842600463.html?_randl_currency=EUR&_randl_shipto=FR&src=google&aff_fsk=UneMJZVf&sk=UneMJZVf&terminal_id=34906e8a80924b858472bc3dfd22b356&afSmartRedirect=y&albagn=888888&src=google&albch=search&acnt=479-062-3723&isdl=y&aff_short_key=UneMJZVf&albcp=15034475726&albag=134062032172&slnk=&trgt=dsa-42862830006&plac=&crea=555011960799&netw=g&device=c&mtctp=&memo1=&albbt=Google_7_search&aff_platform=google&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIXccpEnSa8r3a5mBl-T4-_z7LmYKXyktNSMkXfi-1XtNyEHf3dISxRoC2FoQAvD_BwE&gclsrc=aw.ds&gatewayAdapt=glo2isr
+
+
+https://he.aliexpress.com/item/32825873010.html?gatewayAdapt=glo2isr
+
+
+https://www.alibaba.com/product-detail/Chihai-Motor-CHR-GM25-370-ABHL_62101113849.html?spm=a2700.shop_plgr.41413.9.3cb023a7Cg5D8O
+
+
+https://www.banggood.com/pt/CHIHAI-MOTOR-6V-210RPM-Encoder-Motor-DC-Gear-Motor-with-Mounting-Bracket-and-Wheel-p-1044064.html?utm_source=googleshopping&utm_medium=cpc_organic&gmcCountry=BR&utm_content=minha&utm_campaign=minha-br-pt-pc&currency=BRL&cur_warehouse=CN&createTmp=1&utm_source=googleshopping&utm_medium=cpc_pt&utm_campaign=aceng-pmax-br-main-roas5-all-220407&utm_content=kawhi&ad_id=&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIWsWcD5MV9VxdWcRutbZPqLftCYN4WGCsRkPi_GJtY4J-5SVenmRihoCPRMQAvD_BwE
+
+
+https://www.youtube.com/watch?v=jTIRUXJKMX4
+
+
+https://www.banggood.com/pt/CHIHAI-MOTOR-6V-210RPM-Encoder-Motor-DC-Gear-Motor-with-Mounting-Bracket-and-Wheel-p-1044064.html?utm_source=googleshopping&utm_medium=cpc_organic&gmcCountry=BR&utm_content=minha&utm_campaign=minha-br-pt-pc&currency=BRL&cur_warehouse=CN&createTmp=1&utm_source=googleshopping&utm_medium=cpc_pt&utm_campaign=aceng-pmax-br-main-roas5-all-220407&utm_content=kawhi&ad_id=&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIWsWcD5MV9VxdWcRutbZPqLftCYN4WGCsRkPi_GJtY4J-5SVenmRihoCPRMQAvD_BwE
