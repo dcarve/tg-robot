@@ -1,7 +1,8 @@
 
 \chapter{Revisão Bibliografica}
 
-\section{Veculo omnidirecional de 3 rodas}
+\section{Veículo omnidirecional de 3 rodas}
+
 
 \section{Roda Omnidirecional}
 
@@ -19,8 +20,11 @@ Uma variação da roda omnidirecional é a roda mecanum, inventada por Bengt Ilo
 
 
 \section{Microcontrolador STM32F103C8}
-O STM32F103C8, também conhecido como Blue Pill, é um microcontrolador fabricado pela STMicroelectronics, de 32-bits, com processador o ARM Cortex-M3, 64Kbs de memória flash.
-O processador Cortex-M3, projetado pela ARM (Advanced RISC Machine Ltd.), baseado em arquitetura Harvard, de 32-bits \cite{cortex_m3}.
+O STM32F103C8, também conhecido como Blue Pill, é um microcontrolador fabricado pela STMicroelectronics, de 32-bits, tem como processador o ARM Cortex-M3, de 64Kbs de memória flash.
+O processador Cortex-M3, projetado pela ARM (Advanced RISC Machine Ltd.) é  baseado em arquitetura Harvard, de 32-bits.
+A família de microcontroladores STM32 fornece uma base par uma uma granda variedades de sistemas embarcados,  e com custo porém essa flexibilidade e custo menor em comparação ao Arduino com o ATmega, que possui microcontroladores de 8 a 16bits.
+Porém essa flexibilidade e baixo custo poissui requer um nível de experiência maior em programação C comparado ao Arduino, que foi pensado para ser mais amigável com iniciantes \cite{cortex_m3}.
+O STM32F103C8 possui 7 timers, 2 ADCs, e 9 interfaces de comuinicação, incluindo I2C (Inter-Integrated Circuit), USART (Universal Synchronous Asynchronous Receiver Transmitter), SPI (Serial Peripheral Interface), CAN e USB 2.0
 
 
 \begin{figure}[h]
@@ -30,18 +34,17 @@ O processador Cortex-M3, projetado pela ARM (Advanced RISC Machine Ltd.), basead
 \end{figure}
 
 
+\section{Motor DC com encoder e driver para motor}
 
-\section{Motor DC e drive}
-
-
-\section{Comunicação serial}
-
-
-\section{controle PDI}
+Um motor DC é basicamente uma máquina elétrica de corrente contínua, que converte energia elétrica de corrente contínua em energia mecânica
+Máquinas elétricas CC são mais fácies de controlar e oferecem uma grande faixa de velocidades \cite{Maquinas_eletricas}.
+Devido a sua facilidade de controle, se tornam ótimos canditados para uso em eletrónica e robótica, pois podem ser usados com baterias
+Para controlar a velocidade de um motor, é necessário o uso de um encoder, que converte o sinal de posição em um valor medível de velocidade angular.
 
 
-\section{filtro digital}
 
+
+cujos aspectos contrutivos são 
 
 
 
