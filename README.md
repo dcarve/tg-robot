@@ -107,3 +107,6 @@ https://www.banggood.com/pt/CHIHAI-MOTOR-6V-210RPM-Encoder-Motor-DC-Gear-Motor-w
 https://howtomechatronics.com/tutorials/arduino/arduino-dc-motor-control-tutorial-l298n-pwm-h-bridge/
 
 http://www.ijsrp.org/research-paper-1118/ijsrp-p8321.pdfqq
+
+
+https://www.rugged-circuits.com/the-motor-driver-myth
