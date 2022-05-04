@@ -60,15 +60,20 @@ vem acoplado ao motor empregado, com 11 PPR (\textit{Pulses Per Revolution}).
 
 \subsection{Driver para motor}
 
-	Motores não podem ser ligados diretamente nos pinos de um microcontrolador, 
-	é necesário um circuito que permita a baixa corrente do microcontrolador controlar correntes mais altas, como as de um motor DC.
-	Drivers podem ser usados em uma variedade de tensões de entrada e permitem o controle da velocidade por PWM \cite{toshiba_ponte_h}.
+	Motores não podem ser ligados diretamente nos pinos de um microcontrolador -
+	é necessário um circuito que permita à baixa corrente do microcontrolador
+	controlar correntes mais altas, como as de um motor DC. Drivers podem ser
+	usados em uma variedade de tensões de entrada e permitem o controle da
+	velocidade por PWM \cite{toshiba_ponte_h}.
 
-	O driver a ser usado é do tipo ponte H. A Ponte H permite que a polaridade da alimentação do motor DC seja trocada.
-	Devido a inercia do motor, ele continua girando mesmo quando a energia é retirada,  
-	mas a ponte H pode curto-circuitar os terminais do motor, gerando uma força eletromotriz de frenagem.
-	Outra razão para uso de um driver ponte H, é lidar com a tensão gerada pelo motor quando o rotor continua a girar depois de remover alimentação, 
-	o motor se comporta com um gerador nesse momento, e a ponte H fornece um caminho livre para essa corrente gerada pelo rotor.
+	O driver a ser usado neste trabalho é do tipo ponte H. A Ponte H permite que
+	a polaridade da alimentação do motor DC seja alterada. Devido a sua inércia,
+	o motor continua girando mesmo quando a energia é retirada, mas a ponte H
+	pode curto-circuitar seus terminais, gerando uma força eletromotriz de
+	frenagem. Outra razão para uso de um driver ponte , é lidar com a tensão
+	gerada pelo motor quando o rotor continua a girar depois de remover
+	alimentação - o motor se comporta com um gerador nesse momento, e a ponte H
+	fornece um caminho livre para essa corrente gerada.
 
 
 \begin{figure}[h]
