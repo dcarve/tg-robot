@@ -8,9 +8,9 @@ class Vectors:
 
     def __init__(self, robot_class, center_object):
         self.thickness_vectors = 2
-        self.vector_wheel_1_color = (255,115, 5)
-        self.vector_wheel_2_color = (78, 255, 54)
-        self.vector_wheel_3_color = (7, 7, 195)
+        self.vector_wheel_1_color = (0,0,0) #(255,115, 5)
+        self.vector_wheel_2_color = (0,0,0) #(78, 255, 54)
+        self.vector_wheel_3_color = (0,0,0)   #(7, 7, 195)
         self.rb = robot_class
         self.center_object = center_object
 
@@ -39,7 +39,7 @@ class Vectors:
         image = cv.arrowedLine(img = image, 
                             pt1 = self.center_object, 
                             pt2 = (x_mouse, y_mouse),
-                            color = (255, 255, 255), 
+                            color = (0, 0, 0),  # color = (255, 255, 255), 
                             thickness = self.thickness_vectors, 
                             tipLength=0.05)
 
@@ -52,19 +52,19 @@ class Vectors:
 
         image = self.__generate_vector_wheel__(image, 
                                             angle = self.rb.angular_position_wheel_1, 
-                                            wheel_speed = wheel_speeds_1, 
+                                            wheel_speed = wheel_speeds_1*1.5, 
                                             wheel_position = self.rb.__calc_center_position_wheel__(self.rb.angular_position_wheel_1, self.center_object),
                                             color_vector = self.vector_wheel_1_color)
                                             
         image = self.__generate_vector_wheel__(image, 
                                             angle = self.rb.angular_position_wheel_2, 
-                                            wheel_speed = wheel_speeds_2, 
+                                            wheel_speed = wheel_speeds_2*1.5, 
                                             wheel_position = self.rb.__calc_center_position_wheel__(self.rb.angular_position_wheel_2, self.center_object),
                                             color_vector = self.vector_wheel_2_color)
                                             
         image = self.__generate_vector_wheel__(image, 
                                             angle = self.rb.angular_position_wheel_3, 
-                                            wheel_speed = wheel_speeds_3, 
+                                            wheel_speed = wheel_speeds_3*1.5, 
                                             wheel_position = self.rb.__calc_center_position_wheel__(self.rb.angular_position_wheel_3, self.center_object),
                                             color_vector = self.vector_wheel_3_color)
                                             

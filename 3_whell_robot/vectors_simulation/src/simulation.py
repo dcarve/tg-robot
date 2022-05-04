@@ -10,8 +10,8 @@ class Simulation():
 
         self.ss = ScreenSize()
         self.ss.get_screen_settings()
-
-        self.rb = Robot(self.ss.proportion)
+        #self.ss.proportion
+        self.rb = Robot(2.5)
         
         self.vt = Vectors(robot_class = self.rb, center_object = self.ss.center_object)
 
