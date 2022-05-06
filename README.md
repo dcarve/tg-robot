@@ -110,3 +110,6 @@ http://www.ijsrp.org/research-paper-1118/ijsrp-p8321.pdfqq
 
 
 https://www.rugged-circuits.com/the-motor-driver-myth
+
+
+https://manuals.plus/bluetooth-module/bluetooth-jdy-18-4-2-ble-module-usage-manual#axzz7SX8YVBt9
