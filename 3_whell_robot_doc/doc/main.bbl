@@ -1,0 +1,93 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem{TAKAHASHI}
+\abntrefinfo{AGUIRRE et al.}{AGUIRRE et al.}{2017}
+{AGUIRRE, L.~A. et al. \emph{Enciclopédia de automática : controle e
+  automação, volume III}. [S.l.]: Editora Blucher, 2017.
+ISBN 9788521207733.}
+
+\bibitem{sri_international}
+\abntrefinfo{International}{INTERNATIONAL}{2015}
+{INTERNATIONAL, S. \emph{Shakey the Robot}. 2015.
+  \url{https://www.sri.com/hoi/shakey-the-robot/}.}
+
+\bibitem{mobile_manipulator_robot}
+\abntrefinfo{Mestiri}{MESTIRI}{2022}
+{MESTIRI, Y. \emph{Mobile manipulator robot: omni 3 wheels manipulator robot}.
+  2022. \url{https://bibliotecadigital.ipb.pt/handle/10198/25146}.}
+
+\bibitem{patent_US1305535A}
+\abntrefinfo{Grabowiecki}{GRABOWIECKI}{1919}
+{GRABOWIECKI, J. \emph{Vehicle Wheel}. 1919.}
+
+\bibitem{patent_US3789947A}
+\abntrefinfo{Blumrich}{BLUMRICH}{1972}
+{BLUMRICH, J. \emph{OMNIDIRECTIONAL WHEEL}. 1972.}
+
+\bibitem{draw_omniwheel}
+\abntrefinfo{vexrobotics}{VEXROBOTICS}{2015}
+{VEXROBOTICS. \emph{VEXpro 3.25 OMNI WHEEL}. 2015.
+  \url{https://www.vexrobotics.com/omni-wheels.html}.}
+
+\bibitem{patent_US3876255A}
+\abntrefinfo{Ilon}{ILON}{1972}
+{ILON, B. \emph{Wheels for a course stable selfpropelling vehicle movable in
+  any desired direction on the ground or some other base}. 1972.}
+
+\bibitem{Maquinas_eletricas}
+\abntrefinfo{Fitzgerald, Kingley e Umans}{FITZGERALD; KINGLEY; UMANS}{2014}
+{FITZGERALD; KINGLEY; UMANS, S.~D. \emph{Máquinas elétricas}. 7. ed. [S.l.]:
+  AMGH Editora Ltda, 2014.}
+
+\bibitem{encoder_ppr}
+\abntrefinfo{Smoot}{SMOOT}{}
+{SMOOT, R. \emph{What's the Difference Between an Incremental Encoder's PPR,
+  CPR, and LPR?}
+  \url{https://www.cuidevices.com/blog/what-is-encoder-ppr-cpr-and-lpr}.}
+
+\bibitem{motor_dc_6v_encoder}
+\abntrefinfo{LTD}{LTD}{}
+{LTD, S. C. M.~C. \emph{Holzer Encoder Data}.
+  \url{https://pt.aliexpress.com/item/4000761877459.html?spm=a2g0o.store_pc_allProduct.8148356.49.53913202eMQDkw}.}
+
+\bibitem{toshiba_ponte_h}
+\abntrefinfo{GMBH}{GMBH}{2020}
+{GMBH, T. E.~E. \emph{The H-bridge motor driver with a bridge to a wonderful
+  heritage}. 2020.}
+
+\bibitem{cortex_m3}
+\abntrefinfo{ARM}{ARM}{2010}
+{ARM. \emph{Cortex-M3 Devices Generic User Guide}. 2010. Issue A.}
+
+\bibitem{apostila_microprossados}
+\abntrefinfo{Brown}{BROWN}{2017}
+{BROWN, G. \emph{Sistemas Microprocessados - Apostila com práticas e foco nos
+  processadores ARM CORTEX}. 2017.}
+
+\bibitem{datasheel_l298n}
+\abntrefinfo{STMicroelectronics}{STMICROELECTRONICS}{}
+{STMICROELECTRONICS. \emph{L298N Dual Full-Bridge Driver Datasheet}.
+  \url{https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf}.}
+
+\bibitem{DRV8874}
+\abntrefinfo{Pololu}{POLOLU}{}
+{POLOLU. \emph{DRV8874 Single Brushed DC Motor Driver Carrier}.
+  \url{https://www.pololu.com/product/4035}.}
+
+\bibitem{chinhai_motor}
+\abntrefinfo{LTD}{LTD}{}
+{LTD, S. C. M.~C. \emph{Holzer Encoder Data}.
+  \url{https://www.banggood.com/pt/CHIHAI-MOTOR-6V-210RPM-Encoder-Motor-DC-Gear-Motor-with-Mounting-Bracket-and-Wheel-p-1044064.html?utm_source=googleshopping&utm_medium=cpc_organic&gmcCountry=BR&utm_content=minha&utm_campaign=minha-br-pt-pc&currency=BRL&cur_warehouse=CN&createTmp=1&utm_source=googleshopping&utm_medium=cpc_pt&utm_campaign=aceng-pmax-br-main-roas5-all-220407&utm_content=kawhi&ad_id=&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIWsWcD5MV9VxdWcRutbZPqLftCYN4WGCsRkPi_GJtY4J-5SVenmRihoCPRMQAvD_BwE}.}
+
+\bibitem{l289n}
+\abntrefinfo{electroYA}{ELECTROYA}{}
+{ELECTROYA. \emph{CONTROLADOR DUAL / CONTROLLER PARA STEPPER E DC MOTORS -
+  L298N}.
+  \url{https://www.electroya.com/pt/produto/driver-de-driver-duplo-para-motores-de-passo-e-dc-l298n/}.}
+
+\end{thebibliography}

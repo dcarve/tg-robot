@@ -1,0 +1,78 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 36 items.
+A level-1 auxiliary file: abntex2-modelo-include-comandos.aux
+Reallocating 'name_of_file' (item size: 1) to 16 items.
+Reallocating 'name_of_file' (item size: 1) to 30 items.
+Reallocating 'name_of_file' (item size: 1) to 12 items.
+The style file: abntex2-num.bst
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Database file #1: abntex2-options.bib
+Database file #2: bibliography/bibliografia.bib
+Warning--I didn't find a database entry for "backend=biblatex"
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Warning--campo year vazio ou faltando em encoder_ppr
+Warning--campo year vazio ou faltando em motor_dc_6v_encoder
+Warning--campo year vazio ou faltando em datasheel_l298n
+Warning--campo year vazio ou faltando em DRV8874
+Warning--campo year vazio ou faltando em chinhai_motor
+Warning--campo year vazio ou faltando em l289n
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-num.bst versão v-1.9.7           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 18 entries,
+            6714 wiz_defined-function locations,
+            1282 strings with 12027 characters,
+and the built_in function-call counts, 10467 in all, are:
+= -- 880
+> -- 256
+< -- 1
++ -- 137
+- -- 82
+* -- 612
+:= -- 1475
+add.period$ -- 57
+call.type$ -- 18
+change.case$ -- 131
+chr.to.int$ -- 21
+cite$ -- 23
+duplicate$ -- 517
+empty$ -- 930
+format.name$ -- 416
+if$ -- 2534
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 299
+newline$ -- 77
+num.names$ -- 68
+pop$ -- 419
+preamble$ -- 1
+purify$ -- 58
+quote$ -- 0
+skip$ -- 674
+stack$ -- 1
+substring$ -- 288
+swap$ -- 203
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 6
+while$ -- 81
+width$ -- 0
+write$ -- 202
+(There were 7 warnings)

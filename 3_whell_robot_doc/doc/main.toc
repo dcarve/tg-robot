@@ -1,0 +1,38 @@
+\changetocdepth {4}
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdução}}{3}{chapter.1}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Objetivos}}{4}{chapter.2}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Revisão Bibliográfica}}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Veículo omnidirecional de 3 rodas}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Modelagem Cinemática - Dedução da matriz por cinemática direta}{5}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Roda Omnidirecional}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Motor DC com encoder e driver para motor}{8}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Encoder magnético}{9}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Driver para motor}{9}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Microcontrolador STM32}{10}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Atollic TrueSTUDIO}{10}{section.3.5}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{12}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Componentes}{12}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Motor DC e driver}{12}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Microcontrolador}{13}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Alimentação}{14}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Controle do robô}{14}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Desenvolvimento do código do projeto}{14}{subsection.4.1.5}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Próximas etapas}}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Montagem do robô}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Calibração de controle nos atuadores}{15}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Mapeamento de ambientes}{15}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Calibração de controle automático}{15}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Testes autônomos}{15}{section.5.5}%
+\vspace {\cftbeforechapterskip }
+\vspace {\cftbeforechapterskip }
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{16}{section*.8}%
+\vspace {\cftbeforechapterskip }
