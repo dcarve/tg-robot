@@ -128,3 +128,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.cdt.core 1 0 2022-12-22 21:14:53.115
 !MESSAGE Indexed 'tg' (27 sources, 71 headers) in 1,45 sec: 7.247 declarations; 15.950 references; 3 unresolved inclusions; 51 syntax errors; 4.102 unresolved names (15%)
+
+!ENTRY org.eclipse.ui 4 4 2022-12-22 21:29:00.634
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.
