@@ -1,5 +1,8 @@
 .vscode/settings.json
-**/__pycache__/**
+*__pycache__/
+*.pyc
+*.pyo
+*/doc/abntex2-modelo-include-comandos.aux
 */doc/main.toc
 */doc/main.synctex.gz
 */doc/main.lot
