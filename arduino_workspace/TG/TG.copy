@@ -1,0 +1,154 @@
+#include <Arduino.h>
+#include <util/atomic.h>
+#include "motors_control.h"
+#include "encoders.h"
+
+#define DT_TIME_INCREASE_MOTOR 5000
+#define MAX_VALUE_MOTOR 65000
+#define MIN_VALUE_MOTOR 20000
+#define INC_VEL 10000
+
+int pwm_value = MIN_VALUE_MOTOR;
+int next_change_vel  = (millis() + DT_TIME_INCREASE_MOTOR);  // calc prox toogle de vel
+int inc = INC_VEL;   
+
+//float methodCalcVel1(){
+
+
+//}
+
+long prevT = 0;
+int posPrev = 0;
+volatile int pos_i = 0;
+int pulse_number;
+byte      Encoder_C1Last;
+boolean direction_m;
+
+void setup() {
+
+    motorsSetupPins();
+    encodersSetupPins();
+
+    Serial.begin(9600);   
+
+    //attachInterrupt(digitalPinToInterrupt(PB0),
+    //              readEncoder,RISING);
+
+    attachInterrupt(digitalPinToInterrupt(PB0), count_pulses, RISING);
+
+}
+
+
+void loop() {
+    
+    int pos = 0;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+        pos = pos_i;
+    }
+
+
+    long currT = micros();
+    float deltaT = ((float) (currT-prevT))/1.0e6;
+    float velocity1 = (pos - posPrev)/deltaT;
+
+    int encoderA = digitalRead(PB0);
+    int encoderB = digitalRead(PB1);
+
+    Serial.print("currT:");
+    Serial.print(currT);
+    Serial.print(",");
+    Serial.print("prevT:");
+    Serial.print(prevT);
+    Serial.print(",");
+    Serial.print("pos:");
+    Serial.print(pos);
+    Serial.print(",");
+    Serial.print("posPrev:");
+    Serial.print(posPrev);
+    Serial.print(",");
+    Serial.print("pwm_value:");
+    Serial.print(pwm_value);
+    Serial.print(",");
+    Serial.print("pulse_number:");
+    Serial.println(pulse_number);
+
+    posPrev = pos;
+    prevT = currT;
+
+
+
+    if (millis()>=next_change_vel)
+	{
+        //Serial.print(millis());
+        //Serial.print(", ");
+        //Serial.print(pwm_value);
+
+
+		pwm_value = pwm_value + inc;         // incrementa/decrementa brilho
+		if (pwm_value < MIN_VALUE_MOTOR)                // se brilho < zero - limita a zero
+		{
+			inc = -inc;                // inverte para decrementar brilho
+			pwm_value = MIN_VALUE_MOTOR;                // coloca brilho no minimo
+		} else if (pwm_value > MAX_VALUE_MOTOR) { // se brilho > PWM_Resol, limita
+			inc = -inc;                // inverte para incrementar brilho
+			pwm_value = MAX_VALUE_MOTOR;          // coloca brilho no maximo
+	    }
+		motorsOutput(PB8, PB9, pwm_value, 1);
+
+		next_change_vel = millis() + DT_TIME_INCREASE_MOTOR;   // prox tempo para PB7
+        
+        //Serial.print(", ");
+        //Serial.println(next_change_vel);
+    }
+    pulse_number = 0x00;  
+
+}
+
+
+void readEncoder(){
+  // Read encoder B when PB0 rises
+  int b = digitalRead(PB1);
+  int increment = 0;
+  if(b>0){
+    // If B is high, increment forward
+    increment = 1;
+  }
+  else{
+    // Otherwise, increment backward
+    increment = -1;
+  }
+  pos_i = pos_i + increment;
+
+  // Compute velocity with method 2
+  //long currT = micros();
+  //float deltaT = ((float) (currT - prevT_i))/1.0e6;
+  //velocity_i = increment/deltaT;
+  //prevT_i = currT;
+} 
+
+
+
+
+void count_pulses()
+{
+
+  int Lstate = digitalRead(PB0);       //Lê estado de encoder_C1 e armazena em Lstate
+  
+  if(!Encoder_C1Last && Lstate)               //Encoder_C1Last igual a zero e Lstate diferente de zero?
+  {                                           //Sim...
+    int val = digitalRead(PB1);        //Lê estado de encoder_C2 e armazena em val
+    
+    if(!val && direction_m) direction_m = false;      //Sentido reverso
+    
+    else if(val && !direction_m) direction_m = true;  //Sentido direto
+    
+  } //end if 
+ 
+  Encoder_C1Last = Lstate;                    //Encoder_C1Last recebe o valor antigo
+
+  if(!direction_m)  pulse_number++;           //incrementa número do pulso se direction limpa
+  else              pulse_number--;           //senão decrementa
+
+  
+} //end count_pulses
+

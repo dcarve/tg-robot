@@ -113,3 +113,10 @@ https://www.rugged-circuits.com/the-motor-driver-myth
 
 
 https://manuals.plus/bluetooth-module/bluetooth-jdy-18-4-2-ble-module-usage-manual#axzz7SX8YVBt9
+
+
+
+
+
+
+https://www.valuekart.in/motors/835-chihai-motor-gm25-370-dc-gear-motor-6v-100-210-300rpm-encoder-motor.html

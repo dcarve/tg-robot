@@ -1,68 +1,93 @@
 #include <Arduino.h>
-#include "pwm.h"
-//void setup() {
-//  pinMode(PC13, OUTPUT);
-//}
-// 
-//void loop() {
-//  digitalWrite(PC13, HIGH);
-//  delay(1000);
-//  digitalWrite(PC13, LOW);
-//  delay(1000);
-//}
-//
+#include <util/atomic.h>
+#include "motors_control.h"
+#include "encoders.h"
+#include "serial_monitor.h"
 
-unsigned long myTime;
+#define DT_TIME_SAMPLE_RATE_ENCODER 100
+#define DT_TIME_INCREASE_MOTOR 5000
+#define MAX_VALUE_MOTOR 65000
+#define MIN_VALUE_MOTOR 20000
+#define INC_VEL 10000
+
+int pwm_value = MIN_VALUE_MOTOR;
+int next_change_vel  = (millis() + DT_TIME_INCREASE_MOTOR);  // calc prox toogle de vel
+int next_change_sample_rate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);  // calc prox toogle de vel
+int inc = INC_VEL;   
+long prevT = 0;
+int posPrev = 0;
+volatile int pos_i = 0;
+int pulse_number;
+byte      Encoder_C1Last;
+boolean direction_m;
+int pos = 0;
 
 void setup() {
-    pinMode(PB7, PWM);
-    pinMode(PB8, PWM);
-    pinMode(PB0, INPUT);
-    pinMode(PB1, INPUT);
-    Serial.begin(9600);
+
+    motorsSetupPins();
+    encodersSetupPins();
+
+    Serial.begin(9600);   
+
+    attachInterrupt(digitalPinToInterrupt(PB0), readEncoder,RISING);
+
 }
 
 void loop() {
-    myTime = millis();
-    int encoderA = analogRead(PB0);
-    int encoderB = analogRead(PB1);
 
-    Serial.print("millis:  ");
-    Serial.print(myTime);
-    Serial.print("  encoderA: ");
-    Serial.print(encoderA);
-    Serial.print("  encoderB: ");
-    Serial.println(encoderB);
+    if (millis()>=next_change_sample_rate){
+        int pos = 0;
 
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+            pos = pos_i;
+        }
+        long currT = micros();
+        float rpm = calc_rpm(currT, prevT, pos, posPrev);
 
-    set_pwm_value(PB7, 4000);
-    set_pwm_value(PB8, -1);    
+        sent_serial_monitor(currT, prevT, pos, posPrev, pwm_value, rpm);
+
+        posPrev = pos;
+        prevT = currT;
+
+        next_change_sample_rate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
+    }
+
+    if (millis()>=next_change_vel){
+        pwm_value = pwm_value + inc;
+        if (pwm_value < MIN_VALUE_MOTOR){
+            inc = -inc;
+            pwm_value = MIN_VALUE_MOTOR;
+        } else if (pwm_value > MAX_VALUE_MOTOR) {
+            inc = -inc;
+            pwm_value = MAX_VALUE_MOTOR;
+        }
+        
+        motorsOutput(PB8, PB9, pwm_value, 1);
+
+        next_change_vel = millis() + DT_TIME_INCREASE_MOTOR;
+
+      }
+
+    
+
 }
 
-
-/* void loop() {
-    int sensorValue = analogRead(PB0);
-    int sensorValue = analogRead(PB0);
-    Serial.println(4000);
-    set_pwm_value(PB7, 4000);
-    set_pwm_value(PB8, -1);
-
-    delay(2000);
-    
-    pwmWrite(PB7, -1);
-    pwmWrite(PB8, -1);
-
-    delay(1000);
-    
-    pwmWrite(PB7, -1);
-    pwmWrite(PB8, 4000);
-
-    delay(2000);
-    
-    pwmWrite(PB7, -1);
-    pwmWrite(PB8, -1);
-
-    delay(1000);
-    
+/* 
+void readEncoder(){
+    int b = digitalRead(PB1);
+    int increment = 0;
+    if(b>0){
+        increment = 1;
+    }
+    else {
+        increment = -1;
+    }
+    pos_i = pos_i + increment;
+  
 }
  */
+
+void readEncoder(){
+    pos_i = readEncoderCalc(pos_i);
+}
+
