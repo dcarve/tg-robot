@@ -11,16 +11,15 @@
 #define INC_VEL 10000
 
 int pwm_value = MIN_VALUE_MOTOR;
-int next_change_vel  = (millis() + DT_TIME_INCREASE_MOTOR);  // calc prox toogle de vel
-int next_change_sample_rate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);  // calc prox toogle de vel
-int inc = INC_VEL;   
+int next_change_vel  = (millis() + DT_TIME_INCREASE_MOTOR);
+int next_change_sample_rate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
+int inc = INC_VEL;
+
 long prevT = 0;
 int posPrev = 0;
 volatile int pos_i = 0;
-int pulse_number;
-byte      Encoder_C1Last;
-boolean direction_m;
 int pos = 0;
+
 
 void setup() {
 
@@ -65,29 +64,9 @@ void loop() {
         motorsOutput(PB8, PB9, pwm_value, 1);
 
         next_change_vel = millis() + DT_TIME_INCREASE_MOTOR;
-
-      }
-
-    
-
-}
-
-/* 
-void readEncoder(){
-    int b = digitalRead(PB1);
-    int increment = 0;
-    if(b>0){
-        increment = 1;
     }
-    else {
-        increment = -1;
-    }
-    pos_i = pos_i + increment;
-  
 }
- */
 
 void readEncoder(){
     pos_i = readEncoderCalc(pos_i);
 }
-

@@ -2,7 +2,6 @@
 
 #define HALL_RESOLUTION 341.2
 
-
 void encodersSetupPins(){
     //encoder, motor 1
     pinMode(PB11, INPUT);
@@ -18,7 +17,6 @@ void encodersSetupPins(){
 
 };
 
-
 int readEncoderCalc(int pos_i){
     int b = digitalRead(PB1);
     int increment = 0;
@@ -32,7 +30,6 @@ int readEncoderCalc(int pos_i){
     
     return pos_i;
 }
-
 
 float calc_rpm(long currT, long prevT, int pos, int posPrev){
 
