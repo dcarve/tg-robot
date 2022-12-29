@@ -19,15 +19,12 @@ void encodersSetupPins(){
 
 int readEncoderCalc(int pos_i){
     int b = digitalRead(PB1);
-    int increment = 0;
     if(b>0){
-        increment = 1;
+        pos_i++;
     }
     else {
-        increment = -1;
-    }
-    pos_i = pos_i + increment;
-    
+        pos_i--;
+    }    
     return pos_i;
 }
 

@@ -8,6 +8,8 @@ void sent_serial_monitor(
     int pos,
     int posPrev,
     int pwm_value,
-    float rpm);
+    float rpm,
+    float rpm2,
+    long millis);
 
 #endif

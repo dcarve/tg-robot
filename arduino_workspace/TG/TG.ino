@@ -4,21 +4,26 @@
 #include "encoders.h"
 #include "serial_monitor.h"
 
-#define DT_TIME_SAMPLE_RATE_ENCODER 100
-#define DT_TIME_INCREASE_MOTOR 5000
-#define MAX_VALUE_MOTOR 65000
-#define MIN_VALUE_MOTOR 20000
-#define INC_VEL 10000
+#define DT_TIME_SAMPLE_RATE_ENCODER 10
+#define DT_TIME_INCREASE_MOTOR 50
+#define MAX_VALUE_MOTOR 65535
+#define MIN_VALUE_MOTOR 10000
+#define INC_VEL 100
+#define HALL_RESOLUTION 341.2
 
-int pwm_value = MIN_VALUE_MOTOR;
-int next_change_vel  = (millis() + DT_TIME_INCREASE_MOTOR);
-int next_change_sample_rate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
+int pwmValue = MAX_VALUE_MOTOR;
+int nextChangeVel  = (millis() + DT_TIME_INCREASE_MOTOR);
+int nextChangeSampleRate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
 int inc = INC_VEL;
 
 long prevT = 0;
 int posPrev = 0;
 volatile int pos_i = 0;
 int pos = 0;
+
+volatile float velocity_i = 0;
+volatile float rpm_i = 0;
+volatile long prevT_i = 0;
 
 
 void setup() {
@@ -34,39 +39,53 @@ void setup() {
 
 void loop() {
 
-    if (millis()>=next_change_sample_rate){
+    if (millis()>=nextChangeSampleRate){
         int pos = 0;
+        float rpm2 = 0;
 
         ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
             pos = pos_i;
+            rpm2 = rpm_i;
         }
         long currT = micros();
         float rpm = calc_rpm(currT, prevT, pos, posPrev);
 
-        sent_serial_monitor(currT, prevT, pos, posPrev, pwm_value, rpm);
+        sent_serial_monitor(currT, prevT, pos, posPrev, pwmValue, rpm, rpm2, millis());
 
         posPrev = pos;
         prevT = currT;
 
-        next_change_sample_rate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
+        nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
     }
 
-    if (millis()>=next_change_vel){
-        pwm_value = pwm_value + inc;
-        if (pwm_value < MIN_VALUE_MOTOR){
-            inc = -inc;
-            pwm_value = MIN_VALUE_MOTOR;
-        } else if (pwm_value > MAX_VALUE_MOTOR) {
-            inc = -inc;
-            pwm_value = MAX_VALUE_MOTOR;
-        }
-        
-        motorsOutput(PB8, PB9, pwm_value, 1);
-
-        next_change_vel = millis() + DT_TIME_INCREASE_MOTOR;
+    if (millis()>=nextChangeVel){
+        up_down_motor(&pwmValue, &inc, MAX_VALUE_MOTOR, MIN_VALUE_MOTOR);
+        nextChangeVel = millis() + DT_TIME_INCREASE_MOTOR;
     }
+
 }
 
 void readEncoder(){
-    pos_i = readEncoderCalc(pos_i);
+    int b = digitalRead(PB1);
+    int increment=0;
+
+    if(b>0){
+        increment = 1;
+    }
+    else {
+        increment =-1;
+    }
+
+    pos_i = pos_i + increment;
+
+
+    //pos_i = readEncoderCalc(pos_i);
+
+
+    long currT = micros();
+    float deltaT = ((float) (currT - prevT_i))/1.0e6;
+    velocity_i = increment/deltaT;
+    rpm_i = 60*velocity_i/HALL_RESOLUTION;
+    prevT_i = currT;
+
 }

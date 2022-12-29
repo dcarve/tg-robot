@@ -10,4 +10,6 @@ void motorsOutput(
 
 void motorsSetupPins();
 
+void up_down_motor(int *pwmValue, int *inc, int maxValueMotor, int minValueMotor);
+
 #endif

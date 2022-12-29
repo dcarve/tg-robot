@@ -29,3 +29,22 @@ void motorsOutput(
         pwmWrite(in2, value);
     }
 };
+
+void up_down_motor(int *pwmValue, int *inc, int maxValueMotor, int minValueMotor){
+        int send_pwm_value;
+
+        *pwmValue = *pwmValue + *inc;
+        if (*pwmValue < minValueMotor){
+            *inc = -*inc;
+            *pwmValue = minValueMotor;
+        } else if (*pwmValue > maxValueMotor) {
+            *inc = -*inc;
+            *pwmValue = maxValueMotor;
+        }
+        
+        send_pwm_value = *pwmValue;
+
+        motorsOutput(PB8, PB9, send_pwm_value, 1);
+
+
+}

@@ -7,7 +7,9 @@ void sent_serial_monitor(
     int pos,
     int posPrev,
     int pwm_value,
-    float rpm){
+    float rpm,
+    float rpm2,
+    long millis){
     
     int encoderA = digitalRead(PB0);
     int encoderB = digitalRead(PB1);
@@ -33,9 +35,15 @@ void sent_serial_monitor(
     //Serial.print("posPrev:");
     //Serial.print(posPrev);
     //Serial.print(",");
-    Serial.print("pwm_value:");
-    Serial.print(pwm_value);
+    //Serial.print("pwm_value:");
+    //Serial.print(pwm_value/1000);
+    //Serial.print(",");
+    Serial.print("millis:");
+    Serial.print(millis);
     Serial.print(",");
     Serial.print("rpm:");
-    Serial.println(rpm);
+    Serial.print(rpm);
+    Serial.print(",");
+    Serial.print("rpm2:");
+    Serial.println(rpm2);
 }
