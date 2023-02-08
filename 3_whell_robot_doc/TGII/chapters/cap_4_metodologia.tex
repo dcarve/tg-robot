@@ -1,16 +1,25 @@
 
-
 \chapter{Metodologia}
 
-\section{Componentes}
+{\color{red} Este capítulo dedica-se a prover uma visão geral das etapas necessárias à conclusão deste projeto, e também
+permite sua eventual reprodução no futuro.}
+
+\section{Hardware}
+{\color{red} Esta seção especifica os componentes físicos envolvidos na robô desenvolvido para o projeto, descrevendo 
+também a função de cada um no desempenho das suas funções.}
+
+\subsection{Montagem mecânica}
+{\color{red} Esta subseção deve falar da fabricação da base do robô e das rodas, e da integração mecânica entre esses
+componentes.}
 
 \subsection{Motor DC e driver}
-Optou-se pelo uso de um motor DC de 6V 210rpm, com taxa de redução de 1:34. O motor já possiu um encoder magnético acoplado, com 11 PPR (\textit{Pulses Per Revolution}).
-Será usado o driver Ponte H L298N para uso incial, suporta até 2A em operação DC \cite{datasheel_l298n}, a corrente de operação máxima do motor é de 1.1A, 
-porém a corrente de parada é drenar 3.2A.
-O L298N também causa uma queda de tensão, a 1A pode causar uma queda de 3.2V, fazendo com que o motor não receba a tensão necessária para operar nos valores desejados \cite{datasheel_l298n},
-Com isso, um driver de maior capacidade possa ser necessário, as opções são os da categoria \textit{Medium-power} da Pololu, DRV8874 ou acima \cite{DRV8874}.
-Mas para seguir com desenvolvimento, o l298N será usado por hora.
+Optou-se pelo uso de um motor DC de 6V 210rpm, com taxa de redução de 1:34. O motor já possiu um encoder magnético
+acoplado, com 11 PPR (\textit{Pulses Per Revolution}). Será utilizado o driver Ponte H L298N para uso inicial - ele
+suporta até 2A em operação DC \cite{datasheel_l298n}, a corrente de operação máxima do motor é de 1.1A, porém a corrente
+de parada é drenar 3.2A. O L298N também causa uma queda de tensão, a 1A pode causar uma queda de 3.2V, fazendo com que o
+motor não receba a tensão necessária para operar nos valores desejados \cite{datasheel_l298n}. Com isso, um driver de
+maior capacidade possa ser necessário, as opções são os da categoria \textit{Medium-power} da Pololu, DRV8874 ou acima
+\cite{DRV8874}. Mas, para seguir com desenvolvimento, o l298N será usado por hora.
 
 \begin{figure}[h]
 	\centering
@@ -41,7 +50,6 @@ Mas para seguir com desenvolvimento, o l298N será usado por hora.
 	\caption{Driver Ponte H L289N \cite{l289n}}
 \end{figure}
 
-	
 \subsection{Microcontrolador}
 
 Para microcontrolador, optou-se pelo uso do  STM32F103C8, também conhecido como Blue Pill.
@@ -50,7 +58,8 @@ O STM32F103C8 possui 7 timers, 2 ADCs, e 9 interfaces de comunicação, incluind
 I2C (\textit{Inter-Integrated Circuit}), USART (\textit{Universal Synchronous
 Asynchronous Receiver Transmitter}), SPI (\textit{Serial Peripheral Interface}),
 CAN e USB 2.0.
-O STM32F103C8 possui 6 que suportam canais de PWM de 5V, e outros 8 canais de 3.3V,  e pode ser alimentado via micro USB de 5V.
+O STM32F103C8 possui 6 que suportam canais de PWM de 5V, e outros 8 canais de 3.3V,  e pode ser alimentado via micro
+USB de 5V.
 
 Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utilizado.
 
@@ -61,13 +70,40 @@ Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utili
 \end{figure}
 
 \subsection{Alimentação}
-Para alimentar o microntrolador, um powerbank com saida de 5v será usado, considerando que o STM32F103C8 funciona a uma corrente abaixo de 100mA
-Para alimentar os motores, para uso no desenvolvimento, optou-se o uso de pilhas AA (1,5V) e um suporte para 4 pilhas, 
-mas será necessário trocar por bateria de lítio-ion.
+Para alimentar o microcontrolador, um powerbank com saida de 5v será usado, considerando que o STM32F103C8 funciona a
+uma corrente abaixo de 100mA. Para alimentar os motores, para uso no desenvolvimento, optou-se o uso de pilhas AA (1,5V)
+e um suporte para 4 pilhas, mas será necessário trocar por bateria de lítio-ion.
 
-\subsection{Controle do robô}
-Inicialmente será usado um joystick de 3 eixos para controlar o robô para testar a cinemática de movimento.
+\subsection{Joystick de controle}
+Um joystick de 3 eixos para controlar o robô para testar a cinemática de movimento.
+{\color{red} É necessário aqui especificar o modelo utilizado e descrever características.}
 
-\subsection{Desenvolvimento do código do projeto}
-O projeto será codado em C, usando a IDE Atollic TrueSTUDIO.
+\subsection{Sensores}
+{\color{red} Esta subseção deve descrever os sensores utilizados e também sua finalidade.}
+
+\subsection{Dispositivos de comunicação}
+{\color{red} Esta subseção deve descrever os dispositivos de comunicação utilizados (Wi-fi, Bluetooth, etc) e também sua
+finalidade.}
+
+\subsection{Calibração de parâmetros}
+{\color{red} Caso haja necessidade de calibração de parâmetros de alguns dos componentes utilizados (sensibilidade de
+sensores, histerese de componentes mecânicos, taxa de comunicação de dispositivos, etc), os procedimentos devem ser
+descritos nesta subseção.}
+
+\section{Software}
+{\color{red} Esta seção se dedica a discorrer a respeito dos diversos componentes de software envolvidos no projeto.}
+
+\subsection{Controle de movimentação}
+O código fonte do projeto será desenvolvido usando a linguagem em C, por meio da IDE Atollic TrueSTUDIO.
 O código deverá conter o controle do PWM para os motores, e controle da cinemática.
+
+{\color{red} Esta subseção deve falar do filtro passa-baixas, desenvolvimento do controlador PID, PWM, e afins, a fim de
+controlar a velocidade do motor. Foca-se no código desenvolvido para os atuadores.}
+
+\subsection{Controle de posição}
+{\color{red} Esta subseção deve descrever como controlar a posição do robô no ambiente interno - presumivelmente, por
+meio de sensores e alguma lógica de posicionamento.}
+
+\section{Mapeamento de ambiente}
+{\color{red} O objetivo desta seção é descrever a abordagem para mapeamento de ambientes internos - seja carregando um
+mapa a partir de coordenadas, ou qualquer outra abordagem adotada.}
