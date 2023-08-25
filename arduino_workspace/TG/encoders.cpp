@@ -3,29 +3,64 @@
 #define HALL_RESOLUTION 341.2
 
 void encodersSetupPins(){
-    //encoder, motor 1
-    pinMode(PB11, INPUT);
-    pinMode(PB10, INPUT);
 
-    //encoder, motor 2
-    pinMode(PB1, INPUT);
-    pinMode(PB0, INPUT);
+    // encoder, motor 1
+    pinMode(PB1, INPUT);  // amarelo
+    pinMode(PB0, INPUT);  // verde interrupção do tipo rising
+
+    // encoder, motor 2    
+    pinMode(PB11, INPUT);  // amarelo
+    pinMode(PB10, INPUT);  // verde interrupção do tipo rising
     
-    //encoder, motor 3
-    pinMode(PA7, INPUT);
-    pinMode(PA6, INPUT);
+    // encoder, motor 3
+    pinMode(PA7, INPUT);  // amarelo
+    pinMode(PA6, INPUT);  // verde interrupção do tipo rising
 
 };
 
-int readEncoderCalc(int pos_i){
+int readEncoderCalcEngine1(int *pos_i){
+
     int b = digitalRead(PB1);
+    int increment=0;
+
     if(b>0){
-        pos_i++;
+        increment = 1;
     }
     else {
-        pos_i--;
-    }    
-    return pos_i;
+        increment =-1;
+    }
+    pos_i = pos_i + increment;
+
+}
+
+int readEncoderCalcEngine2(int *pos_i){
+
+    int b = digitalRead(PB11);
+    int increment=0;
+
+    if(b>0){
+        increment = 1;
+    }
+    else {
+        increment =-1;
+    }
+    pos_i = pos_i + increment;
+
+}
+
+int readEncoderCalcEngine3(int *pos_i){
+
+    int b = digitalRead(PA7);
+    int increment=0;
+
+    if(b>0){
+        increment = 1;
+    }
+    else {
+        increment =-1;
+    }
+    pos_i = pos_i + increment;
+
 }
 
 float calc_rpm(long currT, long prevT, int pos, int posPrev){
@@ -36,5 +71,15 @@ float calc_rpm(long currT, long prevT, int pos, int posPrev){
 
     return rpm;
 }
+
+
+float low_pass_filter_first_order(float currRpm, float prevRpm, float prevFilterRpm){
+
+    float posFilterRpm = 0.521886*prevFilterRpm + 0.239057*currRpm + 0.239057*prevRpm;
+
+    return posFilterRpm;
+}
+
+
 
 
