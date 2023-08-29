@@ -10,16 +10,16 @@ float radius = RADIUS_ROBOT;
 
 void motorsSetupPins(){
     //motor 1
-    pinMode(PB6, PWM);
-    pinMode(PB7, PWM);
+    pinMode(PB6, PWM); // cabo claro IN1
+    pinMode(PB7, PWM); // cabo escuro IN2
 
     //motor 2
-    pinMode(PB8, PWM);
-    pinMode(PB9, PWM);  
+    pinMode(PB8, PWM); // cabo claro IN1
+    pinMode(PB9, PWM);  // cabo escuro IN2
     
     //motor 3
-    pinMode(PA9, PWM);
-    pinMode(PA10, PWM);
+    pinMode(PA9, PWM); // cabo claro IN1
+    pinMode(PA10, PWM); // cabo escuro IN2
 
 };
 
