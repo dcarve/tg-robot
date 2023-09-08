@@ -3,13 +3,13 @@
 #include <Arduino.h>
 
 void sent_serial_monitor(
-    long currT,
-    long prevT,
-    int pos,
-    int posPrev,
-    int pwm_value,
-    float rpm,
+    long millis,
+    float rpm1,
+    float filterRpm_1,
     float rpm2,
-    long millis);
+    float filterRpm_2,
+    float rpm3,
+    float filterRpm_3
+);
 
 #endif

@@ -6,10 +6,13 @@
 #include "serial_monitor.h"
 
 #define DT_TIME_SAMPLE_RATE_ENCODER 10 // encoder position reading update rate
-#define DT_TIME_INCREASE_ENGINE 50  // engine speed update rate, for testing
+#define send_serial 1000 // encoder position reading update rate
+#define DT_TIME_INCREASE_ENGINE 5  // engine speed update rate, for testing
 #define MAX_VALUE_MOTOR 65535  // 16-bit
-#define MIN_VALUE_MOTOR 10000 // minimum value for the motor to start
+#define MIN_VALUE_MOTOR 30000 // minimum value for the motor to start
 #define HALL_RESOLUTION 341.2 // encoder position conversion constant for rpm
+#define DEFAULT_SPEED 0.05 // meters/second
+
 
 #define INC_VEL 100   //incremento de velocidade para teste
 
@@ -19,14 +22,11 @@
 int pwmValue = MAX_VALUE_MOTOR;
 int nextChangeVel  = (millis() + DT_TIME_INCREASE_ENGINE);
 int nextChangeSampleRate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
+int nextserial  = (millis() + send_serial);
 int inc = INC_VEL;
 
 long prevTime = 0;
 long currTime = micros();
-int e_integral = 0;
-float kp = 20000;
-float kd = 0;
-float ki = 1;
 
 volatile int pos_i_1 = 0;
 volatile int pos_i_2 = 0;
@@ -44,6 +44,15 @@ float prevRpm_1 = 0;
 float prevRpm_2 = 0;
 float prevRpm_3 = 0;
 
+int w1 = 0;
+int w2 = 0;
+int w3 = 0;
+
+
+float direction_angle = 90;
+float angular_speed = 0;
+
+
 
 void setup() {
 
@@ -52,9 +61,11 @@ void setup() {
 
     Serial.begin(9600);   
 
-    attachInterrupt(digitalPinToInterrupt(PB0), readEncoder,RISING);
-    attachInterrupt(digitalPinToInterrupt(PB10), readEncoder,RISING);
-    attachInterrupt(digitalPinToInterrupt(PA6), readEncoder,RISING);
+    attachInterrupt(digitalPinToInterrupt(PB0), readEncoder1, RISING);
+    attachInterrupt(digitalPinToInterrupt(PB10), readEncoder2, RISING);
+    attachInterrupt(digitalPinToInterrupt(PA6), readEncoder3, RISING);
+
+    //pinMode(PA11, OUTPUT);
 
 }
 
@@ -95,55 +106,76 @@ void loop() {
 
         prevTime = currTime;
 
-        sent_serial_monitor(
-            millis(),
-            rpm1,
-            filterRpm_1,
-            rpm2,
-            filterRpm_2,
-            rpm3,
-            filterRpm_3
-        );
-
-
-
-
-        float erro = rpm_target - filterRpm_1;
-        e_integral = e_integral + erro*(currTime-prevTime);
-
-        
-        float u = kp*erro + ki*e_integral;
-
-
-        int send_pwm_value = (int) fabs(u);
-
-        if (send_pwm_value > MAX_VALUE_MOTOR){
-            send_pwm_value=MAX_VALUE_MOTOR;
-        }
-
-        motorsOutput(PB8, PB9, send_pwm_value, 1);
-
-
-
-
+        //sent_serial_monitor(
+        //    millis(),
+        //    rpm1,
+        //    filterRpm_1,
+        //    rpm2,
+        //    filterRpm_2,
+        //    rpm3,
+        //    filterRpm_3
+        //);
 
         nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
     }
+    
+    if (millis()>=nextChangeVel){
+
+    //digitalWrite(PA11, HIGH);
 
 
 
+        TransformationMatrix(
+            &w1,
+            &w2,
+            &w3,
+            direction_angle,
+            angular_speed
+        );
+        sendMotorOutput(w1,w2,w3);
 
-    //if (millis()>=nextChangeVel){
-    //    up_down_motor(&pwmValue, &inc, MAX_VALUE_MOTOR, MIN_VALUE_MOTOR);
-    //    nextChangeVel = millis() + DT_TIME_INCREASE_MOTOR;
+    //pwmWrite(PB6, 40000);
+    //pwmWrite(PB7, 0);
+    
+    //pwmWrite(PB8, MAX_VALUE_MOTOR);
+    //pwmWrite(PB9, 0);
+
+    //pwmWrite(PA9, MAX_VALUE_MOTOR);
+    //pwmWrite(PA10, 0);
+
+        nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
+
+    }
+    
+    //if (millis()>=nextserial){
+    //    Serial.print("millis:");
+    //   Serial.print(millis());
+    //    Serial.print(",");
+    //   Serial.print("w1:");
+    //    Serial.print(w1);
+    //    Serial.print(",");
+    //    Serial.print("w2:");
+    //    Serial.print(w2);
+    //    Serial.print(",");
+    //    Serial.print("w3:");
+    //    Serial.print(w3);
+    //   Serial.print(",");
+    //    Serial.print("direction_angle:");
+    //    Serial.print(direction_angle);
+    //    Serial.print('\n');
+
+    //    nextserial = millis() + send_serial;
+
     //}
 
 }
 
-void readEncoder(){  
-
-    readEncoderCalcEngine1(&pos_i_1);
-    readEncoderCalcEngine2(&pos_i_2);
-    readEncoderCalcEngine3(&pos_i_3);
-
+void readEncoder1(){  
+    calcEncoder(digitalRead(PB1), &pos_i_1);
+}
+void readEncoder2(){  
+    calcEncoder(digitalRead(PB11), &pos_i_2);
+}
+void readEncoder3(){  
+    calcEncoder(digitalRead(PA7), &pos_i_3);
 }

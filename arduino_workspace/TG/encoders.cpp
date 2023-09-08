@@ -18,9 +18,8 @@ void encodersSetupPins(){
 
 };
 
-int readEncoderCalcEngine1(int *pos_i){
-
-    int b = digitalRead(PB1);
+void calcEncoder(byte encoder_pin_yellow, volatile int *pos){
+    int b = digitalRead(encoder_pin_yellow);
     int increment=0;
 
     if(b>0){
@@ -29,38 +28,7 @@ int readEncoderCalcEngine1(int *pos_i){
     else {
         increment =-1;
     }
-    pos_i = pos_i + increment;
-
-}
-
-int readEncoderCalcEngine2(int *pos_i){
-
-    int b = digitalRead(PB11);
-    int increment=0;
-
-    if(b>0){
-        increment = 1;
-    }
-    else {
-        increment =-1;
-    }
-    pos_i = pos_i + increment;
-
-}
-
-int readEncoderCalcEngine3(int *pos_i){
-
-    int b = digitalRead(PA7);
-    int increment=0;
-
-    if(b>0){
-        increment = 1;
-    }
-    else {
-        increment =-1;
-    }
-    pos_i = pos_i + increment;
-
+    pos = pos + increment;
 }
 
 float calc_rpm(long currT, long prevT, int pos, int posPrev){

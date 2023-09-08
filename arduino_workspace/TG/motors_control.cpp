@@ -1,12 +1,12 @@
 #include "motors_control.h"
+#include <math.h>
 
-#define RADIUS_ROBOT 0.2  // in meters
-#define DEFAULT_SPEED 0.05 // meters/second
+#define RADIUS_ROBOT 100  // in meters
+#define DEFAULT_SPEED 800 // mm/second
+#define RADIUS_WHEEL 29 //mmm - 58mm
+#define PI 3.141592653589
 
-
-float speed_robot = DEFAULT_SPEED;
 float radius = RADIUS_ROBOT;
-
 
 void motorsSetupPins(){
     //motor 1
@@ -38,44 +38,88 @@ void motorsOutput(
     }
 };
 
-void up_down_motor(int *pwmValue, int *inc, int maxValueMotor, int minValueMotor){
-        int send_pwm_value;
 
-        *pwmValue = *pwmValue + *inc;
-        if (*pwmValue < minValueMotor){
-            *inc = -*inc;
-            *pwmValue = minValueMotor;
-        } else if (*pwmValue > maxValueMotor) {
-            *inc = -*inc;
-            *pwmValue = maxValueMotor;
-        }
-        
-        send_pwm_value = *pwmValue;
+float convert_rpm_to_speed_linear(float rpm){
+    float w;
 
-        motorsOutput(PB8, PB9, send_pwm_value, 1);
-
+    w = RADIUS_WHEEL*2*PI*rpm/(60);
+    
+    return w;
 }
+
+float convert_speed_linear_to_rpm(float w){
+    float rpm;
+
+    rpm = 60*w/(2*PI*RADIUS_WHEEL);
+    
+    return rpm;
+}
+
+
+float conversor_16bit_rpm(int bit16){
+    float rpm = (float) (210 * bit16 / 65535);
+    return rpm;
+}
+
+int conversor_rpm_to_16bit(float rpm){
+    int bit16 = (int) (65535 * rpm / 210);
+    return bit16;
+}
+
+float convert_degrees_to_radians(float degrees){
+    float radians;
+    radians = (degrees * 71) / 4068;
+    return radians;
+}
+
 
 void TransformationMatrix(int *w1, int *w2, int *w3, float direction_angle, float angular_speed){
 
-    linear_speed_x = speed_robot * cos(direction_angle);
-    linear_speed_y = speed_robot * sin(direction_angle);
+    float linear_speed_x = DEFAULT_SPEED * cos(convert_degrees_to_radians(direction_angle));
+    float linear_speed_y = DEFAULT_SPEED * sin(convert_degrees_to_radians(direction_angle));
 
-    a11 = 0;
-    a12 = 2/3;
-    a13 = radius/3;
-    a21 = 1/sqrt(3);
-    a22 = 1/3;
-    a23 = radius/3;
-    a31 = -1/sqrt(3);
-    a32 = 1/3;
-    a33 = radius/3;
+    float a11 = 0;
+    float a12 = -2.0/3;
+    float a13 = radius/3;
+    float a21 = 1/sqrt(3);
+    float a22 = 1.0/3;
+    float a23 = radius/3;
+    float a31 = -1/sqrt(3);
+    float a32 = 1.0/3;
+    float a33 = radius/3;
 
+    float aux1, aux2, aux3;
 
-    *w1 = (int) (a11 * linear_speed_x + a12 * linear_speed_y + a13 * angular_speed);
-    *w2 = (int) (a21 * linear_speed_x + a22 * linear_speed_y + a23 * angular_speed);
-    *w3 = (int) (a31 * linear_speed_x + a32 * linear_speed_y + a33 * angular_speed);
+    aux1 = (a11 * linear_speed_x) + (a12 * linear_speed_y) + (a13 * angular_speed);
+    aux2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed);
+    aux3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed);
     
+
+    float rpmw1 = convert_speed_linear_to_rpm(aux1);
+    int bit16w1 =  conversor_rpm_to_16bit(rpmw1);
+
+    *w1 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux1));
+    *w2 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux2));
+    *w3 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux3));
+
+
+    
+    
+
+    Serial.print("linear_speed_y:");
+    Serial.print(linear_speed_y);
+    Serial.print(",");
+    Serial.print("aux1:");
+    Serial.print(aux1);
+    Serial.print(",");
+    Serial.print("rpmw1:");
+    Serial.print(rpmw1);
+    Serial.print(",");
+    Serial.print("bit16w1:");
+    Serial.print(bit16w1);
+    Serial.print('\n');
+
+
 }
 
 void sendMotorOutput(int w1, int w2, int w3){
@@ -102,3 +146,40 @@ void sendMotorOutput(int w1, int w2, int w3){
     }
 
 }
+
+
+
+
+// void controler(int rpm_target, int rpm_output){
+
+//     float kp = 20000;
+//     float kd = 0;
+//     float ki = 1;
+
+
+//     float erro = rpm_target - rpm_output;
+
+//     float P = kp * erro_n;
+//     float D = kd * (erro_n - erro_n_1)
+//     float I = ki * (erro_n + erro_n_1)
+
+
+//     e_integral = e_integral + erro*(currTime-prevTime);
+
+    
+//     float u = kp*erro + ki*e_integral;
+
+
+
+
+//         int send_pwm_value = (int) fabs(u);
+
+//         if (send_pwm_value > MAX_VALUE_MOTOR){
+//             send_pwm_value=MAX_VALUE_MOTOR;
+//         }
+
+//         motorsOutput(PB8, PB9, send_pwm_value, 1);
+
+
+
+// }
