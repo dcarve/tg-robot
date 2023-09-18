@@ -4,14 +4,14 @@ void motorsSetupPins(){
     //motor 1
     pinMode(PB6, PWM);
     pinMode(PB7, PWM);
-
-    //motor 2
-    pinMode(PB8, PWM);
-    pinMode(PB9, PWM);  
     
-    //motor 3
+    //motor 2
     pinMode(PA9, PWM);
     pinMode(PA10, PWM);
+
+    //motor 3
+    pinMode(PB8, PWM);
+    pinMode(PB9, PWM);  
 
 };
 
@@ -44,7 +44,7 @@ void up_down_motor(int *pwmValue, int *inc, int maxValueMotor, int minValueMotor
         
         send_pwm_value = *pwmValue;
 
-        motorsOutput(PB8, PB9, send_pwm_value, 1);
+        motorsOutput(PA9, PA10, send_pwm_value, 1);
 
 
 }

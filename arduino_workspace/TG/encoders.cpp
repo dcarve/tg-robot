@@ -43,7 +43,7 @@ float calc_rpm(long currT, long prevT, int pos, int posPrev){
 
 float low_pass_filter_first_order(float currRpm, float prevRpm, float prevFilterRpm){
 
-    float posFilterRpm = 0.521886*prevFilterRpm + 0.239057*currRpm + 0.239057*prevRpm;
+    float posFilterRpm = 0.52188555*prevFilterRpm + 0.23905722*currRpm + 0.23905722*prevRpm;
 
     return posFilterRpm;
 }

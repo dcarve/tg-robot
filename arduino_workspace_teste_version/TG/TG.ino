@@ -40,18 +40,18 @@ void setup() {
 
 }
 
-void loop() {
+void loop() { 
 
 
     if (millis()>=nextChangeSampleRate){
         int pos = 0;   
-        // float rpm2 = 0;    // teste velocidade método ruim,  não usar no produto final
+        float rpm2 = 0;    // teste velocidade método ruim,  não usar no produto final
 
 
         ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
             pos = pos_i;
 
-            // rpm2 = rpm_i;  // teste velocidade método ruim,  não usar no produto final
+            rpm2 = rpm_i;  // teste velocidade método ruim,  não usar no produto final
         }   
 
 
@@ -72,7 +72,7 @@ void loop() {
 
     if (millis()>=nextChangeVel){
         up_down_motor(&pwmValue, &inc, MAX_VALUE_MOTOR, MIN_VALUE_MOTOR);
-        nextChangeVel = millis() + DT_TIME_INCREASE_MOTOR;
+        nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
     }
 
 }
@@ -93,11 +93,11 @@ void readEncoder(){
 
 
 
-    //pos_i = readEncoderCalc(pos_i);
+    pos_i = readEncoderCalc(pos_i);
 
     // método de calcular velocidade usando a diferença de tempo entre clocks para calcular a velocidade
 
-    /*
+    //
     
     long currT = micros();
     float deltaT = ((float) (currT - prevT_i))/1.0e6;
@@ -107,6 +107,6 @@ void readEncoder(){
 
 
 
-     /
+    
 
 }

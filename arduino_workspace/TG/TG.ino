@@ -44,7 +44,7 @@ float prevRpm_1 = 0;
 float prevRpm_2 = 0;
 float prevRpm_3 = 0;
 
-int w1 = 0;
+int w1 = 0;  
 int w2 = 0;
 int w3 = 0;
 
@@ -64,9 +64,6 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(PB0), readEncoder1, RISING);
     attachInterrupt(digitalPinToInterrupt(PB10), readEncoder2, RISING);
     attachInterrupt(digitalPinToInterrupt(PA6), readEncoder3, RISING);
-
-    //pinMode(PA11, OUTPUT);
-
 }
 
 void loop() {
@@ -86,7 +83,6 @@ void loop() {
             currPosition_2 = pos_i_2;
             currPosition_3 = pos_i_3;
         };
-
         
         float rpm1 = calc_rpm(currTime, prevTime, currPosition_1, prevPosition_1);
         float rpm2 = calc_rpm(currTime, prevTime, currPosition_2, prevPosition_2);
@@ -106,42 +102,49 @@ void loop() {
 
         prevTime = currTime;
 
+
         //sent_serial_monitor(
         //    millis(),
         //    rpm1,
-        //    filterRpm_1,
-        //    rpm2,
-        //    filterRpm_2,
-        //    rpm3,
-        //    filterRpm_3
+        //    filterRpm_1
+            //rpm2,
+            //filterRpm_2,
+            //rpm3,
+            //filterRpm_3
         //);
+
+        Serial.print("{\"millis\":");    
+        Serial.print(millis());
+        Serial.print(",\"rpm1\":");
+        Serial.print(rpm1);
+        Serial.print(",\"filterRpm_1\":");
+        Serial.print(filterRpm_1);
+        Serial.print(",\"rpm2\":");
+        Serial.print(rpm2);
+        Serial.print(",\"filterRpm_2\":");
+        Serial.print(filterRpm_2);
+        Serial.print(",\"rpm3\":");
+        Serial.print(rpm3);
+        Serial.print(",\"filterRpm_3\":");
+        Serial.print(filterRpm_3);
+        Serial.print("}\n");
 
         nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
     }
     
     if (millis()>=nextChangeVel){
 
-    //digitalWrite(PA11, HIGH);
+        //TransformationMatrix(
+        //    &w1,
+        //    &w2,
+        //    &w3,
+        //    direction_angle,
+        //    angular_speed
+        //);
+        
+        //sendMotorOutput(w1,w2,w3);
 
-
-
-        TransformationMatrix(
-            &w1,
-            &w2,
-            &w3,
-            direction_angle,
-            angular_speed
-        );
-        sendMotorOutput(w1,w2,w3);
-
-    //pwmWrite(PB6, 40000);
-    //pwmWrite(PB7, 0);
-    
-    //pwmWrite(PB8, MAX_VALUE_MOTOR);
-    //pwmWrite(PB9, 0);
-
-    //pwmWrite(PA9, MAX_VALUE_MOTOR);
-    //pwmWrite(PA10, 0);
+        sendMotorOutput(20000, 20000, -20000);
 
         nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
 
@@ -168,14 +171,59 @@ void loop() {
 
     //}
 
+
+
+    //Serial.print(p_b0);
+    //Serial.print(" ");
+    //Serial.print(p_b1);
+    //Serial.print("        ");
+    //Serial.print(p_b11);
+    //Serial.print(" ");
+    //Serial.print(p_b10);
+    //Serial.print("        ");
+    //Serial.print(p_a7);
+    //Serial.print(" ");
+    //Serial.print(p_a6);
+    //Serial.print("\n");
 }
 
-void readEncoder1(){  
-    calcEncoder(digitalRead(PB1), &pos_i_1);
+void readEncoder1(){ 
+
+    int b = digitalRead(PB1);
+
+    if(b>0){
+        pos_i_1++;
+    }
+    else {
+        pos_i_1--;
+    }
+
+
+    //calcEncoder(digitalRead(PB1), &pos_i_1);
 }
-void readEncoder2(){  
-    calcEncoder(digitalRead(PB11), &pos_i_2);
+
+void readEncoder2(){
+
+    int b = digitalRead(PB11);
+
+    if(b>0){
+        pos_i_2++;
+    }
+    else {
+        pos_i_2--;
+    }
+//    calcEncoder(digitalRead(PB11), &pos_i_2);
 }
-void readEncoder3(){  
-    calcEncoder(digitalRead(PA7), &pos_i_3);
+
+void readEncoder3(){
+
+    int b = digitalRead(PA7);
+
+    if(b>0){
+        pos_i_3++;
+    }
+    else {
+        pos_i_3--;
+    }
+//    calcEncoder(digitalRead(PA7), &pos_i_3);
 }

@@ -22,7 +22,7 @@ def low_pass_filter_rpm_2(data):
 
 
 def filter(y):
-    freq = 10
+    freq = 2
     w0 = (2*np.pi)*freq; # pole frequency (rad/s)
     num = w0        # transfer function numerator coefficients
     den = [1,w0]    # transfer function denominator coefficients
@@ -41,7 +41,7 @@ def filter(y):
     return yfilt
 
 def filter_2nd(y):
-    freq = 10
+    freq = 5
     w0 = (2*np.pi)*freq; # pole frequency (rad/s)
     num = w0        # transfer function numerator coefficients
     den = [1,w0]    # transfer function denominator coefficients

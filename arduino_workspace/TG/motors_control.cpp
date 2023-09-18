@@ -101,22 +101,19 @@ void TransformationMatrix(int *w1, int *w2, int *w3, float direction_angle, floa
     *w1 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux1));
     *w2 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux2));
     *w3 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux3));
-
-
+ 
     
-    
-
-    Serial.print("linear_speed_y:");
-    Serial.print(linear_speed_y);
+    Serial.print("direction_angle:");
+    Serial.print(direction_angle);
     Serial.print(",");
-    Serial.print("aux1:");
-    Serial.print(aux1);
+    Serial.print("w1:");
+    Serial.print(*w1);
     Serial.print(",");
-    Serial.print("rpmw1:");
-    Serial.print(rpmw1);
+    Serial.print("w2:");
+    Serial.print(*w2);
     Serial.print(",");
-    Serial.print("bit16w1:");
-    Serial.print(bit16w1);
+    Serial.print("w3:");
+    Serial.print(*w3);
     Serial.print('\n');
 
 
@@ -126,23 +123,23 @@ void sendMotorOutput(int w1, int w2, int w3){
 
     //motor 1
     if (w1<0) {
-        motorsOutput(PB6, PB7, -w1, 0);
+        motorsOutput(PB7, PB6, -w1, 0);
     } else {
-        motorsOutput(PB6, PB7, w1, 1);
+        motorsOutput(PB7, PB6, w1, 1);
     }
 
     //motor 2
     if (w2<0) {
-        motorsOutput(PB8, PB9, -w2, 0);
+        motorsOutput(PA10, PA9, -w2, 0);
     } else {
-        motorsOutput(PB8, PB9, w2, 1);
+        motorsOutput(PA10, PA9, w2, 1);
     }
 
     //motor 3
     if (w3<0 ){
-        motorsOutput(PA9, PA10, -w3, 0);
+        motorsOutput(PB9, PB8, -w3, 0);
     } else {
-        motorsOutput(PA9, PA10, w3, 1);
+        motorsOutput(PB9, PB8, w3, 1);
     }
 
 }
