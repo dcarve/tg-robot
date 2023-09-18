@@ -17,56 +17,19 @@ float radius = RADIUS_ROBOT;
 
 void motorsSetupPins(){
     //motor 1
-    pinMode(PB6, OUTPUT); // cabo claro IN1
-    pinMode(PB7, OUTPUT); // cabo escuro IN2
+    pinMode(PB6, PWM); // cabo claro IN1
+    pinMode(PB7, PWM); // cabo escuro IN2
 
     //motor 2
-    pinMode(PB8, OUTPUT); // cabo claro IN1
-    pinMode(PB9, OUTPUT);  // cabo escuro IN2
+    pinMode(PB8, PWM); // cabo claro IN1
+    pinMode(PB9, PWM);  // cabo escuro IN2
     
     //motor 3
-    pinMode(PA9, OUTPUT); // cabo claro IN1
-    pinMode(PA10, OUTPUT); // cabo escuro IN2
+    pinMode(PA9, PWM); // cabo claro IN1
+    pinMode(PA10, PWM); // cabo escuro IN2
 
 };
 
-
-// void motorsSetupPinsNew(){
-
-
-//     TIM_TypeDef *Instance_11 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB6), PinMap_PWM);
-//     uint32_t channel_11 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB6), PinMap_PWM));
-
-//     TIM_TypeDef *Instance_12 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB7), PinMap_PWM);
-//     uint32_t channel_12 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB7), PinMap_PWM));
-
-
-
-//     TIM_TypeDef *Instance_21 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB8), PinMap_PWM);
-//     uint32_t channel_21 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB8), PinMap_PWM));
-
-//     TIM_TypeDef *Instance_22 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB9), PinMap_PWM);
-//     uint32_t channel_22 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB9), PinMap_PWM));
-
-
-
-//     TIM_TypeDef *Instance_31 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PA9), PinMap_PWM);
-//     uint32_t channel_31 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PA9), PinMap_PWM));
-
-//     TIM_TypeDef *Instance_32 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PA10), PinMap_PWM);
-//     uint32_t channel_32 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PA10), PinMap_PWM));
-
-
-//     HardwareTimer *MyTim_11 = new HardwareTimer(Instance_11);
-//     HardwareTimer *MyTim_12 = new HardwareTimer(Instance_12);
-//     HardwareTimer *MyTim_21 = new HardwareTimer(Instance_21);
-//     HardwareTimer *MyTim_22 = new HardwareTimer(Instance_22);
-//     HardwareTimer *MyTim_31 = new HardwareTimer(Instance_31);
-//     HardwareTimer *MyTim_32 = new HardwareTimer(Instance_32);
-
-//     MyTim->setPWM(channel, pin, 5, 10);
-
-// };
 
 void motorsOutput(
     byte in1,
@@ -175,36 +138,17 @@ void sendMotorOutput(int w1, int w2, int w3){
 
 
 
-// void controler(int rpm_target, int rpm_output){
+void controler(float *erro_n, float *erro_n_1, float *i_n, float *i_n_1, float *u, int currT, int prevT){
 
-//     float kp = 20000;
-//     float kd = 0;
-//     float ki = 1;
+    float kp = 0.003;
+    float kd = 0;
+    float ki = 0.02;
 
+    float p_n = *erro_n;
 
-//     float erro = rpm_target - rpm_output;
+    float d_n = (*erro_n - *erro_n_1)/(currT-prevT);
 
-//     float P = kp * erro_n;
-//     float D = kd * (erro_n - erro_n_1)
-//     float I = ki * (erro_n + erro_n_1)
+    *i_n = *i_n_1 + (*erro_n + *erro_n_1)*(currT-prevT)/2;
 
-
-//     e_integral = e_integral + erro*(currTime-prevTime);
-
-    
-//     float u = kp*erro + ki*e_integral;
-
-
-
-
-//         int send_pwm_value = (int) fabs(u);
-
-//         if (send_pwm_value > MAX_VALUE_MOTOR){
-//             send_pwm_value=MAX_VALUE_MOTOR;
-//         }
-
-//         motorsOutput(PB8, PB9, send_pwm_value, 1);
-
-
-
-// }
+    *u = kp * p_n + kd * d_n +  ki * *i_n;
+}

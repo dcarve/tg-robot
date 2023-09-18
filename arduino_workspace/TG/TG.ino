@@ -22,7 +22,7 @@
 #define MAX_VALUE_MOTOR 65535  // 16-bit
 #define MIN_VALUE_MOTOR 10000 // minimum value for the motor to start
 
-#define INC_VEL 1   //incremento de velocidade para teste
+#define INC_VEL 10   //incremento de velocidade para teste
 
 #define rpm_target 100
 
@@ -62,15 +62,31 @@ float direction_angle = 90;
 //float direction_angle = 240;
 float angular_speed = 0;
 
-int acrescimo_1 = 1;
-int acrescimo_2 = 1;
-int acrescimo_3 = 1;
+int acrescimo_1 = INC_VEL;
+int acrescimo_2 = INC_VEL;
+int acrescimo_3 = INC_VEL;
+
+float erro1_n=0;
+float erro1_n_1=0;
+float i1_n=0;
+float i1_n_1=0;
+float u1=0;
+
+float erro2_n=0;
+float erro2_n_1=0;
+float i2_n=0;
+float i2_n_1=0;
+float u2=0;
+
+float erro3_n=0;
+float erro3_n_1=0;
+float i3_n=0;
+float i3_n_1=0;
+float u3=0;
+
+int u1_bit=0;
 
 
-//uint32_t channel_11;
-//uint32_t channel_12;
-//HardwareTimer *MyTim_11;
-//HardwareTimer *MyTim_12;
 
 void setup() {
 
@@ -83,17 +99,6 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(PB10), readEncoder2, RISING);
     attachInterrupt(digitalPinToInterrupt(PA6), readEncoder3, RISING);
     
-
-    //TIM_TypeDef *Instance_11 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB6), PinMap_PWM);
-    //channel_11 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB6), PinMap_PWM));
-
-    //TIM_TypeDef *Instance_12 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB7), PinMap_PWM);
-    //channel_12 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB7), PinMap_PWM));
-
-
-    //HardwareTimer *MyTim_11 = new HardwareTimer(Instance_11);
-    //HardwareTimer *MyTim_12 = new HardwareTimer(Instance_12);
-
 }
 
 void loop() {
@@ -122,6 +127,19 @@ void loop() {
         filterRpm_2 = low_pass_filter_first_order(rpm2, prevRpm_2, filterRpm_2);
         filterRpm_3 = low_pass_filter_first_order(rpm3, prevRpm_3, filterRpm_3);
 
+        erro1_n = w1 - filterRpm_1;
+
+        controler(
+            &erro1_n,
+            &erro1_n_1,
+            &i1_n,
+            &i1_n_1,
+            &u1,
+            currTime,
+            prevTime
+        );
+
+
         prevPosition_1 = currPosition_1;
         prevPosition_2 = currPosition_2;
         prevPosition_3 = currPosition_3;
@@ -132,6 +150,11 @@ void loop() {
 
         prevTime = currTime;
 
+        i1_n = i1_n_1;
+        erro1_n_1 = erro1_n;
+
+        u1_bit = conversor_rpm_to_16bit(u1);
+
 
         Serial.print("{\"millis\":");    
         Serial.print(millis());
@@ -141,35 +164,41 @@ void loop() {
         Serial.print(filterRpm_1);
         Serial.print(",\"w1\":");
         Serial.print(w1);
-        Serial.print(",\"rpm2\":");
-        Serial.print(rpm2);
-        Serial.print(",\"filterRpm_2\":");
-        Serial.print(filterRpm_2);
-        Serial.print(",\"w2\":");
-        Serial.print(w2);
-        Serial.print(",\"rpm3\":");
-        Serial.print(rpm3);
-        Serial.print(",\"filterRpm_3\":");
-        Serial.print(filterRpm_3);
-        Serial.print(",\"w3\":");
-        Serial.print(w3);
+        Serial.print(",\"u1\":");
+        Serial.print(u1);
+        Serial.print(",\"u1_bit\":");
+        Serial.print(u1_bit);
+        // Serial.print(",\"rpm2\":");
+        // Serial.print(rpm2);
+        // Serial.print(",\"filterRpm_2\":");
+        // Serial.print(filterRpm_2);
+        // Serial.print(",\"w2\":");
+        // Serial.print(w2);
+        // Serial.print(",\"rpm3\":");
+        // Serial.print(rpm3);
+        // Serial.print(",\"filterRpm_3\":");
+        // Serial.print(filterRpm_3);
+        // Serial.print(",\"w3\":");
+        // Serial.print(w3);
         Serial.print("}\n");
 
         nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
     }
     
+
+
     if (millis()>=nextChangeVel){
 
+        w1=150;
 
-
-        w1 = w1 + acrescimo_1;
-        if (w1 < MIN_VALUE_MOTOR){
-            acrescimo_1 = -acrescimo_1;
-            w1 = MIN_VALUE_MOTOR;
-        } else if (w1 > MAX_VALUE_MOTOR) {
-            acrescimo_1 = -acrescimo_1;
-            w1 = MAX_VALUE_MOTOR;
-        }
+        // w1 = w1 + acrescimo_1;
+        // if (w1 < MIN_VALUE_MOTOR){
+        //     acrescimo_1 = -acrescimo_1;
+        //     w1 = MIN_VALUE_MOTOR;
+        // } else if (w1 > MAX_VALUE_MOTOR) {
+        //     acrescimo_1 = -acrescimo_1;
+        //     w1 = MAX_VALUE_MOTOR;
+        // }
 
 
         w2 = w2 + acrescimo_2;
@@ -199,18 +228,17 @@ void loop() {
         //    direction_angle,
         //    angular_speed
         //);
-        
-        
-        //MyTim_11->setPWM(channel_11, PB6, 5, 10);
-        //digitalWrite(PB7, LOW);
 
-        sendMotorOutput(w1,w2,w3);
+
+        //sendMotorOutput(w1,w2,w3);
 
         //sendMotorOutput(65000, 65000, 65000);
 
         nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
 
     }
+
+    sendMotorOutput(u1_bit,0,0);
 }
 
 void readEncoder1(){ 

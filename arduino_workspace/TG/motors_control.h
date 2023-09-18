@@ -18,5 +18,6 @@ int conversor_rpm_to_16bit(float rpm);
 float convert_speed_linear_to_rpm(float w);
 float convert_rpm_to_speed_linear(float rpm);
 float convert_degrees_to_radians(float degrees);
+void controler(float *erro_n, float *erro_n_1, float *i_n, float *i_n_1, float *u, int currT, int prevT);
 
 #endif
