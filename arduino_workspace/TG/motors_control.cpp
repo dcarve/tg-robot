@@ -1,39 +1,85 @@
 #include "motors_control.h"
 #include <math.h>
+#include <Arduino.h>
 
 #define RADIUS_ROBOT 100  // in meters
 #define DEFAULT_SPEED 800 // mm/second
 #define RADIUS_WHEEL 29 //mmm - 58mm
 #define PI 3.141592653589
 
+//tensão máxima na saida dos drivers
+//5.86V
+//210*5.86/6 = 205.1
+
+#define rpm_max 205.1
+
 float radius = RADIUS_ROBOT;
 
 void motorsSetupPins(){
     //motor 1
-    pinMode(PB6, PWM); // cabo claro IN1
-    pinMode(PB7, PWM); // cabo escuro IN2
+    pinMode(PB6, OUTPUT); // cabo claro IN1
+    pinMode(PB7, OUTPUT); // cabo escuro IN2
 
     //motor 2
-    pinMode(PB8, PWM); // cabo claro IN1
-    pinMode(PB9, PWM);  // cabo escuro IN2
+    pinMode(PB8, OUTPUT); // cabo claro IN1
+    pinMode(PB9, OUTPUT);  // cabo escuro IN2
     
     //motor 3
-    pinMode(PA9, PWM); // cabo claro IN1
-    pinMode(PA10, PWM); // cabo escuro IN2
+    pinMode(PA9, OUTPUT); // cabo claro IN1
+    pinMode(PA10, OUTPUT); // cabo escuro IN2
 
 };
+
+
+// void motorsSetupPinsNew(){
+
+
+//     TIM_TypeDef *Instance_11 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB6), PinMap_PWM);
+//     uint32_t channel_11 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB6), PinMap_PWM));
+
+//     TIM_TypeDef *Instance_12 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB7), PinMap_PWM);
+//     uint32_t channel_12 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB7), PinMap_PWM));
+
+
+
+//     TIM_TypeDef *Instance_21 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB8), PinMap_PWM);
+//     uint32_t channel_21 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB8), PinMap_PWM));
+
+//     TIM_TypeDef *Instance_22 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB9), PinMap_PWM);
+//     uint32_t channel_22 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB9), PinMap_PWM));
+
+
+
+//     TIM_TypeDef *Instance_31 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PA9), PinMap_PWM);
+//     uint32_t channel_31 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PA9), PinMap_PWM));
+
+//     TIM_TypeDef *Instance_32 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PA10), PinMap_PWM);
+//     uint32_t channel_32 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PA10), PinMap_PWM));
+
+
+//     HardwareTimer *MyTim_11 = new HardwareTimer(Instance_11);
+//     HardwareTimer *MyTim_12 = new HardwareTimer(Instance_12);
+//     HardwareTimer *MyTim_21 = new HardwareTimer(Instance_21);
+//     HardwareTimer *MyTim_22 = new HardwareTimer(Instance_22);
+//     HardwareTimer *MyTim_31 = new HardwareTimer(Instance_31);
+//     HardwareTimer *MyTim_32 = new HardwareTimer(Instance_32);
+
+//     MyTim->setPWM(channel, pin, 5, 10);
+
+// };
 
 void motorsOutput(
     byte in1,
     byte in2,
     int value,
     int direction){
+
     
     if (direction==1){
         pwmWrite(in1, value);
-        pwmWrite(in2, 0);
+        pwmWrite(in2, LOW);
     } else if(direction==0){
-        pwmWrite(in1, 0);
+        pwmWrite(in1, LOW);
         pwmWrite(in2, value);
     }
 };
@@ -56,13 +102,14 @@ float convert_speed_linear_to_rpm(float w){
 }
 
 
+
 float conversor_16bit_rpm(int bit16){
-    float rpm = (float) (210 * bit16 / 65535);
+    float rpm = (float) (rpm_max * bit16 / 65535);
     return rpm;
 }
 
 int conversor_rpm_to_16bit(float rpm){
-    int bit16 = (int) (65535 * rpm / 210);
+    int bit16 = (int) (65535 * rpm / rpm_max);
     return bit16;
 }
 
@@ -94,29 +141,10 @@ void TransformationMatrix(int *w1, int *w2, int *w3, float direction_angle, floa
     aux2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed);
     aux3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed);
     
-
-    float rpmw1 = convert_speed_linear_to_rpm(aux1);
-    int bit16w1 =  conversor_rpm_to_16bit(rpmw1);
-
     *w1 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux1));
     *w2 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux2));
     *w3 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux3));
- 
-    
-    Serial.print("direction_angle:");
-    Serial.print(direction_angle);
-    Serial.print(",");
-    Serial.print("w1:");
-    Serial.print(*w1);
-    Serial.print(",");
-    Serial.print("w2:");
-    Serial.print(*w2);
-    Serial.print(",");
-    Serial.print("w3:");
-    Serial.print(*w3);
-    Serial.print('\n');
-
-
+     
 }
 
 void sendMotorOutput(int w1, int w2, int w3){

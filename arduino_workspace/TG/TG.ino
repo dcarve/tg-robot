@@ -5,24 +5,32 @@
 #include "encoders.h"
 #include "serial_monitor.h"
 
+
+
+#include "pwm.h"
+
+#include <libmaple/libmaple_types.h>
+#include <libmaple/timer.h>
+
+#include "boards.h"
+#include "io.h"
+
+
+
 #define DT_TIME_SAMPLE_RATE_ENCODER 10 // encoder position reading update rate
-#define send_serial 1000 // encoder position reading update rate
 #define DT_TIME_INCREASE_ENGINE 5  // engine speed update rate, for testing
 #define MAX_VALUE_MOTOR 65535  // 16-bit
-#define MIN_VALUE_MOTOR 30000 // minimum value for the motor to start
-#define HALL_RESOLUTION 341.2 // encoder position conversion constant for rpm
-#define DEFAULT_SPEED 0.05 // meters/second
+#define MIN_VALUE_MOTOR 10000 // minimum value for the motor to start
 
-
-#define INC_VEL 100   //incremento de velocidade para teste
+#define INC_VEL 1   //incremento de velocidade para teste
 
 #define rpm_target 100
+
 
 
 int pwmValue = MAX_VALUE_MOTOR;
 int nextChangeVel  = (millis() + DT_TIME_INCREASE_ENGINE);
 int nextChangeSampleRate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
-int nextserial  = (millis() + send_serial);
 int inc = INC_VEL;
 
 long prevTime = 0;
@@ -44,15 +52,25 @@ float prevRpm_1 = 0;
 float prevRpm_2 = 0;
 float prevRpm_3 = 0;
 
-int w1 = 0;  
-int w2 = 0;
-int w3 = 0;
+int w1 = MIN_VALUE_MOTOR;  
+int w2 = MIN_VALUE_MOTOR;
+int w3 = MIN_VALUE_MOTOR;
 
 
 float direction_angle = 90;
+//float direction_angle = 120;
+//float direction_angle = 240;
 float angular_speed = 0;
 
+int acrescimo_1 = 1;
+int acrescimo_2 = 1;
+int acrescimo_3 = 1;
 
+
+//uint32_t channel_11;
+//uint32_t channel_12;
+//HardwareTimer *MyTim_11;
+//HardwareTimer *MyTim_12;
 
 void setup() {
 
@@ -64,6 +82,18 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(PB0), readEncoder1, RISING);
     attachInterrupt(digitalPinToInterrupt(PB10), readEncoder2, RISING);
     attachInterrupt(digitalPinToInterrupt(PA6), readEncoder3, RISING);
+    
+
+    //TIM_TypeDef *Instance_11 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB6), PinMap_PWM);
+    //channel_11 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB6), PinMap_PWM));
+
+    //TIM_TypeDef *Instance_12 = (TIM_TypeDef *)pinmap_peripheral(digitalPinToPinName(PB7), PinMap_PWM);
+    //channel_12 = STM_PIN_CHANNEL(pinmap_function(digitalPinToPinName(PB7), PinMap_PWM));
+
+
+    //HardwareTimer *MyTim_11 = new HardwareTimer(Instance_11);
+    //HardwareTimer *MyTim_12 = new HardwareTimer(Instance_12);
+
 }
 
 void loop() {
@@ -103,36 +133,64 @@ void loop() {
         prevTime = currTime;
 
 
-        //sent_serial_monitor(
-        //    millis(),
-        //    rpm1,
-        //    filterRpm_1
-            //rpm2,
-            //filterRpm_2,
-            //rpm3,
-            //filterRpm_3
-        //);
-
         Serial.print("{\"millis\":");    
         Serial.print(millis());
         Serial.print(",\"rpm1\":");
         Serial.print(rpm1);
         Serial.print(",\"filterRpm_1\":");
         Serial.print(filterRpm_1);
+        Serial.print(",\"w1\":");
+        Serial.print(w1);
         Serial.print(",\"rpm2\":");
         Serial.print(rpm2);
         Serial.print(",\"filterRpm_2\":");
         Serial.print(filterRpm_2);
+        Serial.print(",\"w2\":");
+        Serial.print(w2);
         Serial.print(",\"rpm3\":");
         Serial.print(rpm3);
         Serial.print(",\"filterRpm_3\":");
         Serial.print(filterRpm_3);
+        Serial.print(",\"w3\":");
+        Serial.print(w3);
         Serial.print("}\n");
 
         nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
     }
     
     if (millis()>=nextChangeVel){
+
+
+
+        w1 = w1 + acrescimo_1;
+        if (w1 < MIN_VALUE_MOTOR){
+            acrescimo_1 = -acrescimo_1;
+            w1 = MIN_VALUE_MOTOR;
+        } else if (w1 > MAX_VALUE_MOTOR) {
+            acrescimo_1 = -acrescimo_1;
+            w1 = MAX_VALUE_MOTOR;
+        }
+
+
+        w2 = w2 + acrescimo_2;
+        if (w2 < MIN_VALUE_MOTOR){
+            acrescimo_2 = -acrescimo_2;
+            w2 = MIN_VALUE_MOTOR;
+        } else if (w2 > MAX_VALUE_MOTOR) {
+            acrescimo_2 = -acrescimo_2;
+            w2 = MAX_VALUE_MOTOR;
+        }
+
+
+        w3 = w3 + acrescimo_3;
+        if (w3 < MIN_VALUE_MOTOR){
+            acrescimo_3 = -acrescimo_3;
+            w3 = MIN_VALUE_MOTOR;
+        } else if (w3 > MAX_VALUE_MOTOR) {
+            acrescimo_3 = -acrescimo_3;
+            w3 = MAX_VALUE_MOTOR;
+        }
+
 
         //TransformationMatrix(
         //    &w1,
@@ -142,88 +200,45 @@ void loop() {
         //    angular_speed
         //);
         
-        //sendMotorOutput(w1,w2,w3);
+        
+        //MyTim_11->setPWM(channel_11, PB6, 5, 10);
+        //digitalWrite(PB7, LOW);
 
-        sendMotorOutput(20000, 20000, -20000);
+        sendMotorOutput(w1,w2,w3);
+
+        //sendMotorOutput(65000, 65000, 65000);
 
         nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
 
     }
-    
-    //if (millis()>=nextserial){
-    //    Serial.print("millis:");
-    //   Serial.print(millis());
-    //    Serial.print(",");
-    //   Serial.print("w1:");
-    //    Serial.print(w1);
-    //    Serial.print(",");
-    //    Serial.print("w2:");
-    //    Serial.print(w2);
-    //    Serial.print(",");
-    //    Serial.print("w3:");
-    //    Serial.print(w3);
-    //   Serial.print(",");
-    //    Serial.print("direction_angle:");
-    //    Serial.print(direction_angle);
-    //    Serial.print('\n');
-
-    //    nextserial = millis() + send_serial;
-
-    //}
-
-
-
-    //Serial.print(p_b0);
-    //Serial.print(" ");
-    //Serial.print(p_b1);
-    //Serial.print("        ");
-    //Serial.print(p_b11);
-    //Serial.print(" ");
-    //Serial.print(p_b10);
-    //Serial.print("        ");
-    //Serial.print(p_a7);
-    //Serial.print(" ");
-    //Serial.print(p_a6);
-    //Serial.print("\n");
 }
 
 void readEncoder1(){ 
-
     int b = digitalRead(PB1);
-
     if(b>0){
         pos_i_1++;
     }
     else {
         pos_i_1--;
     }
-
-
-    //calcEncoder(digitalRead(PB1), &pos_i_1);
 }
 
 void readEncoder2(){
-
     int b = digitalRead(PB11);
-
     if(b>0){
         pos_i_2++;
     }
     else {
         pos_i_2--;
     }
-//    calcEncoder(digitalRead(PB11), &pos_i_2);
 }
 
 void readEncoder3(){
-
     int b = digitalRead(PA7);
-
     if(b>0){
         pos_i_3++;
     }
     else {
         pos_i_3--;
     }
-//    calcEncoder(digitalRead(PA7), &pos_i_3);
 }

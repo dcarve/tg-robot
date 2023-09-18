@@ -1,6 +1,7 @@
 #include "encoders.h"
 
-#define HALL_RESOLUTION 341.2
+//#define HALL_RESOLUTION 341.2
+#define HALL_RESOLUTION 374
 
 void encodersSetupPins(){
 
@@ -18,18 +19,6 @@ void encodersSetupPins(){
 
 };
 
-void calcEncoder(byte encoder_pin_yellow, volatile int *pos){
-    int b = digitalRead(encoder_pin_yellow);
-    int increment=0;
-
-    if(b>0){
-        increment = 1;
-    }
-    else {
-        increment =-1;
-    }
-    pos = pos + increment;
-}
 
 float calc_rpm(long currT, long prevT, int pos, int posPrev){
 
@@ -43,7 +32,7 @@ float calc_rpm(long currT, long prevT, int pos, int posPrev){
 
 float low_pass_filter_first_order(float currRpm, float prevRpm, float prevFilterRpm){
 
-    float posFilterRpm = 0.52188555*prevFilterRpm + 0.23905722*currRpm + 0.23905722*prevRpm;
+    float posFilterRpm = 0.881765*prevFilterRpm + 0.0591174*currRpm + 0.0591174*prevRpm;
 
     return posFilterRpm;
 }
