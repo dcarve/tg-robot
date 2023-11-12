@@ -11,7 +11,8 @@
 //5.86V
 //210*5.86/6 = 205.1
 
-#define rpm_max 205.1
+#define RPM_MAX 210
+#define MAX_VOLTAGE 6.0
 
 float radius = RADIUS_ROBOT;
 
@@ -29,6 +30,7 @@ void motorsSetupPins(){
     pinMode(PA10, PWM); // cabo escuro IN2
 
 };
+
 
 
 void motorsOutput(
@@ -65,16 +67,10 @@ float convert_speed_linear_to_rpm(float w){
 }
 
 
-
-float conversor_16bit_rpm(int bit16){
-    float rpm = (float) (rpm_max * bit16 / 65535);
-    return rpm;
+int convertRpmto16bit(float rpm){
+    return 0.0001131 * pow(rpm,4) - 0.03064 * pow(rpm,3) + 2.993 * pow(rpm, 2) - 1.257 * rpm + 9017;
 }
 
-int conversor_rpm_to_16bit(float rpm){
-    int bit16 = (int) (65535 * rpm / rpm_max);
-    return bit16;
-}
 
 float convert_degrees_to_radians(float degrees){
     float radians;
@@ -83,7 +79,8 @@ float convert_degrees_to_radians(float degrees){
 }
 
 
-void TransformationMatrix(int *w1, int *w2, int *w3, float direction_angle, float angular_speed){
+
+void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle, float angular_speed){
 
     float linear_speed_x = DEFAULT_SPEED * cos(convert_degrees_to_radians(direction_angle));
     float linear_speed_y = DEFAULT_SPEED * sin(convert_degrees_to_radians(direction_angle));
@@ -104,33 +101,33 @@ void TransformationMatrix(int *w1, int *w2, int *w3, float direction_angle, floa
     aux2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed);
     aux3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed);
     
-    *w1 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux1));
-    *w2 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux2));
-    *w3 = conversor_rpm_to_16bit(convert_speed_linear_to_rpm(aux3));
+    *w1 = convert_speed_linear_to_rpm(aux1);
+    *w2 = convert_speed_linear_to_rpm(aux2);
+    *w3 = convert_speed_linear_to_rpm(aux3);
      
 }
 
-void sendMotorOutput(int w1, int w2, int w3){
+void sendMotorOutput(int bits1, int bits2, int bits3){
 
     //motor 1
-    if (w1<0) {
-        motorsOutput(PB7, PB6, -w1, 0);
+    if (bits1<0) {
+        motorsOutput(PB7, PB6, -bits1, 0);
     } else {
-        motorsOutput(PB7, PB6, w1, 1);
+        motorsOutput(PB7, PB6, bits1, 1);
     }
 
     //motor 2
-    if (w2<0) {
-        motorsOutput(PA10, PA9, -w2, 0);
+    if (bits2<0) {
+        motorsOutput(PA10, PA9, -bits2, 0);
     } else {
-        motorsOutput(PA10, PA9, w2, 1);
+        motorsOutput(PA10, PA9, bits2, 1);
     }
 
     //motor 3
-    if (w3<0 ){
-        motorsOutput(PB9, PB8, -w3, 0);
+    if (bits3<0 ){
+        motorsOutput(PB9, PB8, -bits3, 0);
     } else {
-        motorsOutput(PB9, PB8, w3, 1);
+        motorsOutput(PB9, PB8, bits3, 1);
     }
 
 }

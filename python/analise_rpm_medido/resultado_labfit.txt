@@ -1,0 +1,602 @@
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+ 
+    N.   1: Y=A                                 Red. ChiSq.=0.214750E+09
+          A=0.402351E+05
+  
+    N.   2: Y=A*X                               Red. ChiSq.=0.508481E+08
+          A=0.255929E+03
+  
+    N.   3: Y=A*X**2                            Red. ChiSq.=0.110387E+08
+          A=0.147370E+01
+  
+    N.   4: Y=A/X                               Red. ChiSq.=0.596127E+09
+          A=0.513212E+07
+  
+    N.   5: Y=A/X**2                            Red. ChiSq.=0.111937E+10
+          A=0.468478E+09
+  
+    N.   6: Y=A*X+B                             Red. ChiSq.=0.230267E+08
+          A=0.408282E+03                 B=-.256793E+05
+  
+    N.   7: Y=A*X**2+B                          Red. ChiSq.=0.109144E+08
+          A=0.143679E+01                 B=0.113776E+04
+  
+    N.   8: Y=A/X+B                             Red. ChiSq.=0.644616E+08
+          A=-.637670E+07                 B=0.822102E+05
+  
+    N.   9: Y=A/X**2+B                          Red. ChiSq.=0.901124E+08
+          A=-.343753E+09                 B=0.563987E+05
+  
+    N.  10: Y=A*X**B                            Red. ChiSq.=0.171068E+08
+          A=0.125265E+01                 B=0.201984E+01
+  
+    N.  11: Y=A*EXP(B*X)                        Red. ChiSq.=0.403115E+07
+          A=0.411178E+04                 B=0.135439E-01
+  
+    N.  12: Y=A*(Ln(X))**B                      Red. ChiSq.=0.125630E+08
+          A=0.113910E-02                 B=0.106562E+02
+  
+    N.  13: Y=A*EXP(B/X)                        Red. ChiSq.=0.209931E+08
+          A=0.293152E+06                 B=-.324760E+03
+  
+    N.  14: Y=A*X**3                            Red. ChiSq.=0.244685E+08
+          A=0.809578E-02
+  
+    N.  15: Y=A*X**4                            Red. ChiSq.=0.257069E+33
+          A=0.000000E+00
+  
+    N.  16: Y=1/(A*X+B)                         Red. ChiSq.=0.119961E+07
+          A=-.352898E-06                 B=0.857665E-04
+  
+    N.  17: Y=X/(A+B*X)                         Red. ChiSq.=0.390525E+07
+          A=0.977529E-02                 B=-.329368E-04
+  
+    N.  18: Y=A*B**X                            Red. ChiSq.=0.403115E+07
+          A=0.411179E+04                 B=0.101364E+01
+  
+    N.  19: Y=A*B**(1/X)                        Red. ChiSq.= NaN        
+          A= NaN                         B= NaN        
+  
+    N.  20: Y=A*X**(B*X)                        Red. ChiSq.=0.328138E+07
+          A=0.581950E+04                 B=0.223349E-02
+  
+    N.  21: Y=A*X**(B/X)                        Red. ChiSq.0.181219E+08
+          A=0.493100E+06                 B=-.806331E+02
+  
+    N.  22: Y=A+B*LnX                           Red. ChiSq.=0.411619E+08
+          A=-.230364E+06                 B=0.535091E+05
+  
+    N.  23: Y=1/(A+B*LnX)                       Red. ChiSq.=0.111617E+07
+          A=0.329262E-03                 B=-.592107E-04
+  
+    N.  24: Y=A*X+B*X**2                        Red. ChiSq.=0.110600E+08
+          A=-.352025E+01                 B=0.149353E+01
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N.  26: Y=X/(A+B*X**2)                      Red. ChiSq.=0.227523E+07
+          A=0.706818E-02                 B=-.981908E-07
+  
+    N.  27: Y=A*(B**X)*X**C                     Red. ChiSq.=0.107060E+07
+        A=0.29006E+08    B=0.10281E+01    C=-.22015E+01
+  
+    N.  28: Y=A*(B**(1/X))*X**C                 Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N.  29: Y=A*EXP(((X-B)**2)/C)               Red. ChiSq.=0.778999E+06
+        A=0.15514E+05    B=0.42460E+02    C=0.17453E+05
+  
+    N.  30: Y=A*EXP(((LnX-B)**2)/C)             Red. ChiSq.=0.151454E+07
+        A=0.17223E+05    B=0.44662E+01    C=0.53221E+00
+  
+    N.  31: Y=1/(A*(X+B)**2+C)                 Red. ChiSq.=0.184889E+10
+        A=-.49233E-06    B=-.49196E+03    C=-.11843E-02
+  
+    N.  32: Y=A*(X**B)*(1-X)**C                 Red. ChiSq.=0.258398E+33
+        A=0.00000E+00    B=0.00000E+00    C=0.00000E+00
+  
+    N.  33: Y=A+B/X+C/X**2                      Red. ChiSq.=0.181160E+08
+        A=0.17509E+06    B=-.31003E+08    C=0.14721E+10
+  
+    N.  34: Y=A*X+B*X**2+C*X**3                 Red. ChiSq.=0.106101E+07
+        A=0.49922E+03    B=-.52834E+01    C=0.21878E-01
+  
+    N.  35: Y=A+B*X+C/X                         Red. ChiSq.=0.669177E+07
+        A=-.14673E+06    B=0.83769E+03    C=0.78577E+07
+  
+    N.  36: Y=A+B*X+C*X**2                      Red. ChiSq.=0.263478E+07
+        A=0.51726E+05    B=-.73116E+03    C=0.39156E+01
+  
+    N.  37: Y=A*((X/B)**C)*EXP(X/B)             Red. ChiSq.=0.107060E+07
+        A=0.10823E+05    B=0.36075E+02    C=-.22015E+01
+  
+    N.  38: Y=1/(A+B*X+C/X)                     Red. ChiSq.=0.856114E+06
+        A=0.60661E-04    B=-.27775E-06    C=0.20461E-02
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N.  40: Y=A+B*X+C/X**2                      Red. ChiSq.=0.835366E+07
+        A=-.81493E+05    B=0.66795E+03    C=0.29543E+09
+  
+    N.  41: Y=A+B*X**2+C/X                      Red. ChiSq.=0.416366E+07
+        A=-.40192E+05    B=0.20837E+01    C=0.36044E+07
+  
+    N.  42: Y=A*X**(B+C*X)                      Red. ChiSq.=0.102179E+07
+        A=0.60804E+07    B=-.16592E+01    C=0.39957E-02
+  
+    N.  43: Y=A*X**(B+C/X)                      Red. ChiSq.=0.184727E+10
+        A=-.38335E-05    B=-.11429E+05    C=-.41078E+06
+  
+    N.  44: Y=A*X**(B+C*LnX)                    Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N.  45: Y=A*X**(B*X+C*X**2)                 Red. ChiSq.=0.763710E+06
+        A=0.15298E+05    B=-.46468E-03    C=0.91034E-05
+  
+    N.  46: Y=A*EXP(B*X+C*X**0.5)               Red. ChiSq.=0.974565E+06
+        A=0.46807E+06    B=0.44037E-01    C=-.76357E+00
+  
+    N.  47: Y=A*EXP(B/X+C*X)                    Red. ChiSq.=0.130547E+07
+        A=0.62679E+03    B=0.13985E+03    C=0.19592E-01
+  
+    N.  48: Y=(A+X)/(B+C*X)                     Red. ChiSq.=0.790507E+06
+        A=0.40442E+03    B=0.44733E-01    C=-.17717E-03
+  
+    N.  49: Y=(A+X)/(B+C*X**2)                  Red. ChiSq.=0.816745E+06
+        A=0.10248E+03    B=0.12894E-01    C=-.20615E-06
+  
+    N.  50: Y=A+B*X+C*X**2+D*X**3               Red. ChiSq.=0.743589E+06
+    A=-.38329E+05    B=0.13685E+04    C=-.11528E+02    D=0.36242E-01
+  
+    N.  51: Polynomial (4th degree) not tested  Red. ChiSq.=0.100000E+36
+  
+    N.  52: Polynomial (5th degree) not tested  Red. ChiSq.=0.100000E+36
+  
+    N.  53: Polynomial (6th degree) not tested  Red. ChiSq.=0.100000E+36
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N.  56: Y=A*X**B+C*X**D                     Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  57: Y=A+B*EXP(C*X)                      Red. ChiSq.=0.787045E+06
+        A=0.13575E+05    B=0.55959E+03    C=0.22532E-01
+  
+    N.  58: Y=A*(1-EXP(B*X))                    Red. ChiSq.=0.622017E+07
+          A=-.692761E+04                 B=0.114336E-01
+  
+    N.  59: Y=A*COS(B*X)                        Red. ChiSq.=0.112956E+10
+          A=0.351821E+05                 B=-.679478E-01
+  
+    N.  60: Y=A*COS(B*X+C)                      Red. ChiSq.=0.184639E+10
+        A=0.53952E+03    B=-.42763E+00    C=0.48104E+02
+  
+    N.  61: Y=A*SIN(B*X)                        Red. ChiSq.=0.864023E+09
+          A=0.393150E+05                 B=0.431996E-01
+  
+    N.  62: Y=A*SIN(B*X+C)                      Red. ChiSq.=0.160388E+10
+        A=0.21644E+05    B=0.14373E+00    C=-.19478E+02
+  
+    N.  63: Y=A*TAN(B*X)                        Red. ChiSq.=0.198158E+07
+          A=0.240927E+05                 B=0.605367E-02
+  
+    N.  64: Y=A*TAN(B*X+C)                      Red. ChiSq.=0.835339E+06
+        A=0.13243E+05    B=0.41541E-02    C=0.53938E+00
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N.  67: Y=A*ASIN(B*X)+C                     Red. ChiSq.=0.666070E+07
+        A=0.53527E+05    B=0.48894E-02    C=-.11021E+05
+  
+    N.  68: Y=A*TAN(B*X+C)+D                    Red. ChiSq.=0.212225E+09
+    A=-.62193E+02    B=0.31557E-01    C=-.43598E+01    D=0.40095E+05
+  
+    N.  69: Y=A*SIN(B*X+C)+D                    Red. ChiSq.=0.215292E+09
+    A=0.18412E+04    B=-.10936E+01    C=0.17921E+03    D=0.40233E+05
+  
+    N.  70: Y=A*COS(B*X+C)+D                    Red. ChiSq.=0.264160E+07
+    A=0.17412E+12    B=-.67066E-05    C=-.94242E+01    D=0.17412E+12
+  
+    N.  71: Fourier - not tested                Red. ChiSq.=0.100000E+36
+  
+    N.  72: Harmonic I - not tested             Red. ChiSq.=0.100000E+36
+  
+    N.  73: Harmonic II - not tested            Red. ChiSq.=0.100000E+36
+  
+    N.  74: Y=A*X**B+C                          Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N.  75: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  76: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  77: Y=A*X**B+C*EXP(D*X)                 Red. ChiSq.=0.686893E+06
+    A=0.17654E+04    B=0.48413E+00    C=0.15275E+03    D=0.28051E-01
+  
+    N.  78: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  79: Y=A*X**B*(C-X)**D                   Red. ChiSq.=0.730165E+06
+    A=0.18261E+10    B=-.25151E+00    C=0.29462E+03    D=-.19594E+01
+  
+    N.  80: Y=A*EXP(B*EXP(C*X))                 Red. ChiSq.=0.714251E+06
+        A=0.85998E+04    B=0.30435E+00    C=0.94566E-02
+  
+    N.  81: Y=A/(1+B*EXP(C*X))                  Red. ChiSq.=0.783865E+06
+        A=-.13887E+05    B=-.25063E+01    C=-.36251E-02
+  
+    N.  82: Y=A/(B+X**C)                        Red. ChiSq.=0.809459E+06
+        A=-.85192E+05    B=-.13092E+02    C=0.46554E+00
+  
+    N.  83: Y=A/(1+B*X**C)**2                   Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N.  84: Y=(A+B*X**C)/(D+X**C)               Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  85: Y=(A+B*X)**C                        Red. ChiSq.=0.749375E+06
+        A=0.14085E-02    B=-.52216E-05    C=-.13993E+01
+  
+    N.  86: Y=(A+B*SQRT(X))**C                  Red. ChiSq.=0.801376E+06
+        A=0.21689E-03    B=-.13616E-04    C=-.10431E+01
+  
+    N.  87: Y=1/(A+B*X**C)                      Red. ChiSq.=0.184727E+10
+        A=-.50108E-03    B=0.21573E-03    C=0.14083E+02
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N.  89: Y=A*EXP(B/X)+C                      Red. ChiSq.=0.165342E+07
+        A=0.31002E+07    B=-.84773E+03    C=0.18538E+05
+  
+    N.  90: Y=1/(A*X+B)+C                       Red. ChiSq.=0.790509E+06
+        A=-.26960E-06    B=0.68075E-04    C=-.56509E+04
+  
+    N.  91: Y=X/(A+B*X)+C                       Red. ChiSq.=0.790508E+06
+        A=0.17193E-01    B=-.68093E-04    C=0.90406E+04
+  
+    N.  92: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  93: Y=A*EXP(B*EXP(C*X))+D               Red. ChiSq.=0.716376E+06
+    A=0.60722E+04    B=0.42580E+00    C=0.84912E-02    D=0.23996E+04
+  
+    N.  94: Y=A/(1+B*EXP(C*X))+D                Red. ChiSq.=0.731020E+06
+    A=-.11394E+06    B=-.70682E+02    C=-.15626E-01    D=0.10550E+05
+  
+    N.  95: Y=EXP(A+B/X+C*Ln(X))                Red. ChiSq.=0.213952E+07
+        A=-.19599E+02    B=0.48073E+03    C=0.53303E+01
+  
+    N.  96: Y=A/(1+B*X**C)**2+D                 Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  97: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  98: Y=(A+B*X)**C+D                      Red. ChiSq.=0.105289E+07
+    A=0.23007E-01    B=-.71959E-04    C=-.23131E+01    D=0.44749E+04
+  
+    N.  99: Y=(A+B*SQRT(X))**C+D                Red. ChiSq.=0.717918E+06
+    A=0.55423E-01    B=-.30793E-02    C=-.24620E+01    D=0.96964E+04
+  
+    N. 100: Y=1/(A+B*X**C)+D                    Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 101: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N. 102: Y=A*EXP(B*X**C)                     Red. ChiSq.=0.747081E+06
+        A=0.14285E+05    B=0.35708E-05    C=0.24447E+01
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 104: Y=(A+B*X)/(1+C*X+D*X**2)            Red. ChiSq.=0.499327E+06
+    A=0.11064E+05    B=-.52991E+02    C=-.90148E-02    D=0.20254E-04
+  
+    N. 105: Y=A*X**(B*X**C)                     Red. ChiSq.=0.754261E+06
+        A=0.14348E+05    B=0.17731E-05    C=0.22613E+01
+  
+    N. 106: Y=X/(A+B*X+C*X**0.5)                Red. ChiSq.=0.770584E+06
+        A=-.15666E-01    B=-.18777E-03    C=0.39812E-02
+  
+    N. 107: Y=1/(A+B*X**2)**C                   Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N. 108: Y=A*(LnX)**B+C                      Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N. 109: Y=A*Ln(X+B)                         Red. ChiSq.=0.112030E+09
+          A=0.944854E+04                 B=-.716349E+02
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 111: Y=A*X**B+C*EXP(D/X)                 Red. ChiSq.=0.782673E+06
+    A=0.50133E+00    B=0.24457E+01    C=-.11351E+07    D=-.40671E+03
+  
+    N. 112: Y=A/X+B*X**C                        Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N. 113: Y=A/X+B*EXP(C/X)                    Red. ChiSq.=0.360832E+07
+        A=0.15150E+07    B=0.11693E+07    C=-.61336E+03
+  
+    N. 114: Y=A/X+B*EXP(C*X)                    Red. ChiSq.=0.118230E+07
+        A=0.84146E+06    B=0.16736E+04    C=0.17849E-01
+  
+    N. 115: Y=A*X*EXP(B*X)                      Red. ChiSq.=0.683431E+07
+          A=0.705524E+02                 B=0.731844E-02
+  
+    N. 116: Y=A*EXP(B*X)/X                      Red. ChiSq.=0.202398E+07
+          A=0.233861E+06                 B=0.198999E-01
+  
+    N. 117: Y=A*EXP(B/X)/X                      Red. ChiSq.=0.260922E+08
+          A=0.134626E+09                 B=-.492509E+03
+  
+    N. 118: Y=A*X**(B*X**C)+D                   Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 119: Y=X/(A+B*X+C*X**0.5)+D              Red. ChiSq.=0.772570E+06
+    A=-.15709E-01    B=-.18765E-03    C=0.39823E-02    D=-.71143E+02
+  
+    N. 120: Y=1/(A+B*X**2)**C+D                 Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 121: Y=(A*X**B)*Ln(X)                    Red. ChiSq.=0.109184E+08
+          A=0.432225E+00                 B=0.191912E+01
+  
+    N. 122: Y=(A*X**B)/Ln(X)                    Red. ChiSq.=0.105870E+08
+          A=0.150722E+01                 B=0.231294E+01
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 124: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N. 125: Y=A/X+B*X**C+D                      Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 126: Y=A/X+B*EXP(C/X)+D                  Red. ChiSq.=0.743807E+06
+    A=-.14427E+07    B=0.11273E+08    C=-.11405E+04    D=0.33855E+05
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 128: Y=A*B**X+C                          Red. ChiSq.=0.787045E+06
+        A=0.55959E+03    B=0.10228E+01    C=0.13575E+05
+  
+    N. 129: Y=A*B**(1/X)+C                      Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N. 130: Y=A*X**(B*X)+C                      Red. ChiSq.=0.771222E+06
+        A=0.12023E+04    B=0.35473E-02    C=0.12738E+05
+  
+    N. 131: Y=A*X**(B/X)+C                      Red. ChiSq.=0.146975E+07
+        A=0.91184E+07    B=-.20033E+03    C=0.18205E+05
+  
+    N. 132: Y=1/(A+B*LnX)+C                     Red. ChiSq.=0.815132E+06
+        A=0.39865E-03    B=-.72170E-04    C=0.35774E+04
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 135: Y=A*(B**X)*X**C+D                   Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 136: Y=A*(B**(1/X))*X**C+D               Red. ChiSq.=0.414820E+08
+    A=0.25701E-07    B=0.81714+148    C=0.50027E+01    D=0.72744E+04
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 138: Y=1/(A*(X+B)**2+C)+D               Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 140: Y=A*EXP(((X-B)**2)/C)+D             Red. ChiSq.=0.686612E+11
+    A=0.22747E+03    B=-.51754E+03    C=0.67155E+05    D=0.56152E+04
+  
+    N. 141: Y=1/(A+B*X+C/X)+D                   Red. ChiSq.=0.765750E+06
+    A=0.67044E-04    B=-.24905E-06    C=-.79588E-03    D=-.10607E+05
+  
+    N. 142: Y=A*X**(B+C*X)+D                    Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 143: Y=A*X**(B+C/X)+D                    Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 144: Y=A*X**(B+C*LnX)+D                  Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 145: Y=A*X**(B*X+C*X**2)+D               Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 148: Y=(A+X)/(B+C*X)+D*X                 Red. ChiSq.=0.738968E+06
+    A=0.37183E+03    B=0.29342E-01    C=-.11041E-03    D=-.70209E+02
+  
+    N. 149: Y=(A+X)/(B+C*X**2)+D                Red. ChiSq.=0.150233E+07
+    A=0.57444E+91    B=0.15813E+87    C=-.23212E+82    D=-.22839E+05
+  
+    N. 150: Y=A*SINH(B*X)                       Red. ChiSq.=0.493703E+07
+          A=0.888381E+04                 B=0.131722E-01
+  
+    N. 151: Y=A*COSH(B*X)                       Red. ChiSq.=0.338057E+07
+          A=0.767491E+04                 B=0.138807E-01
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 154: Y=A*COSH(B*X)+C                     Red. ChiSq.=0.101480E+07
+        A=0.11181E+04    B=0.22466E-01    C=0.13486E+05
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 157: Y=A*X**(B/X)+C*X                    Red. ChiSq.=0.757767E+06
+        A=0.32218E+09    B=-.35383E+03    C=0.18692E+03
+  
+    N. 158: Y=1/(A+B*LnX)+C*X                   Red. ChiSq.=0.904954E+06
+        A=0.97363E-04    B=-.16922E-04    C=-.32947E+03
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 161: Y=A*(B**X)*X**C+D*X                 Red. ChiSq.=0.335287E+09
+    A=0.45798E+09    B=0.10416E+01    C=-.34763E+01    D=0.92142E+02
+  
+    N. 162: Y=A*(B**(1/X))*X**C+D*X             Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 163: Y=A*EXP(((LnX-B)**2)/C)+D*X         Red. ChiSq.=0.738843E+06
+    A=0.33856E+04    B=0.45797E+01    C=0.22204E+00    D=0.15081E+03
+  
+    N. 164: Y=1/(A*(X+B)**2+C)+D*X             Red. ChiSq.=0.619427E+06
+    A=0.58577E-07    B=-.20594E+03    C=0.31675E-04    D=0.17273E+03
+  
+    N. 165: Y=A*((X/B)**C)*EXP(X/B)+D*X         Red. ChiSq.=0.729979E+06
+    A=0.14348E+06    B=0.18177E+02    C=-.51344E+01    D=0.13037E+03
+  
+    N. 166: Y=A*EXP(((X-B)**2)/C)+D*X           Red. ChiSq.=0.712828E+06
+    A=0.98279E+04    B=0.65693E+02    C=0.11226E+05    D=0.78614E+02
+  
+    N. 167: Y=1/(A+B*X+C/X)+D*X                 Red. ChiSq.=0.719139E+06
+    A=0.25943E-04    B=-.11156E-06    C=0.12896E-02    D=-.17273E+03
+  
+    N. 168: Y=A*X**(B+C*X)+D*X                  Red. ChiSq.=0.728361E+06
+    A=0.11700E+11    B=-.39148E+01    C=0.76844E-02    D=0.12641E+03
+  
+    N. 169: Y=A*X**(B+C/X)+D*X                  Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 170: Y=A*X**(B+C*LnX)+D*X                Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 171: Y=A*X**(B*X+C*X**2)+D*X             Red. ChiSq.=0.711315E+06
+    A=0.11722E+05    B=-.13758E-02    C=0.13781E-04    D=0.70580E+02
+  
+    N. 172: Y=A*EXP(B*X+C*X**0.5)+D*X           Red. ChiSq.=0.724626E+06
+    A=0.14700E+08    B=0.85601E-01    C=-.16271E+01    D=0.12055E+03
+  
+    N. 173: Y=A*EXP(B/X+C*X)+D*X                Red. ChiSq.=0.742568E+06
+    A=0.14196E+01    B=0.38199E+03    C=0.41122E-01    D=0.14523E+03
+  
+    N. 174: Y=(A+X)/(B+C*X)+D*X**2              Red. ChiSq.=0.686164E+06
+    A=-.47427E+01    B=0.30530E-02    C=-.95176E-05    D=-.26294E+01
+  
+    N. 175: Y=(A+X)/(B+C*X**2)+D*X              Red. ChiSq.=0.735896E+06
+    A=0.96734E+02    B=0.80229E-02    C=-.11246E-06    D=-.97464E+02
+  
+    N. 176: Y=A*SINH(B*X)+C*X                   Red. ChiSq.=0.968646E+06
+        A=0.21575E+02    B=0.39576E-01    C=0.17779E+03
+  
+    N. 177: Y=A*COSH(B*X)+C*X                   Red. ChiSq.=0.157230E+07
+        A=0.31583E+05    B=0.10322E-01    C=-.31735E+03
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 180: Y=A*COSH(B*X)+C*X**2                Red. ChiSq.=0.967549E+06
+        A=0.16105E+05    B=0.13574E-01    C=-.14585E+01
+  
+    N. 181: Y=A*SINH(B*X)+C*X**2                Red. ChiSq.=0.773247E+06
+        A=0.30261E+05    B=0.12404E-01    C=-.28863E+01
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 183: Y=A*X**(B/X)+C*Ln(X)                Red. ChiSq.=0.114906E+07
+        A=0.14413E+08    B=-.22025E+03    C=0.40676E+04
+  
+    N. 184: Y=1/(A+B*LnX)+C*Ln(X)               Red. ChiSq.=0.838218E+06
+        A=0.41216E-03    B=-.74670E-04    C=0.86146E+03
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 187: Y=A*(B**X)*X**C+D*Ln(X)             Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 188: Y=A*(B**(1/X))*X**C+D*Ln(X)         Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 190: Y=1/(A*(X+B)**2)+C)+D*Ln(X)         Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 193: Y=1/(A+B*X+C/X)+D*Ln(X)             Red. ChiSq.=0.758006E+06
+    A=0.60409E-04    B=-.22848E-06    C=-.34809E-03    D=-.23160E+04
+  
+    N. 194: Y=A*X**(B+C*X)+D*Ln(X)              Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 195: Y=A*X**(B+C/X)+D*Ln(X)              Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 196: Y=A*X**(B+C*LnX)+D*Ln(X)            Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 197: Y=A*X**(B*X+C*X**2)+D*Ln(X)         Red. ChiSq.=0.705352E+06
+    A=0.24167E+04    B=0.18873E-02    C=0.49674E-05    D=0.25335E+04
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 200: Y=(A+X)/(B+C*X)+D*Ln(X)**2          Red. ChiSq.=0.751142E+06
+    A=0.58493E+04    B=0.32943E+00    C=-.12632E-02    D=-.49883E+03
+  
+    N. 201: Y=(A+X)/(B+C*X**2)+D*Ln(X)          Red. ChiSq.=0.752369E+06
+    A=0.49635E+03    B=0.20628E-01    C=-.30410E-06    D=-.33004E+04
+  
+    N. 202: Y=A*SINH(B*X)+C*Ln(X)               Red. ChiSq.=0.717635E+06
+        A=0.69522E+03    B=0.24563E-01    C=0.32436E+04
+  
+    N. 203: Y=A*COSH(B*X)+C*Ln(X)               Red. ChiSq.=0.721272E+06
+        A=0.70706E+03    B=0.24489E-01    C=0.32225E+04
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+    DATA FILE: labfit_data.txt                                         
+ 
+    N. 206: Y=A*COSH(B*X)+C*Ln(X)**2            Red. ChiSq.=0.685036E+06
+        A=0.38231E+03    B=0.27122E-01    C=0.75765E+03
+  
+    N. 207: Y=A*SINH(B*X)+C*Ln(X)**2            Red. ChiSq.=0.684642E+06
+        A=0.37817E+03    B=0.27171E-01    C=0.75964E+03
+  
+    DATA FILE: labfit_data.txt                                         
+ 
+ 
+         BEST RESULTS   (FUNCTIONS WITH UP TO 4 PARAMETERS)
+ 
+         1)   FUNCTION N. 104    Red. Chisq. = 0.499327E+06
+         2)   FUNCTION N. 164    Red. Chisq. = 0.619427E+06
+         3)   FUNCTION N. 207    Red. Chisq. = 0.684642E+06
+         4)   FUNCTION N. 206    Red. Chisq. = 0.685036E+06
+         5)   FUNCTION N. 174    Red. Chisq. = 0.686164E+06
+         6)   FUNCTION N.  77    Red. Chisq. = 0.686894E+06
+         7)   FUNCTION N. 197    Red. Chisq. = 0.705352E+06
+         8)   FUNCTION N. 171    Red. Chisq. = 0.711315E+06
+         9)   FUNCTION N. 166    Red. Chisq. = 0.712828E+06
+        10)   FUNCTION N.  80    Red. Chisq. = 0.714251E+06
+        11)   FUNCTION N.  93    Red. Chisq. = 0.716376E+06
+        12)   FUNCTION N. 202    Red. Chisq. = 0.717635E+06
+        13)   FUNCTION N.  99    Red. Chisq. = 0.717918E+06
+        14)   FUNCTION N. 167    Red. Chisq. = 0.719139E+06
+        15)   FUNCTION N. 203    Red. Chisq. = 0.721272E+06
+        16)   FUNCTION N. 172    Red. Chisq. = 0.724626E+06
+        17)   FUNCTION N. 168    Red. Chisq. = 0.728361E+06
+        18)   FUNCTION N. 165    Red. Chisq. = 0.729979E+06
+        19)   FUNCTION N.  79    Red. Chisq. = 0.730165E+06
+        20)   FUNCTION N.  94    Red. Chisq. = 0.731020E+06

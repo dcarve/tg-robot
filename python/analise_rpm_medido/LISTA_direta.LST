@@ -1,0 +1,605 @@
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+ 
+    N.   1: Y=A                                 Red. ChiSq.=0.122140E+02
+          A=0.167056E+03
+  
+    N.   2: Y=A*X                               Red. ChiSq.=0.922538E+01
+          A=0.372787E-02
+  
+    N.   3: Y=A*X**2                            Red. ChiSq.=0.482876E+02
+          A=0.668326E-07
+  
+    N.   4: Y=A/X                               Red. ChiSq.=0.114036E+03
+          A=0.463776E+07
+  
+    N.   5: Y=A/X**2                            Red. ChiSq.=0.234738E+03
+          A=0.755693E+11
+  
+    N.   6: Y=A*X+B                             Red. ChiSq.=0.149007E+01
+          A=0.206645E-02                 B=0.790046E+02
+  
+    N.   7: Y=A*X**2+B                          Red. ChiSq.=0.290104E+01
+          A=0.230885E-07                 B=0.120274E+03
+  
+    N.   8: Y=A/X+B                             Red. ChiSq.=0.471422E-01
+          A=-.259014E+07                 B=0.237923E+03
+  
+    N.   9: Y=A/X**2+B                          Red. ChiSq.=0.643623E+00
+          A=-.346265E+11                 B=0.198242E+03
+  
+    N.  10: Y=A*X**B                            Red. ChiSq.=0.855961E+00
+          A=0.905161E+00                 B=0.491123E+00
+  
+    N.  11: Y=A*EXP(B*X)                        Red. ChiSq.=0.212549E+01
+          A=0.995698E+02                 B=0.118262E-04
+  
+    N.  12: Y=A*(Ln(X))**B                      Red. ChiSq.=0.449708E+01
+          A=0.769403E-03                 B=0.515481E+01
+  
+    N.  13: Y=A*EXP(B/X)                        Red. ChiSq.=0.111441E+00
+          A=0.265125E+03                 B=-.176508E+05
+  
+    N.  14: Y=A*X**3                            Red. ChiSq.=0.208333E+33
+          A=0.000000E+00
+  
+    N.  15: Y=A*X**4                            Red. ChiSq.=0.208333E+33
+          A=0.000000E+00
+  
+    N.  16: Y=1/(A*X+B)                         Red. ChiSq.=0.271603E+01
+          A=-.667895E-07                 B=0.897323E-02
+  
+    N.  17: Y=X/(A+B*X)                         Red. ChiSq.=0.413331E+00
+          A=0.112178E+03                 B=0.315435E-02
+  
+    N.  18: Y=A*B**X                            Red. ChiSq.=0.212549E+01
+          A=0.995698E+02                 B=0.100001E+01
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  20: Y=A*X**(B*X)                        Red. ChiSq.=0.224645E+01
+          A=0.103872E+03                 B=0.101094E-05
+  
+    N.  21: Y=A*X**(B/X)                        Red. ChiSq.0.155132E+00
+          A=0.279281E+03                 B=-.187526E+04
+  
+    N.  22: Y=A+B*LnX                           Red. ChiSq.=0.367045E+00
+          A=-.682491E+03                 B=0.802193E+02
+  
+    N.  23: Y=1/(A+B*LnX)                       Red. ChiSq.=0.139587E+01
+          A=0.369144E-01                 B=-.290338E-02
+  
+    N.  24: Y=A*X+B*X**2                        Red. ChiSq.=0.172040E+00
+          A=0.646438E-02                 B=-.534773E-07
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  26: Y=X/(A+B*X**2)                      Red. ChiSq.=0.117914E+00
+          A=0.170083E+03                 B=0.380745E-07
+  
+    N.  27: Y=A*(B**X)*X**C                     Red. ChiSq.=0.112884E+00
+        A=0.57261E-03    B=0.99998E+00    C=0.12660E+01
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  29: Y=A*EXP(((X-B)**2)/C)               Red. ChiSq.=0.392963E+00
+        A=0.19574E+03    B=0.57698E+05    C=-.24587E+10
+  
+    N.  30: Y=A*EXP(((LnX-B)**2)/C)             Red. ChiSq.=0.644132E-01
+        A=0.19749E+03    B=0.11185E+02    C=-.26759E+01
+  
+    N.  31: Y=1/(A*(X+B)**2+C)                 Red. ChiSq.=0.346552E+03
+        A=-.10576E-02    B=-.20407E+09    C=-.11821E+06
+  
+    N.  32: Y=A*(X**B)*(1-X)**C                 Red. ChiSq.=0.209205E+33
+        A=0.00000E+00    B=0.00000E+00    C=0.00000E+00
+  
+    N.  33: Y=A+B/X+C/X**2                      Red. ChiSq.=0.303416E-01
+        A=0.24538E+03    B=-.30941E+07    C=0.70329E+10
+  
+    N.  34: Y=A*X+B*X**2+C*X**3                 Red. ChiSq.=0.160181E+00
+        A=0.67677E-02    B=-.67715E-07    C=0.15464E-12
+  
+    N.  35: Y=A+B*X+C/X                         Red. ChiSq.=0.342982E-01
+        A=0.22411E+03    B=0.19065E-03    C=-.23822E+07
+  
+    N.  36: Y=A+B*X+C*X**2                      Red. ChiSq.=0.171370E+00
+        A=-.24486E+01    B=0.65887E-02    C=-.54900E-07
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  38: Y=1/(A+B*X+C/X)                     Red. ChiSq.=0.120022E+00
+        A=0.15830E-03    B=0.36444E-07    C=0.16676E+03
+  
+    N.  39: Y=SQRT(A-B*(X-C)**2)                Red. ChiSq.=0.530021E-01
+        A=0.38707E+05    B=0.12599E-04    C=0.66391E+05
+  
+    N.  40: Y=A+B*X+C/X**2                      Red. ChiSq.=0.740002E-01
+        A=0.14959E+03    B=0.88672E-03    C=-.22554E+11
+  
+    N.  41: Y=A+B*X**2+C/X                      Red. ChiSq.=0.355719E-01
+        A=0.23101E+03    B=0.15944E-08    C=-.24556E+07
+  
+    N.  42: Y=A*X**(B+C*X)                      Red. ChiSq.=0.117372E+00
+        A=0.95003E-03    B=0.12064E+01    C=-.15760E-05
+  
+    N.  43: Y=A*X**(B+C/X)                      Red. ChiSq.=0.375460E-01
+        A=0.11139E+05    B=-.31683E+00    C=-.30436E+04
+  
+    N.  44: Y=A*X**(B+C*LnX)                    Red. ChiSq.=0.644132E-01
+        A=0.97975E-18    B=0.83601E+01    C=-.37373E+00
+  
+    N.  45: Y=A*X**(B*X+C*X**2)                 Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N.  46: Y=A*EXP(B*X+C*X**0.5)               Red. ChiSq.=0.169618E+00
+        A=0.75159E+01    B=-.53450E-04    C=0.26384E-01
+  
+    N.  47: Y=A*EXP(B/X+C*X)                    Red. ChiSq.=0.413939E-01
+        A=0.33488E+03    B=-.21594E+05    C=-.29888E-05
+  
+    N.  48: Y=(A+X)/(B+C*X)                     Red. ChiSq.=0.306580E-01
+        A=-.98806E+04    B=0.12102E+02    C=0.40652E-02
+  
+    N.  49: Y=(A+X)/(B+C*X**2)                  Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N.  50: Y=A+B*X+C*X**2+D*X**3               Red. ChiSq.=0.312381E-01
+    A=-.73150E+02    B=0.12920E-01    C=-.22470E-06    D=0.13981E-11
+  
+    N.  51: Polynomial (4th degree) not tested  Red. ChiSq.=0.100000E+36
+  
+    N.  52: Polynomial (5th degree) not tested  Red. ChiSq.=0.100000E+36
+  
+    N.  53: Polynomial (6th degree) not tested  Red. ChiSq.=0.100000E+36
+  
+    N.  54: Y=A*EXP(B*X)+C*EXP(D*X)             Red. ChiSq.=0.281654E-01
+    A=-.33074E+03    B=-.78781E-04    C=0.16566E+03    D=0.30165E-05
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  56: Y=A*X**B+C*X**D                     Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  57: Y=A+B*EXP(C*X)                      Red. ChiSq.=0.396870E-01
+        A=0.20527E+03    B=-.30508E+03    C=-.56568E-04
+  
+    N.  58: Y=A*(1-EXP(B*X))                    Red. ChiSq.=0.274564E+00
+          A=0.226087E+03                 B=-.345974E-04
+  
+    N.  59: Y=A*COS(B*X)                        Red. ChiSq.=0.345829E+03
+          A=-.188366E+00                 B=-.208976E-01
+  
+    N.  60: Y=A*COS(B*X+C)                      Red. ChiSq.=0.222599E+00
+        A=0.19531E+03    B=0.25202E-04    C=-.14900E+01
+  
+    N.  61: Y=A*SIN(B*X)                        Red. ChiSq.=0.299550E+00
+          A=0.195314E+03                 B=0.277923E-04
+  
+    N.  62: Y=A*SIN(B*X+C)                      Red. ChiSq.=0.222599E+00
+        A=0.19531E+03    B=-.25202E-04    C=-.32224E+01
+  
+    N.  63: Y=A*TAN(B*X)                        Red. ChiSq.=0.345868E+03
+          A=0.369936E-01                 B=-.323989E-03
+  
+    N.  64: Y=A*TAN(B*X+C)                      Red. ChiSq.=0.346217E+03
+        A=-.22357E+00    B=0.95399E-02    C=0.95395E+03
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  66: Y=A*ATAN(B*X)+C                     Red. ChiSq.=0.298546E-01
+        A=0.31410E+03    B=0.10874E-03    C=-.24991E+03
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N.  68: Y=A*TAN(B*X+C)+D                    Red. ChiSq.=0.254523E+00
+    A=-.82486E+01    B=-.21741E-05    C=-.15812E+01    D=0.26024E+03
+  
+    N.  69: Y=A*SIN(B*X+C)+D                    Red. ChiSq.=0.100602E+02
+    A=0.18928E+02    B=0.23334E-03    C=-.12300E+02    D=0.16486E+03
+  
+    N.  70: Y=A*COS(B*X+C)+D                    Red. ChiSq.=0.100761E+02
+    A=0.18829E+02    B=0.22992E-03    C=0.17705E+02    D=0.16482E+03
+  
+    N.  71: Fourier - not tested                Red. ChiSq.=0.100000E+36
+  
+    N.  72: Harmonic I - not tested             Red. ChiSq.=0.100000E+36
+  
+    N.  73: Harmonic II - not tested            Red. ChiSq.=0.100000E+36
+  
+    N.  74: Y=A*X**B+C                          Red. ChiSq.=0.317442E-01
+        A=-.51036E+06    B=-.82347E+00    C=0.25514E+03
+  
+    N.  75: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  76: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  77: Y=A*X**B+C*EXP(D*X)                 Red. ChiSq.=0.304597E-01
+    A=-.66101E+05    B=-.57619E+00    C=0.33604E+03    D=-.12200E-05
+  
+    N.  78: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  79: Y=A*X**B*(C-X)**D                   Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  80: Y=A*EXP(B*EXP(C*X))                 Red. ChiSq.=0.685953E-01
+        A=0.20064E+03    B=-.28978E+01    C=-.75650E-04
+  
+    N.  81: Y=A/(1+B*EXP(C*X))                  Red. ChiSq.=0.109355E+00
+        A=0.19781E+03    B=0.58015E+01    C=-.94880E-04
+  
+    N.  82: Y=A/(B+X**C)                        Red. ChiSq.=0.346552E+03
+        A=0.87521E-04    B=0.16035E-04    C=0.30653E+02
+  
+    N.  83: Y=A/(1+B*X**C)**2                   Red. ChiSq.=0.326115E-01
+        A=0.22068E+03    B=0.16268E+08    C=-.17604E+01
+  
+    N.  84: Y=(A+B*X**C)/(D+X**C)               Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  85: Y=(A+B*X)**C                        Red. ChiSq.=0.118040E+00
+        A=-.17471E+09    B=0.11987E+05    C=0.26282E+00
+  
+    N.  86: Y=(A+B*SQRT(X))**C                  Red. ChiSq.=0.803453E-01
+        A=-.83033E+07    B=0.69944E+05    C=0.33038E+00
+  
+    N.  87: Y=1/(A+B*X**C)                      Red. ChiSq.=0.371966E-01
+        A=0.46380E-02    B=0.38078E+07    C=-.20705E+01
+  
+    N.  88: Y=1/(A+B*EXP(C*X))**D               Red. ChiSq.=0.347278E+03
+    A=0.15128E+01    B=-.21136E+00    C=-.41636E-04    D=0.17217E+03
+  
+    N.  89: Y=A*EXP(B/X)+C                      Red. ChiSq.=0.305524E-01
+        A=0.58045E+03    B=-.54050E+04    C=-.33468E+03
+  
+    N.  90: Y=1/(A*X+B)+C                       Red. ChiSq.=0.259183E+01
+        A=-.36900E-07    B=0.57300E-02    C=-.75223E+02
+  
+    N.  91: Y=X/(A+B*X)+C                       Red. ChiSq.=0.306580E-01
+        A=0.28011E+01    B=0.94109E-03    C=-.81661E+03
+  
+    N.  92: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  93: Y=A*EXP(B*EXP(C*X))+D               Red. ChiSq.=0.397720E-01
+    A=0.30856E+07    B=-.98869E-04    C=-.56577E-04    D=-.30854E+07
+  
+    N.  94: Y=A/(1+B*EXP(C*X))+D                Red. ChiSq.=0.397713E-01
+    A=0.48813E+07    B=0.62504E-04    C=-.56577E-04    D=-.48811E+07
+  
+    N.  95: Y=EXP(A+B/X+C*Ln(X))                Red. ChiSq.=0.352836E-01
+        A=0.82085E+01    B=-.25532E+05    C=-.22799E+00
+  
+    N.  96: Y=A/(1+B*X**C)**2+D                 Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  97: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N.  98: Y=(A+B*X)**C+D                      Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N.  99: Y=(A+B*SQRT(X))**C+D                Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 100: Y=1/(A+B*X**C)+D                    Red. ChiSq.=0.295340E-01
+    A=0.24506E-02    B=0.85107E+03    C=-.13725E+01    D=-.17673E+03
+  
+    N. 101: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N. 102: Y=A*EXP(B*X**C)                     Red. ChiSq.=0.408699E-01
+        A=0.23524E+03    B=-.48267E+06    C=-.13466E+01
+  
+    N. 103: Y=A*EXP(B*X**C)+D                   Red. ChiSq.=0.294324E-01
+    A=0.27615E+03    B=-.23214E+06    C=-.12986E+01    D=-.43386E+02
+  
+    N. 104: Y=(A+B*X)/(1+C*X+D*X**2)            Red. ChiSq.=0.354465E+03
+    A=-.23296E+06    B=-.35428E+03    C=-.11936E+02    D=0.54360E-02
+  
+    N. 105: Y=A*X**(B*X**C)                     Red. ChiSq.=0.299366E-01
+        A=0.22754E+03    B=-.35302E+06    C=-.15503E+01
+  
+    N. 106: Y=X/(A+B*X+C*X**0.5)                Red. ChiSq.=0.702546E-01
+        A=0.35222E+03    B=0.95261E-02    C=-.25148E+01
+  
+    N. 107: Y=1/(A+B*X**2)**C                   Red. ChiSq.=0.220675E+00
+        A=-.17534E+12    B=0.78243E+03    C=-.18501E+00
+  
+    N. 108: Y=A*(LnX)**B+C                      Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N. 109: Y=A*Ln(X+B)                         Red. ChiSq.=0.339209E+01
+          A=0.169059E+02                 B=-.150795E+05
+  
+    N. 110: Y=A*Ln(X+B)+C                       Red. ChiSq.=0.614363E-01
+        A=0.48276E+02    B=-.11881E+05    C=-.32364E+03
+  
+    N. 111: Y=A*X**B+C*EXP(D/X)                 Red. ChiSq.=0.297693E-01
+    A=-.68086E+02    B=0.90561E-01    C=0.44678E+03    D=-.97158E+04
+  
+    N. 112: Y=A/X+B*X**C                        Red. ChiSq.=0.329755E-01
+        A=-.21801E+07    B=0.12191E+03    C=0.58557E-01
+  
+    N. 113: Y=A/X+B*EXP(C/X)                    Red. ChiSq.=0.306900E-01
+        A=-.99993E+06    B=0.24606E+03    C=-.88164E+04
+  
+    N. 114: Y=A/X+B*EXP(C*X)                    Red. ChiSq.=0.343512E-01
+        A=-.23860E+07    B=0.22446E+03    C=0.80803E-06
+  
+    N. 115: Y=A*X*EXP(B*X)                      Red. ChiSq.=0.193086E+00
+          A=0.727311E-02                 B=-.132947E-04
+  
+    N. 116: Y=A*EXP(B*X)/X                      Red. ChiSq.=0.711409E+01
+          A=0.129427E+07                 B=0.377752E-04
+  
+    N. 117: Y=A*EXP(B/X)/X                      Red. ChiSq.=0.828115E+00
+          A=0.273033E+08                 B=-.530295E+05
+  
+    N. 118: Y=A*X**(B*X**C)+D                   Red. ChiSq.=0.298043E-01
+    A=0.27813E+03    B=-.60946E+05    C=-.13967E+01    D=-.45636E+02
+  
+    N. 119: Y=X/(A+B*X+C*X**0.5)+D              Red. ChiSq.=0.297151E-01
+    A=0.18240E+02    B=0.19455E-02    C=-.61210E-01    D=-.30453E+03
+  
+    N. 120: Y=1/(A+B*X**2)**C+D                 Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 121: Y=(A*X**B)*Ln(X)                    Red. ChiSq.=0.835903E+00
+          A=0.234485E+00                 B=0.395892E+00
+  
+    N. 122: Y=(A*X**B)/Ln(X)                    Red. ChiSq.=0.876290E+00
+          A=0.349390E+01                 B=0.586359E+00
+  
+    N. 123: Y=A*(X**B)*Ln(X+C)                  Red. ChiSq.=0.290500E+00
+        A=0.86675E+00    B=0.27847E+00    C=-.15010E+05
+  
+    N. 124: F. with 5 parameters - not tested   Red. ChiSq.=0.100000E+36
+  
+    N. 125: Y=A/X+B*X**C+D                      Red. ChiSq.=0.329608E-01
+    A=-.21534E+07    B=0.76976E+06    C=0.18169E-04    D=-.76969E+06
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 128: Y=A*B**X+C                          Red. ChiSq.=0.149318E+01
+        A=0.56879E+08    B=0.10000E+01    C=-.56879E+08
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 130: Y=A*X**(B*X)+C                      Red. ChiSq.=0.161263E+01
+        A=0.64109E+08    B=0.27658E-11    C=-.64109E+08
+  
+    N. 131: Y=A*X**(B/X)+C                      Red. ChiSq.=0.311910E-01
+        A=0.12578E+04    B=-.24174E+03    C=-.10075E+04
+  
+    N. 132: Y=1/(A+B*LnX)+C                     Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    N. 133: Y=A*(Ln(X+B))**C                    Red. ChiSq.=0.876415E-01
+        A=0.33151E+00    B=-.13955E+05    C=0.26913E+01
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 135: Y=A*(B**X)*X**C+D                   Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 137: Y=A*EXP(((LnX-B)**2)/C)+D           Red. ChiSq.=0.306884E-01
+    A=-.92670E+06    B=0.11624E+02    C=0.27207E+05    D=0.92691E+06
+  
+    N. 138: Y=1/(A*(X+B)**2+C)+D               Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 140: Y=A*EXP(((X-B)**2)/C)+D             Red. ChiSq.=0.171736E+00
+    A=0.35727E+07    B=0.60006E+05    C=-.65075E+14    D=-.35725E+07
+  
+    N. 141: Y=1/(A+B*X+C/X)+D                   Red. ChiSq.=0.664586E-01
+    A=0.18306E-02    B=0.10408E-07    C=0.52781E+02    D=-.10686E+03
+  
+    N. 142: Y=A*X**(B+C*X)+D                    Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 143: Y=A*X**(B+C/X)+D                    Red. ChiSq.=0.298216E-01
+    A=0.85032E+03    B=-.57561E-01    C=-.10667E+04    D=-.17562E+03
+  
+    N. 144: Y=A*X**(B+C*LnX)+D                  Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 145: Y=A*X**(B*X+C*X**2)+D               Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 146: Y=A*EXP(B*X+C*X**0.5)+D             Red. ChiSq.=0.588799E-01
+    A=-.32289E+07    B=0.19237E-08    C=-.10066E-05    D=0.32287E+07
+  
+    N. 147: Y=A*EXP(B/X+C*X)+D                  Red. ChiSq.=0.303037E-01
+    A=0.43661E+03    B=-.84735E+04    C=-.34519E-06    D=-.17561E+03
+  
+    N. 148: Y=(A+X)/(B+C*X)+D*X                 Red. ChiSq.=0.300362E-01
+    A=-.94201E+04    B=0.19429E+02    C=0.37846E-02    D=-.15975E-03
+  
+    N. 149: Y=(A+X)/(B+C*X**2)+D                Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 150: Y=A*SINH(B*X)                       Red. ChiSq.=0.770664E+02
+          A=0.181169E+02                 B=0.513820E-04
+  
+    N. 151: Y=A*COSH(B*X)                       Red. ChiSq.=0.314100E+01
+          A=0.123473E+03                 B=-.180016E-04
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 153: Y=SQRT(A-B*(X-C)**2)+D              Red. ChiSq.=0.412854E-01
+    A=0.26704E+05    B=0.81367E-05    C=0.71132E+05    D=0.35333E+02
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 157: Y=A*X**(B/X)+C*X                    Red. ChiSq.=0.460300E-01
+        A=0.39376E+03    B=-.22559E+04    C=-.10848E-02
+  
+    N. 158: Y=1/(A+B*LnX)+C*X                   Red. ChiSq.=0.926461E+01
+        A=0.47332E+05    B=-.49191E+04    C=0.37124E-02
+  
+    N. 159: Y=A*(Ln(X+B))**C+D*X                Red. ChiSq.=0.329670E-01
+    A=0.80212E-02    B=-.10811E+05    C=0.44386E+01    D=-.19120E-02
+  
+    N. 160: Y=A*(Ln(X+B))**C+D*X**2             Red. ChiSq.=0.364901E-01
+    A=0.26225E-01    B=-.12215E+05    C=0.38139E+01    D=-.87324E-08
+  
+    N. 161: Y=A*(B**X)*X**C+D*X                 Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 163: Y=A*EXP(((LnX-B)**2)/C)+D*X         Red. ChiSq.=0.292419E-01
+    A=0.90053E+02    B=0.10486E+02    C=-.10228E+01    D=0.21019E-02
+  
+    N. 164: Y=1/(A*(X+B)**2+C)+D*X             Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 166: Y=A*EXP(((X-B)**2)/C)+D*X           Red. ChiSq.=0.633392E-01
+    A=0.61936E+02    B=0.32975E+05    C=-.61591E+09    D=0.29349E-02
+  
+    N. 167: Y=1/(A+B*X+C/X)+D*X                 Red. ChiSq.=0.389426E-01
+    A=-.15338E-01    B=0.37033E-06    C=0.47443E+03    D=0.21313E-02
+  
+    N. 168: Y=A*X**(B+C*X)+D*X                  Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 169: Y=A*X**(B+C/X)+D*X                  Red. ChiSq.=0.281502E-01
+    A=0.88059E+08    B=-.11485E+01    C=-.51471E+04    D=0.14019E-02
+  
+    N. 170: Y=A*X**(B+C*LnX)+D*X                Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 171: Y=A*X**(B*X+C*X**2)+D*X             Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 172: Y=A*EXP(B*X+C*X**0.5)+D*X           Red. ChiSq.=0.387564E-01
+    A=0.17323E+00    B=-.18170E-03    C=0.66072E-01    D=0.26869E-02
+  
+    N. 173: Y=A*EXP(B/X+C*X)+D*X                Red. ChiSq.=0.283712E-01
+    A=0.57749E+03    B=-.33299E+05    C=-.25650E-04    D=0.20734E-02
+  
+    N. 174: Y=(A+X)/(B+C*X)+D*X**2              Red. ChiSq.=0.302239E-01
+    A=-.96048E+04    B=0.17007E+02    C=0.39423E-02    D=-.87053E-09
+  
+    N. 175: Y=(A+X)/(B+C*X**2)+D*X              Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 176: Y=A*SINH(B*X)+C*X                   Red. ChiSq.=0.121167E+10
+        A=-.56657E+08    B=0.51682E-06    C=0.22223E+02
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 181: Y=A*SINH(B*X)+C*X**2                Red. ChiSq.=0.159157E+00
+        A=0.58147E+03    B=0.11662E-04    C=-.68099E-07
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 183: Y=A*X**(B/X)+C*Ln(X)                Red. ChiSq.=0.298038E-01
+        A=0.57352E+03    B=-.87720E+03    C=-.26606E+02
+  
+    N. 184: Y=1/(A+B*LnX)+C*Ln(X)               Red. ChiSq.= NaN        
+        A= NaN           B= NaN           C= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 187: Y=A*(B**X)*X**C+D*Ln(X)             Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 190: Y=1/(A*(X+B)**2)+C)+D*Ln(X)         Red. ChiSq.=0.257802E+02
+    A=-.28530E-07    B=-.59148E+05    C=0.32128E-01    D=0.15800E+02
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 193: Y=1/(A+B*X+C/X)+D*Ln(X)             Red. ChiSq.=0.800316E-01
+    A=0.15805E-02    B=0.12029E-07    C=0.62086E+02    D=-.97220E+01
+  
+    N. 194: Y=A*X**(B+C*X)+D*Ln(X)              Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 195: Y=A*X**(B+C/X)+D*Ln(X)              Red. ChiSq.=0.298613E-01
+    A=0.59141E+03    B=-.62252E-02    C=-.92775E+03    D=-.24567E+02
+  
+    N. 196: Y=A*X**(B+C*LnX)+D*Ln(X)            Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 197: Y=A*X**(B*X+C*X**2)+D*Ln(X)         Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    N. 198: Y=A*EXP(B*X+C*X**0.5)+D*Ln(X)       Red. ChiSq.=0.294055E-01
+    A=-.26218E+04    B=-.12496E-05    C=0.12820E-02    D=0.32043E+03
+  
+    N. 199: Y=A*EXP(B/X+C*X)+D*Ln(X)            Red. ChiSq.=0.297422E-01
+    A=0.46813E+03    B=-.93215E+04    C=0.68617E-07    D=-.18798E+02
+  
+    N. 200: Y=(A+X)/(B+C*X)+D*Ln(X)**2          Red. ChiSq.=0.298747E-01
+    A=-.62751E+04    B=0.16936E+02    C=0.26740E-02    D=-.88646E+00
+  
+    N. 201: Y=(A+X)/(B+C*X**2)+D*Ln(X)          Red. ChiSq.= NaN        
+    A= NaN           B= NaN           C= NaN           D= NaN       
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 203: Y=A*COSH(B*X)+C*Ln(X)               Red. ChiSq.=0.554571E-01
+        A=-.10396E+04    B=-.48730E-05    C=0.11632E+03
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 205: Y=SQRT(A-B*(X-C)**2)+D*Ln(X)        Red. ChiSq.=0.413904E-01
+    A=0.24079E+05    B=0.76788E-05    C=0.69904E+05    D=0.38996E+01
+  
+    N. 206: Y=A*COSH(B*X)+C*Ln(X)**2            Red. ChiSq.=0.264784E+03
+        A=-.19345E+02    B=0.51475E-04    C=0.14392E+01
+  
+    DATA FILE: Untitled.txt                                            
+ 
+    N. 208: Y=SQRT(A-B*(X-C)**2)+D*Ln(X)**2     Red. ChiSq.=0.417972E-01
+    A=0.20872E+05    B=0.71885E-05    C=0.67879E+05    D=0.43544E+00
+  
+ 
+         BEST RESULTS   (FUNCTIONS WITH UP TO 4 PARAMETERS)
+ 
+         1)   FUNCTION N. 169    Red. Chisq. = 0.281502E-01
+         2)   FUNCTION N.  54    Red. Chisq. = 0.281654E-01
+         3)   FUNCTION N. 173    Red. Chisq. = 0.283712E-01
+         4)   FUNCTION N. 163    Red. Chisq. = 0.292419E-01
+         5)   FUNCTION N. 198    Red. Chisq. = 0.294055E-01
+         6)   FUNCTION N. 103    Red. Chisq. = 0.294324E-01
+         7)   FUNCTION N. 100    Red. Chisq. = 0.295340E-01
+         8)   FUNCTION N. 119    Red. Chisq. = 0.297151E-01
+         9)   FUNCTION N. 199    Red. Chisq. = 0.297422E-01
+        10)   FUNCTION N. 111    Red. Chisq. = 0.297693E-01
+        11)   FUNCTION N. 183    Red. Chisq. = 0.298038E-01
+        12)   FUNCTION N. 118    Red. Chisq. = 0.298043E-01
+        13)   FUNCTION N. 143    Red. Chisq. = 0.298216E-01
+        14)   FUNCTION N.  66    Red. Chisq. = 0.298546E-01
+        15)   FUNCTION N. 195    Red. Chisq. = 0.298613E-01
+        16)   FUNCTION N. 200    Red. Chisq. = 0.298747E-01
+        17)   FUNCTION N. 105    Red. Chisq. = 0.299366E-01
+        18)   FUNCTION N. 148    Red. Chisq. = 0.300362E-01
+        19)   FUNCTION N. 174    Red. Chisq. = 0.302239E-01
+        20)   FUNCTION N. 147    Red. Chisq. = 0.303037E-01

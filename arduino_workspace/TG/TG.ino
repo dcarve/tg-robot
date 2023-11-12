@@ -6,32 +6,26 @@
 #include "serial_monitor.h"
 
 
-
-#include "pwm.h"
-
-#include <libmaple/libmaple_types.h>
-#include <libmaple/timer.h>
-
-#include "boards.h"
-#include "io.h"
-
-
-
 #define DT_TIME_SAMPLE_RATE_ENCODER 10 // encoder position reading update rate
-#define DT_TIME_INCREASE_ENGINE 5  // engine speed update rate, for testing
-#define MAX_VALUE_MOTOR 65535  // 16-bit
-#define MIN_VALUE_MOTOR 10000 // minimum value for the motor to start
+#define DT_TIME_INCREASE_ENGINE 100  // engine speed update rate, for testing
 
-#define INC_VEL 10   //incremento de velocidade para teste
+//#define RPM_MAX 209.0
+//#define RPM_MIN 95.0
 
-#define rpm_target 100
-
+//#define INC_VEL 0.01
 
 
-int pwmValue = MAX_VALUE_MOTOR;
+#define RPM_MAX 20000
+#define RPM_MIN 0
+
+//#define RPM_MAX 65535
+//#define RPM_MIN 15000
+
+#define INC_VEL 20
+
+
 int nextChangeVel  = (millis() + DT_TIME_INCREASE_ENGINE);
 int nextChangeSampleRate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
-int inc = INC_VEL;
 
 long prevTime = 0;
 long currTime = micros();
@@ -52,9 +46,9 @@ float prevRpm_1 = 0;
 float prevRpm_2 = 0;
 float prevRpm_3 = 0;
 
-int w1 = MIN_VALUE_MOTOR;  
-int w2 = MIN_VALUE_MOTOR;
-int w3 = MIN_VALUE_MOTOR;
+float w1 = 0;  
+float w2 = 0;
+float w3 = 0;
 
 
 float direction_angle = 90;
@@ -86,7 +80,19 @@ float u3=0;
 
 int u1_bit=0;
 
+float volt1 = 0.0;
+float dc1 = 0.0;
+int bits1 = 0;
 
+float volt2 = 0.0;
+float dc2 = 0.0;
+int bits2 = 0;
+
+float volt3 = 0.0;
+float dc3 = 0.0;
+int bits3 = 0;
+
+int incomingByte = 0;
 
 void setup() {
 
@@ -129,15 +135,15 @@ void loop() {
 
         erro1_n = w1 - filterRpm_1;
 
-        controler(
-            &erro1_n,
-            &erro1_n_1,
-            &i1_n,
-            &i1_n_1,
-            &u1,
-            currTime,
-            prevTime
-        );
+        // controler(
+        //     &erro1_n,
+        //     &erro1_n_1,
+        //     &i1_n,
+        //     &i1_n_1,
+        //     &u1,
+        //     currTime,
+        //     prevTime
+        // );
 
 
         prevPosition_1 = currPosition_1;
@@ -153,33 +159,21 @@ void loop() {
         i1_n = i1_n_1;
         erro1_n_1 = erro1_n;
 
-        u1_bit = conversor_rpm_to_16bit(u1);
-
 
         Serial.print("{\"millis\":");    
         Serial.print(millis());
-        Serial.print(",\"rpm1\":");
-        Serial.print(rpm1);
         Serial.print(",\"filterRpm_1\":");
         Serial.print(filterRpm_1);
         Serial.print(",\"w1\":");
         Serial.print(w1);
-        Serial.print(",\"u1\":");
-        Serial.print(u1);
-        Serial.print(",\"u1_bit\":");
-        Serial.print(u1_bit);
-        // Serial.print(",\"rpm2\":");
-        // Serial.print(rpm2);
-        // Serial.print(",\"filterRpm_2\":");
-        // Serial.print(filterRpm_2);
-        // Serial.print(",\"w2\":");
-        // Serial.print(w2);
-        // Serial.print(",\"rpm3\":");
-        // Serial.print(rpm3);
-        // Serial.print(",\"filterRpm_3\":");
-        // Serial.print(filterRpm_3);
-        // Serial.print(",\"w3\":");
-        // Serial.print(w3);
+        Serial.print(",\"filterRpm_2\":");
+        Serial.print(filterRpm_2);
+        Serial.print(",\"w2\":");
+        Serial.print(w2);
+        Serial.print(",\"filterRpm_3\":");
+        Serial.print(filterRpm_3);
+        Serial.print(",\"w3\":");
+        Serial.print(w3);
         Serial.print("}\n");
 
         nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
@@ -189,56 +183,62 @@ void loop() {
 
     if (millis()>=nextChangeVel){
 
-        w1=150;
-
         // w1 = w1 + acrescimo_1;
-        // if (w1 < MIN_VALUE_MOTOR){
+        // if (w1 <= RPM_MIN){
         //     acrescimo_1 = -acrescimo_1;
-        //     w1 = MIN_VALUE_MOTOR;
-        // } else if (w1 > MAX_VALUE_MOTOR) {
+        //     w1 = RPM_MIN;
+        // } else if (w1 >= RPM_MAX) {
         //     acrescimo_1 = -acrescimo_1;
-        //     w1 = MAX_VALUE_MOTOR;
+        //     w1 = RPM_MAX;
+        // }
+
+        // w2 = w2 + acrescimo_2;
+        // if (w2 < RPM_MIN){
+        //     acrescimo_2 = -acrescimo_2;
+        //     w2 = RPM_MIN;
+        // } else if (w2 > RPM_MAX) {
+        //     acrescimo_2 = -acrescimo_2;
+        //     w2 = RPM_MAX;
         // }
 
 
-        w2 = w2 + acrescimo_2;
-        if (w2 < MIN_VALUE_MOTOR){
-            acrescimo_2 = -acrescimo_2;
-            w2 = MIN_VALUE_MOTOR;
-        } else if (w2 > MAX_VALUE_MOTOR) {
-            acrescimo_2 = -acrescimo_2;
-            w2 = MAX_VALUE_MOTOR;
-        }
+        // w3 = w3 + acrescimo_3;
+        // if (w3 < RPM_MIN){
+        //     acrescimo_3 = -acrescimo_3;
+        //     w3 = RPM_MIN;
+        // } else if (w3 > RPM_MAX) {
+        //     acrescimo_3 = -acrescimo_3;
+        //     w3 = RPM_MAX;
+        // }
 
 
-        w3 = w3 + acrescimo_3;
-        if (w3 < MIN_VALUE_MOTOR){
-            acrescimo_3 = -acrescimo_3;
-            w3 = MIN_VALUE_MOTOR;
-        } else if (w3 > MAX_VALUE_MOTOR) {
-            acrescimo_3 = -acrescimo_3;
-            w3 = MAX_VALUE_MOTOR;
-        }
+        // TransformationMatrix(
+        //     &w1,
+        //     &w2,
+        //     &w3,
+        //     direction_angle,
+        //     angular_speed
+        // );
 
+        w1=150.0;
+        w2=150.0;
+        w3=150.0;
 
-        //TransformationMatrix(
-        //    &w1,
-        //    &w2,
-        //    &w3,
-        //    direction_angle,
-        //    angular_speed
-        //);
+        bits1 = convertRpmto16bit(w1);
+        
+        bits2 = convertRpmto16bit(w2);
+        
+        bits3 = convertRpmto16bit(w3);
 
-
-        //sendMotorOutput(w1,w2,w3);
-
-        //sendMotorOutput(65000, 65000, 65000);
+                    
+        sendMotorOutput(bits1,bits2,bits3);
 
         nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
+        
 
     }
 
-    sendMotorOutput(u1_bit,0,0);
+    //sendMotorOutput(u1_bit,0,0);
 }
 
 void readEncoder1(){ 

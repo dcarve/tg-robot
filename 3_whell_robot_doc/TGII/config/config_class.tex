@@ -34,7 +34,30 @@
 \usepackage{amsmath}			% lib para equacoes
 \usepackage{svg}
 %\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  upquote=true,
+  tabsize=3
+}
 
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
 

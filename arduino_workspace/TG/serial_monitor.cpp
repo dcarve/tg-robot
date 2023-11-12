@@ -1,36 +1,17 @@
 #include <Arduino.h>
 #include "serial_monitor.h"
 
-void sent_serial_monitor(
-    long millis,
-    float rpm1,
-    float filterRpm_1
-    //float rpm2,
-    //float filterRpm_2,
-    //float rpm3,
-    //float filterRpm_3
-){
+void printDouble( double val, unsigned int precision){
+// prints val with number of decimal places determine by precision
+// NOTE: precision is 1 followed by the number of zeros for the desired number of decimial places
+// example: printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
 
-   
-    //Serial.print("millis:");
-    Serial.print(millis);
-    Serial.print("\t");
-    //Serial.print("rpm1:");
-    Serial.print(rpm1);
-    Serial.print("\t");
-    //Serial.print("filterRpm_1:");
-    Serial.print(filterRpm_1);
-    //Serial.print("\t");
-    //Serial.print("rpm2:");
-    //Serial.print(rpm2);
-    //Serial.print("\t");
-    //Serial.print("filterRpm_2:");
-    //Serial.print(filterRpm_2);
-    //Serial.print("\t");
-    //Serial.print("rpm3:");
-    //Serial.print(rpm3);
-    //Serial.print("\t");
-    //Serial.print("filterRpm_3:");
-    //Serial.print(filterRpm_3);
-    Serial.print('\n');
-}
+    Serial.print (int(val));  //prints the int part
+    Serial.print("."); // print the decimal point
+    unsigned int frac;
+    if(val >= 0)
+        frac = (val - int(val)) * precision;
+    else
+        frac = (int(val)- val ) * precision;
+    Serial.print(frac,DEC) ;
+} 
