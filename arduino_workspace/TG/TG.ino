@@ -183,42 +183,14 @@ void loop() {
 
     if (millis()>=nextChangeVel){
 
-        // w1 = w1 + acrescimo_1;
-        // if (w1 <= RPM_MIN){
-        //     acrescimo_1 = -acrescimo_1;
-        //     w1 = RPM_MIN;
-        // } else if (w1 >= RPM_MAX) {
-        //     acrescimo_1 = -acrescimo_1;
-        //     w1 = RPM_MAX;
-        // }
 
-        // w2 = w2 + acrescimo_2;
-        // if (w2 < RPM_MIN){
-        //     acrescimo_2 = -acrescimo_2;
-        //     w2 = RPM_MIN;
-        // } else if (w2 > RPM_MAX) {
-        //     acrescimo_2 = -acrescimo_2;
-        //     w2 = RPM_MAX;
-        // }
-
-
-        // w3 = w3 + acrescimo_3;
-        // if (w3 < RPM_MIN){
-        //     acrescimo_3 = -acrescimo_3;
-        //     w3 = RPM_MIN;
-        // } else if (w3 > RPM_MAX) {
-        //     acrescimo_3 = -acrescimo_3;
-        //     w3 = RPM_MAX;
-        // }
-
-
-        // TransformationMatrix(
-        //     &w1,
-        //     &w2,
-        //     &w3,
-        //     direction_angle,
-        //     angular_speed
-        // );
+        TransformationMatrix(
+            &w1,
+            &w2,
+            &w3,
+            direction_angle,
+            angular_speed
+        );
 
         w1=150.0;
         w2=150.0;

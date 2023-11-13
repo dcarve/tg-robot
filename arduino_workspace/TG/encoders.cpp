@@ -23,8 +23,8 @@ void encodersSetupPins(){
 float calc_rpm(long currT, long prevT, int pos, int posPrev){
 
     float deltaT = ((float) (currT-prevT))/1.0e6;
-    float pulse_per_rotation = (pos - posPrev)/deltaT;
-    float rpm = 60*pulse_per_rotation/HALL_RESOLUTION;
+    float pulse_per_seconds = (pos - posPrev)/deltaT;
+    float rpm = 60*pulse_per_seconds/HALL_RESOLUTION;
 
     return rpm;
 }
