@@ -150,35 +150,32 @@ Essa outra opção de $\Delta_{T}$ resultou em um sinal que tem uma componente e
 Analisando os dois sinai no dominio da frequêcia \ref{fig:frequencia_medidas_altas}, o espectro em frequência do sinal em laranja possui amplitudes muitos semelhante em todo espectro, mas o espectro do sinal em azul, fica bem claro que em altas frequencias é composto mais por ruidos
 e as frequencia médias tem amplitude menor em relação as frequências baixas, o que torna mais fácil aplicar um filtro passa-baixa para reduzir as frenquências médias e altas.
 
-\begin{center}
-    \begin{figure}
-        \centering
-        \includegraphics{figures/medidas_altas}
-        \caption{Problemas com delta T muito pequeno}
-        \label{fig:medidas_altas}
-    \end{figure}
-
-\end{center}
-
 A figura \ref{fig:passa_baixa_teste}, mostra um dos teste de filtro passa baixa, em o sinal em laranja ainda persiste esses valores tentendo ao infinito, devido a ampliture eles se tornam um pouco dificil de serem retirados.
 Mas o sinal em azul acaba tendo um resultado melhor depois do filtro, muito semelhando ao sinal em laranja.
 Com base nesse resultado, foi decidido seguir com o método em que o $\Delta_{T}$ é definido por uma frequência pré definida.
 
-\begin{center}
-    \begin{figure}
-        \centering
-        \includegraphics{figures/frequencia_medidas_altas}
-        \caption{Frequências}
-        \label{fig:frequencia_medidas_altas}
-    \end{figure}
 
-    \begin{figure}
-        \centering
-        \includegraphics{figures/passa_baixa_teste}
-        \caption{Passa baixa teste}
-        \label{fig:passa_baixa_teste}
-    \end{figure}
-\end{center}
+\begin{figure}[h]
+    \centering
+    \includegraphics{figures/medidas_altas}
+    \caption{Problemas com delta T muito pequeno}
+    \label{fig:medidas_altas}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{figures/frequencia_medidas_altas}
+    \caption{Frequências}
+    \label{fig:frequencia_medidas_altas}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{figures/passa_baixa_teste}
+    \caption{Passa baixa teste}
+    \label{fig:passa_baixa_teste}
+\end{figure}
+
 
 Com o método definido, foi definido um $\Delta_{T}$ em 100hz eu um filtro passa baixa em 2hz
 As imagens no anexo \ref{att_medicao_motores}, mostra as imagens comparando o sinal original e o sinal filtrado para cada motor.
@@ -193,18 +190,33 @@ A equação \ref{eqn:equacao_diferenca} a seguir é a equação de diferença do
 
 \subsubsection{Curva PWM x RPM - problema da não linearidade}
 
-Depois de definido como calcular a velocidade o prózimo desafio foi lidar com a não linearidade entre o PWM e o resultado medido em RPM.
+Depois de definido como calcular a velocidade o próximo desafio foi lidar com a não linearidade entre o PWM e o resultado medido em RPM.
+Como pode ser visto na figura \ref{fig:grafico_pwm_x_rpm}, na comparação entre o valor do PWM e o RPM no tempo.
+Considerando essa não linearidade, foram realizadas 15k medições em PWM vs RPM para definir uma equação que pudesse relacionar o PWM com o RPM.
+Como pode ser observado na figura  \ref{fig:medicao_pwm_x_rpm_dados_brutos}, os resultados possuem uma tendência, mas possuem alguns pontos fora da curta,
+Devido ao esses duídos nas medições ss dados foram tratatos para obter valores médios dos resultados usando python,
+o código pode ser visto no anexo \ref{att_limpeza_python}.
+O resultado da limpeza dos dados pode ser vizualiado na figura \ref{fig:medicao_pwm_x_rpm_dados_medios}.
+Após a limpeza dos dados, os dados foram importados para o matlab, anexo \ref{att_matlab},
+para obter um polinômio que possa definir a curva, o polinômio resultante é a equação \ref{eqn:polimonio_rpm}, e a figura \ref{fig:curva_ajustada} representa a curva ajustada.
 
-\begin{figure}[p]
+\begin{equation}
+    \begin{split}
+        0.0001131x^{4} + -0.03064x^{3} + 2.993x^{2} + -1.257x + 9017
+    \end{split}
+    \label{eqn:polimonio_rpm}
+\end{equation}
+
+
+\begin{figure}[h]
 	\centering
 	\includegraphics{figures/pwm_x_rpm}
 	\caption{Curva PWM e RPM no tempo}
 	\label{fig:grafico_pwm_x_rpm}
 \end{figure}
 
-Considerando essa não linearidade, foram realizadas 15k medições em PWM vs RPM para definir uma equação que pudesse relacionar o PWM com o RPM.
 
-\begin{figure}[p]
+\begin{figure}[h]
 	\centering
 	\includegraphics{figures/curva_pwm_x_rpm_dados_brutos}
 	\caption{Curva PWM x RPM dados brutos}
@@ -212,49 +224,7 @@ Considerando essa não linearidade, foram realizadas 15k medições em PWM vs RP
 \end{figure}
 
 
-Limpeza dos dados realizada no python
-\lstset{language=Python}
-\begin{lstlisting}
-    import json
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    
-    res = open('mediadas_capturadas.txt').read()
-    res = res.split('\n')
-    
-    res = [json.loads(i[i.find('''{"millis":'''):]) for i in res]
-    
-    dados_brutos = pd.DataFrame(res)
-    
-    dados_brutos = pd.concat([
-        dados_brutos[['w1','filterRpm_1']]
-        .rename(columns={'filterRpm_1':'filter_rpm_','w1':'w'}),
-        dados_brutos[['w2','filterRpm_2']]
-        .rename(columns={'filterRpm_2':'filter_rpm_','w2':'w'}),
-        dados_brutos[['w3','filterRpm_3']]
-        .rename(columns={'filterRpm_3':'filter_rpm_','w3':'w'})
-    ]).sort_values('w')
-    
-    
-    dados_medios = dados_brutos.groupby('w').agg({
-        'filter_rpm_':['mean']
-    }).reset_index()
-    
-    
-    dados_medios.columns = [''.join(i) for i in dados_medios.columns]
-    
-    dados_medios['cut'] = (dados_medios['w']/200).astype(int)
-    dados_medios_amostra = dados_medios.groupby('cut').first().reset_index()
-    
-    dados_medios_amostra[
-        ['filter_rpm_mean', 'w']
-    ].to_csv('amostra_invertida.csv', index=False)
-
-\end{lstlisting}
-
-
-\begin{figure}[p]
+\begin{figure}[h]
 	\centering
 	\includegraphics{figures/curva_pwm_x_rpm_dados_medios}
 	\caption{Curva PWM x RPM dados médios}
@@ -262,42 +232,13 @@ Limpeza dos dados realizada no python
 \end{figure}
 
 
-Matlab
-\lstset{language=Matlab}
-\begin{lstlisting}
-    T = readtable('amostra_invertida.csv');
-    filter_rpm_mean =  T{:,1};
-    w =  T{:,2};
-    f=fit(filter_rpm_mean,w,'poly4')
 
-    f = 
-    
-         Linear model Poly4:
-         f(x) = p1*x^4 + p2*x^3 + p3*x^2 + p4*x + p5
-         Coefficients (with 0.95 confidence bounds):
-           p1 =   0.0001131  (9.732e-05, 0.0001288)
-           p2 =    -0.03064  (-0.0375, -0.02377)
-           p3 =       2.993  (1.999, 3.988)
-           p4 =      -1.257  (-54.15, 51.63)
-           p5 =        9017  (8235, 9798)
-
-\end{lstlisting}
-
-\begin{figure}[p]
+\begin{figure}[h]
 	\centering
 	\includegraphics{figures/curva_ajustada}
 	\caption{Curva ajustada}
 	\label{fig:curva_ajustada}
 \end{figure}
-
-
-Polinônio da curva
-
-\begin{equation}
-    \begin{split}
-        0.0001131x^{4} + -0.03064x^{3} + 2.993x^{2} + -1.257x + 9017
-    \end{split}
-\end{equation}
 
 
 
