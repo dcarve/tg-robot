@@ -1,10 +1,9 @@
-
 \chapter{Controle velocidade}
 
+\section{Medição de velicidade do motor}
 
-\section{Cálculo de velicidade do motor}
-
-Como encoder possuí dois sinais de onda quadadra, de valores lógicos HIGH e LOW, e direção de rotação do motor pode ser definida pela diferença de fase 
+Como encoder possuí dois sinais de onda quadadra defasadas em 90º, fase A e fase B, cujos vales e picos são valores lógicos HIGH e LOW, 
+e direção de rotação do motor pode ser definida pela diferença entre as fases, se fase A esta adiantada ou atrasada em relação a fase B
 É possível calcular a velocidade com base nas subidas da onda quadrada de uma fase, e o valor logico da outra fase no momento da subida.
 Por exemplo,  observando a fase B, toda vez em que há uma subida, se o valor da fase A for alto, então incrementar +1 em um contador, se a fase A tiver valor baixo, então incrementar -1 no contador.
 Quando o valor da fase A for alto, então o motor esta rodando em um sentido,  quando o valor  for baixo, então o motor esta rodando no sentido contrário.
@@ -76,28 +75,16 @@ Com base nesse resultado, foi decidido seguir com o método em que o $\Delta_{T}
 \end{figure}
 
 Com o método definido, foi definido um $\Delta_{T}$ em 100hz eu um filtro passa baixa em 2hz
-as seguintes imagens mostram o resultado do sinal original, filtrado via python e 
-filtrado direto via microcontrolador, para cada motor ()\ref{fig:medidas_motor_1},  \ref{fig:medidas_motor_2} , \ref{fig:medidas_motor_3}).
+As imagens no anexo \ref{att_medicao_motores}, mostra as imagens comparando o sinal original e o sinal filtrado para cada motor.
+A equação \ref{eqn:equacao_diferenca} a seguir é a equação de diferença do filtro, considerando uma amostragem de 100hz e frequência de corte em 2hz.
+
+\begin{equation}
+    \begin{split}
+        y[k] = 0.0591174 \cdot u \left[ k \right] +  0.0591174 \cdot u[k - 1] + 0.88176521 \cdot y[k - 1]
+    \end{split}
+    \label{eqn:equacao_diferenca}
+\end{equation}
 
 
-\begin{figure}[h]
-	\centering
-	\includegraphics{figures/medidas_motor_1}
-	\caption{Medidas Motor 1}
-	\label{fig:medidas_motor_1}
-\end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics{figures/medidas_motor_2}
-	\caption{Medidas Motor 2}
-	\label{fig:medidas_motor_2}
-\end{figure}
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics{figures/medidas_motor_3}
-	\caption{Medidas Motor 3}
-	\label{fig:medidas_motor_3}
-\end{figure}
+\section{PDI}

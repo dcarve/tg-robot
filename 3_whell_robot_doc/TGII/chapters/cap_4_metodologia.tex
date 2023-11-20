@@ -13,18 +13,24 @@ custo, bem como software disponível gratuitamente no site do fabricante.
 também a função de cada um no desempenho das suas funções.}
 {\color{red} Inserir aqui tabela com o custo dos componentes.}
 
-\subsection{Montagem mecânica}
-{\color{red} Esta subseção deve falar da fabricação da base do robô e das rodas, e da integração mecânica entre esses
-componentes.}
+\subsection{Fabricação e montagem}
+Foi decido fabricar o chassi e demais peças usando impressão 3D, com PLA.
+O projeto das peças foi realizado no AutoCAD e depois modelado em 3D com SolidWorks, após a modelagem realizada,
+a geometria das peças foram convertidas em código G para um impressora 3D usando o UltiMaker Cuda, a impressora usada foi a Ender 3 S1 Pro
+As figuras relacionadas ao CAD, podem ser encontradas no anexo \ref{att_fabricao_montagem_cad}, quanto a modelagem,
+anexo \ref{att_fabricao_montagem_modelagem}, e impressão 3D e montagem, anexo \ref{att_fabricao_montagem_impressao}.
+
+
 
 \subsection{Motor DC e driver}
 Optou-se pelo uso de um motor DC de 6V 210rpm, com taxa de redução de 1:34. O motor já possui um encoder magnético
-acoplado, com 11 PPR (\textit{Pulses Per Revolution}). Será utilizado o driver Ponte H L298N para uso inicial - ele
-suporta até 2A em operação DC \cite{datasheel_l298n}, a corrente de operação máxima do motor é de 1.1A, porém a corrente
-de parada é drenar 3.2A. O L298N também causa uma queda de tensão, a 1A pode causar uma queda de 3.2V, fazendo com que o
-motor não receba a tensão necessária para operar nos valores desejados \cite{datasheel_l298n}. Com isso, um driver de
-maior capacidade possa ser necessário, as opções são os da categoria \textit{Medium-power} da Pololu, DRV8874 ou acima
-\cite{DRV8874}. Mas, para seguir com desenvolvimento, o l298N será usado por hora.
+acoplado, com 11 PPR (\textit{Pulses Per Revolution}). 
+Inicialmente foi testado o driver Ponte H L298N para ligar cada motor, suporta até 2A em operação DC \cite{datasheel_l298n},
+a corrente de operação máxima do motor é de 1.1A, porém a corrente de parada é drenar 3.2A. 
+O L298N também causa uma queda de tensão, a 1A pode causar uma queda de 3.2V, fazendo com que o
+motor não receba a tensão necessária para operar nos valores desejados \cite{datasheel_l298n}. 
+O L298N é mais recomendado para tensões entre 12V a 40V, como o motor é de 6v, acaba tendo uma queda de tensão considerável.
+Com isso, um driver de para baixas tensões é recomendado, foi escolhido o DRV8833 \cite{datasheel_dvr8833}.
 
 \begin{figure}[h]
 	\centering
@@ -51,8 +57,8 @@ maior capacidade possa ser necessário, as opções são os da categoria \textit
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/l289n}
-	\caption{Driver Ponte H L289N \cite{l289n}}
+	\includegraphics[width=0.7\textwidth]{figures/DRV8833-Dual-Driver-Pinout}
+	\caption{Driver Ponte H DVR8833 \cite{DRV8833_image}}
 \end{figure}
 
 \subsection{Microcontrolador}
@@ -76,34 +82,224 @@ Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utili
 
 \subsection{Alimentação}
 Para alimentar o microcontrolador, um powerbank com saida de 5v será usado, considerando que o STM32F103C8 funciona a
-uma corrente abaixo de 100mA. Para alimentar os motores, para uso no desenvolvimento, optou-se o uso de pilhas AA (1,5V)
-e um suporte para 4 pilhas, mas será necessário trocar por bateria de lítio-ion.
+uma corrente abaixo de 100mA. Para alimentar os motores, para uso no desenvolvimento, optou-se por uma bateria de chumbo-ácido de 6V 4.5Ah
 
-\subsection{Joystick de controle}
-Um joystick de 3 eixos para controlar o robô para testar a cinemática de movimento.
-{\color{red} É necessário aqui especificar o modelo utilizado e descrever características.}
+% \subsection{Joystick de controle}
+% Um joystick de 3 eixos para controlar o robô para testar a cinemática de movimento.
+% {\color{red} É necessário aqui especificar o modelo utilizado e descrever características.}
 
-\subsection{Sensores}
-{\color{red} Esta subseção deve descrever os sensores utilizados e também sua finalidade.}
+% \subsection{Sensores}
+% {\color{red} Esta subseção deve descrever os sensores utilizados e também sua finalidade.}
 
-\subsection{Dispositivos de comunicação}
-{\color{red} Esta subseção deve descrever os dispositivos de comunicação utilizados (Wi-fi, Bluetooth, etc) e também sua
-finalidade.}
+% \subsection{Dispositivos de comunicação}
+% {\color{red} Esta subseção deve descrever os dispositivos de comunicação utilizados (Wi-fi, Bluetooth, etc) e também sua
+% finalidade.}
 
-\subsection{Calibração de parâmetros}
-{\color{red} Caso haja necessidade de calibração de parâmetros de alguns dos componentes utilizados (sensibilidade de
-sensores, histerese de componentes mecânicos, taxa de comunicação de dispositivos, etc), os procedimentos devem ser
-descritos nesta subseção.}
+% \subsection{Calibração de parâmetros}
+% {\color{red} Caso haja necessidade de calibração de parâmetros de alguns dos componentes utilizados (sensibilidade de
+% sensores, histerese de componentes mecânicos, taxa de comunicação de dispositivos, etc), os procedimentos devem ser
+% descritos nesta subseção.}
 
 \section{Software}
 {\color{red} Esta seção se dedica a discorrer a respeito dos diversos componentes de software envolvidos no projeto.}
 
-\subsection{Controle de movimentação}
-O código fonte do projeto será desenvolvido usando a linguagem em C, por meio da IDE Atollic TrueSTUDIO.
-O código deverá conter o controle do PWM para os motores, e controle da cinemática.
+\subsection{Controle de velocidade}
 
-{\color{red} Esta subseção deve falar do filtro passa-baixas, desenvolvimento do controlador PID, PWM, e afins, a fim de
-controlar a velocidade do motor. Foca-se no código desenvolvido para os atuadores.}
+\subsubsection{Medição de velicidade do motor}
+
+Como encoder possuí dois sinais de onda quadadra defasadas em 90º, fase A e fase B, cujos vales e picos são valores lógicos HIGH e LOW, 
+e direção de rotação do motor pode ser definida pela diferença entre as fases, se fase A esta adiantada ou atrasada em relação a fase B
+É possível calcular a velocidade com base nas subidas da onda quadrada de uma fase, e o valor logico da outra fase no momento da subida.
+Por exemplo,  observando a fase B, toda vez em que há uma subida, se o valor da fase A for alto, então incrementar +1 em um contador, se a fase A tiver valor baixo, então incrementar -1 no contador.
+Quando o valor da fase A for alto, então o motor esta rodando em um sentido,  quando o valor  for baixo, então o motor esta rodando no sentido contrário.
+Medindo o valor do contador por um $\Delta_{T}$, se resulta na quantidade de pulsos por segundo.
+Para converter de pulsos por segundo para RPM, basta dividir pela resolução do motor+encoder,  que é de 1:34 do motor, e 11 pulsos por rotação do encoder, o que resulta em 374,
+e multiplicar por 60 para ter o resultado em rotações por minuto.
+
+\begin{tikzpicture}[node distance=2cm]
+
+    \node (start) [startstop] {início loop};
+    \node (pro1) [process, below of=start] {ENQUANTO DELTA T};
+    
+    \node (in1) [io, right of=pro1, xshift= 4cm] {QUANDO FASE B = SUBIDA};
+    
+    \node (dec1) [decision, below of=in1, yshift=-2cm] {SE FASE A = 1};
+    \node (pro1a) [process, below of=dec1, yshift= -2cm] {INCREMENTAR CONTADOR em +1};
+    \node (pro1b) [process, right of=dec1, xshift= 3cm] {INCREMENTAR CONTADOR em -1};
+    
+    
+    \node (count) [process, below of=pro1, yshift= -9cm] {CONTADOR DIVIDO POR DELTA T};
+    
+    \draw [arrow] (start) -- (pro1);
+    \draw [arrow] (pro1) -- node[anchor=north] {sim} (in1);
+    \draw [arrow] (in1) -- (dec1);
+    \draw [arrow] (dec1) -- node[anchor=east] {sim} (pro1a);
+    \draw [arrow] (dec1) -- node[anchor=north] {não} (pro1b);
+    
+    \draw [arrow] (pro1) -- node[anchor=east] {não} (count);
+
+\end{tikzpicture}
+
+
+
+Na implementação dessa lógica no STM32, o desafio foi a definição do $\Delta_{T}$,
+Se o $\Delta_{T}$ for muito pequeno, o resultados de pulsos por segundo pode tender ao infinito, gerando valores muito altos.
+Na figura \ref{fig:medidas_altas} em laranja, esta o resultado do rpm considerando o $\Delta_{T}$ como o tempo entre os ciclos do micrcontrolador.
+A outra opção, foi definir um $\Delta_{T}$ fixo, definindo uma frequencia de medição pré definida, e o resultado pode ser visto em azul na figura \ref{fig:medidas_altas}
+Essa outra opção de $\Delta_{T}$ resultou em um sinal que tem uma componente em alta frequência com uma amplitude até consideral.
+Analisando os dois sinai no dominio da frequêcia \ref{fig:frequencia_medidas_altas}, o espectro em frequência do sinal em laranja possui amplitudes muitos semelhante em todo espectro, mas o espectro do sinal em azul, fica bem claro que em altas frequencias é composto mais por ruidos
+e as frequencia médias tem amplitude menor em relação as frequências baixas, o que torna mais fácil aplicar um filtro passa-baixa para reduzir as frenquências médias e altas.
+
+\begin{center}
+    \begin{figure}
+        \centering
+        \includegraphics{figures/medidas_altas}
+        \caption{Problemas com delta T muito pequeno}
+        \label{fig:medidas_altas}
+    \end{figure}
+
+\end{center}
+
+A figura \ref{fig:passa_baixa_teste}, mostra um dos teste de filtro passa baixa, em o sinal em laranja ainda persiste esses valores tentendo ao infinito, devido a ampliture eles se tornam um pouco dificil de serem retirados.
+Mas o sinal em azul acaba tendo um resultado melhor depois do filtro, muito semelhando ao sinal em laranja.
+Com base nesse resultado, foi decidido seguir com o método em que o $\Delta_{T}$ é definido por uma frequência pré definida.
+
+\begin{center}
+    \begin{figure}
+        \centering
+        \includegraphics{figures/frequencia_medidas_altas}
+        \caption{Frequências}
+        \label{fig:frequencia_medidas_altas}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \includegraphics{figures/passa_baixa_teste}
+        \caption{Passa baixa teste}
+        \label{fig:passa_baixa_teste}
+    \end{figure}
+\end{center}
+
+Com o método definido, foi definido um $\Delta_{T}$ em 100hz eu um filtro passa baixa em 2hz
+As imagens no anexo \ref{att_medicao_motores}, mostra as imagens comparando o sinal original e o sinal filtrado para cada motor.
+A equação \ref{eqn:equacao_diferenca} a seguir é a equação de diferença do filtro, considerando uma amostragem de 100hz e frequência de corte em 2hz.
+
+\begin{equation}
+    \begin{split}
+        y[k] = 0.0591174 \cdot u \left[ k \right] +  0.0591174 \cdot u[k - 1] + 0.88176521 \cdot y[k - 1]
+    \end{split}
+    \label{eqn:equacao_diferenca}
+\end{equation}
+
+\subsubsection{Curva PWM x RPM - problema da não linearidade}
+
+Depois de definido como calcular a velocidade o prózimo desafio foi lidar com a não linearidade entre o PWM e o resultado medido em RPM.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics{figures/pwm_x_rpm}
+	\caption{Curva PWM e RPM no tempo}
+	\label{fig:grafico_pwm_x_rpm}
+\end{figure}
+
+Considerando essa não linearidade, foram realizadas 15k medições em PWM vs RPM para definir uma equação que pudesse relacionar o PWM com o RPM.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics{figures/curva_pwm_x_rpm_dados_brutos}
+	\caption{Curva PWM x RPM dados brutos}
+	\label{fig:medicao_pwm_x_rpm_dados_brutos}
+\end{figure}
+
+
+Limpeza dos dados realizada no python
+\lstset{language=Python}
+\begin{lstlisting}
+    import json
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    res = open('mediadas_capturadas.txt').read()
+    res = res.split('\n')
+    
+    res = [json.loads(i[i.find('''{"millis":'''):]) for i in res]
+    
+    dados_brutos = pd.DataFrame(res)
+    
+    dados_brutos = pd.concat([
+        dados_brutos[['w1','filterRpm_1']]
+        .rename(columns={'filterRpm_1':'filter_rpm_','w1':'w'}),
+        dados_brutos[['w2','filterRpm_2']]
+        .rename(columns={'filterRpm_2':'filter_rpm_','w2':'w'}),
+        dados_brutos[['w3','filterRpm_3']]
+        .rename(columns={'filterRpm_3':'filter_rpm_','w3':'w'})
+    ]).sort_values('w')
+    
+    
+    dados_medios = dados_brutos.groupby('w').agg({
+        'filter_rpm_':['mean']
+    }).reset_index()
+    
+    
+    dados_medios.columns = [''.join(i) for i in dados_medios.columns]
+    
+    dados_medios['cut'] = (dados_medios['w']/200).astype(int)
+    dados_medios_amostra = dados_medios.groupby('cut').first().reset_index()
+    
+    dados_medios_amostra[
+        ['filter_rpm_mean', 'w']
+    ].to_csv('amostra_invertida.csv', index=False)
+
+\end{lstlisting}
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics{figures/curva_pwm_x_rpm_dados_medios}
+	\caption{Curva PWM x RPM dados médios}
+	\label{fig:medicao_pwm_x_rpm_dados_medios}
+\end{figure}
+
+
+Matlab
+\lstset{language=Matlab}
+\begin{lstlisting}
+    T = readtable('amostra_invertida.csv');
+    filter_rpm_mean =  T{:,1};
+    w =  T{:,2};
+    f=fit(filter_rpm_mean,w,'poly4')
+
+    f = 
+    
+         Linear model Poly4:
+         f(x) = p1*x^4 + p2*x^3 + p3*x^2 + p4*x + p5
+         Coefficients (with 0.95 confidence bounds):
+           p1 =   0.0001131  (9.732e-05, 0.0001288)
+           p2 =    -0.03064  (-0.0375, -0.02377)
+           p3 =       2.993  (1.999, 3.988)
+           p4 =      -1.257  (-54.15, 51.63)
+           p5 =        9017  (8235, 9798)
+
+\end{lstlisting}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics{figures/curva_ajustada}
+	\caption{Curva ajustada}
+	\label{fig:curva_ajustada}
+\end{figure}
+
+
+Polinônio da curva
+
+\begin{equation}
+    \begin{split}
+        0.0001131x^{4} + -0.03064x^{3} + 2.993x^{2} + -1.257x + 9017
+    \end{split}
+\end{equation}
+
+
 
 \subsection{Controle de posição}
 {\color{red} Esta subseção deve descrever como controlar a posição do robô no ambiente interno - presumivelmente, por

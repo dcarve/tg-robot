@@ -1,4 +1,7 @@
-A IDE a ser usada para programar um STM32 é o TrueSTUDIO, distribuído pela
+
+\subsection{Atollic TrueSTUDIO}
+
+Inicialmente foi a IDE a ser usada para programar um STM32 seria o TrueSTUDIO, distribuído pela
 Atollic, que foi adquirida pela STMicroelectronics em 2017. Trata-se de um
 software livre para programar em C/C++, criado com base na plataforma Eclipse,
 e que possui todas as funções esperadas para o trabalho com o STM32, tais como
@@ -12,4 +15,18 @@ depois da aquisição pela STMicroelectronics.\cite{apostila_microprossados}
 	\includegraphics[width=0.8\textwidth]{figures/atollic}
 	\caption{Interface Atollic \cite{apostila_microprossados}}
 \end{figure}
+
+
+\subsection{Arduino}
+
+Devido a complicações nas configurações de multiplos PWMs com o TrueSTUDIO, foi decidido usar o Arduino como alternativa,
+porém o Arduino não é compatível com STM32 nativamente, porém um projeto chamado STM32duino \cite{STM32duino} criado por Frédéric Pillon, engenheiro de software na STMicroelectronics \cite{fpistm},
+permite instalar a bibliotecas do STM32 no Arduino, porém no momento o projeto só é compatível com a versão 1.8 da IDE do Arduino
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/arduino}
+	\caption{Interface Arduino}
+\end{figure}
+
 
