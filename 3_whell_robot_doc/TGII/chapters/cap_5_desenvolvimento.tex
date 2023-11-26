@@ -46,7 +46,7 @@ Se o $\Delta_{T}$ for muito pequeno, o resultados de pulsos por segundo pode ten
 Na figura \ref{fig:medidas_altas} em laranja, esta o resultado do rpm considerando o $\Delta_{T}$ como o tempo entre os ciclos do micrcontrolador.
 A outra opção, foi definir um $\Delta_{T}$ fixo, definindo uma frequencia de medição pré definida, e o resultado pode ser visto em azul na figura \ref{fig:medidas_altas}
 Essa outra opção de $\Delta_{T}$ resultou em um sinal que tem uma componente em alta frequência com uma amplitude até consideral.
-Analisando os dois sinai no dominio da frequêcia \ref{fig:frequencia_medidas_altas}, o espectro em frequência do sinal em laranja possui amplitudes muitos semelhante em todo espectro, mas o espectro do sinal em azul, fica bem claro que em altas frequencias é composto mais por ruidos
+Analisando os dois sinais no dominio da frequêcia na figura \ref{fig:frequencia_medidas_altas}, o espectro em frequência do sinal em laranja possui amplitudes muitos semelhante em todo espectro, mas o espectro do sinal em azul, fica bem claro que em altas frequencias é composto mais por ruidos
 e as frequencia médias tem amplitude menor em relação as frequências baixas, o que torna mais fácil aplicar um filtro passa-baixa para reduzir as frenquências médias e altas.
 
 A figura \ref{fig:passa_baixa_teste}, mostra um dos teste de filtro passa baixa, em o sinal em laranja ainda persiste esses valores tentendo ao infinito, devido a ampliture eles se tornam um pouco dificil de serem retirados.
@@ -91,10 +91,27 @@ A equação \ref{eqn:equacao_diferenca} a seguir é a equação de diferença do
 
 Depois de definido como calcular a velocidade o próximo desafio foi lidar com a não linearidade entre o PWM e o resultado medido em RPM.
 Como pode ser visto na figura \ref{fig:grafico_pwm_x_rpm}, na comparação entre o valor do PWM e o RPM no tempo.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/pwm_x_rpm}
+	\caption{Curva PWM e RPM no tempo}
+	\label{fig:grafico_pwm_x_rpm}
+\end{figure}
+
 Considerando essa não linearidade, foram realizadas 15k medições em PWM vs RPM para definir uma equação que pudesse relacionar o PWM com o RPM.
-Como pode ser observado na figura  \ref{fig:medicao_pwm_x_rpm_dados_brutos}, os resultados possuem uma tendência, mas possuem alguns pontos fora da curta,
-Devido ao esses duídos nas medições ss dados foram tratatos para obter valores médios dos resultados usando python,
+Como pode ser observado na figura  \ref{fig:medicao_pwm_x_rpm_dados_brutos}, os resultados possuem uma tendência, mas possuem alguns pontos fora da curta.
+devido ao esses ruídos nas medições ss dados foram tratatos para obter valores médios dos resultados usando python,
 o código pode ser visto no anexo \ref{att_limpeza_python}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/curva_pwm_x_rpm_dados_brutos}
+	\caption{Curva PWM x RPM dados brutos}
+	\label{fig:medicao_pwm_x_rpm_dados_brutos}
+\end{figure}
+
+
 O resultado da limpeza dos dados pode ser vizualiado na figura \ref{fig:medicao_pwm_x_rpm_dados_medios}.
 Após a limpeza dos dados, os dados foram importados para o matlab, anexo \ref{att_matlab},
 para obter um polinômio que possa definir a curva, o polinômio resultante é a equação \ref{eqn:polimonio_rpm}, e a figura \ref{fig:curva_ajustada} representa a curva ajustada.
@@ -106,37 +123,47 @@ para obter um polinômio que possa definir a curva, o polinômio resultante é a
     \label{eqn:polimonio_rpm}
 \end{equation}
 
-
-\begin{figure}[h]
-	\centering
-	\includegraphics{figures/pwm_x_rpm}
-	\caption{Curva PWM e RPM no tempo}
-	\label{fig:grafico_pwm_x_rpm}
-\end{figure}
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics{figures/curva_pwm_x_rpm_dados_brutos}
-	\caption{Curva PWM x RPM dados brutos}
-	\label{fig:medicao_pwm_x_rpm_dados_brutos}
-\end{figure}
-
-
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 	\includegraphics{figures/curva_pwm_x_rpm_dados_medios}
 	\caption{Curva PWM x RPM dados médios}
 	\label{fig:medicao_pwm_x_rpm_dados_medios}
 \end{figure}
 
-
-
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 	\includegraphics{figures/curva_ajustada}
 	\caption{Curva ajustada}
 	\label{fig:curva_ajustada}
 \end{figure}
+
+
+
+\begin{quadro}[htb]
+	\caption{\label{medicao_motores}Medição rpms motores}
+	 \begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{$Tempo_{seg}$} & \textbf{$RPM_{definido}$} & \textbf{$RPM_{real_{1}}$} & \textbf{$RPM_{real_{2}}$} & \textbf{$RPM_{real_{3}}$} \\ \hline
+		52.954 & 150.00  & 141.03 & 162.69 & 149.82 \\ \hline
+		52.954 & 150.00  & 141.43 & 162.43 & 149.18 \\ \hline
+		53.000 & 150.00  & 140.83 & 162.19 & 148.61 \\ \hline
+		53.000 & 150.00  & 140.30 & 161.98 & 149.06 \\ \hline
+		53.000 & 150.00  & 140.79 & 161.80 & 149.46 \\ \hline
+		53.000 & 150.00  & 141.21 & 161.64 & 148.86 \\ \hline
+		53.046 & 150.00  & 141.59 & 161.49 & 149.28 \\ \hline
+		53.046 & 150.00  & 141.92 & 161.37 & 149.65 \\ \hline
+		53.046 & 150.00  & 141.26 & 161.25 & 149.02 \\ \hline
+		53.046 & 150.00  & 140.68 & 162.11 & 148.48 \\ \hline
+		53.046 & 150.00  & 141.12 & 162.86 & 148.94 \\ \hline
+		53.092 & 150.00  & 141.51 & 162.57 & 149.35 \\ \hline
+		53.092 & 150.00  & 141.85 & 162.32 & 148.76 \\ \hline
+		53.092 & 150.00  & 141.20 & 162.09 & 149.19 \\ \hline
+		53.092 & 150.00  & 140.63 & 161.90 & 149.57 \\ \hline
+	\end{tabular}
+\end{quadro}
+
+
+
+
 
 
