@@ -70,7 +70,7 @@ I2C (\textit{Inter-Integrated Circuit}), USART (\textit{Universal Synchronous
 Asynchronous Receiver Transmitter}), SPI (\textit{Serial Peripheral Interface}),
 CAN e USB 2.0.
 O STM32F103C8 possui 7 pinos que suportam canais de PWM de 5V, e outros 8 canais de 3.3V,  e pode ser alimentado via micro
-USB de 5V. Existes 3 grupos de pinos, PA, PB e PC,  os pinos PA vão de PA0 a PA15, PB indo de PB0 a PB15, e PC com apenas 3 pinos, PC13, PC14 e PC15.
+USB de 5V. Existes 3 grupos de pinos,  $P_{A}$,  $P_{B}$ e  $P_{C}$,  os pinos PA vão de $P_{A0}$ a $P_{A15}$, PB indo de $P_{B0}$ a $P_{B15}$, e PC com apenas 3 pinos, $P_{C13}$, $P_{C14}$ e $P_{C15}$.
 
 Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utilizado.
 
@@ -86,7 +86,7 @@ uma corrente abaixo de 100mA. Para alimentar os motores, para uso no desenvolvim
 
 \subsubsection{Comunicação Bluetooth para controle em aplicativo Android - Módulo HC-5}
 Para testar os movimentos do robô, decidimos usar um app android para enviar via bluetooth valores para um módulo bluetooth o HC-05, figura \ref{fig:hc_05}.
-A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 do stm32, o PA3 (RX2) e o PA2 (TX2).
+A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 do stm32, o  $P_{A3}$ (RX2) e o  $P_{A2}$ (TX2).
 
 \begin{figure}[htb]
 	\centering
@@ -99,11 +99,10 @@ A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 
 \subsection{Componentes estruturais}
 
 \subsubsection{Fabricação e montagem}
-Foi decido fabricar o chassi e demais peças usando impressão 3D, com PLA.
+Foi decido fabricar o chassi e demais peças usando impressão 3D, usando filamento de PLA.
 O projeto das peças foi realizado no AutoCAD e depois modelado em 3D com SolidWorks, após a modelagem realizada,
-a geometria das peças foram convertidas em código G para um impressora 3D usando o UltiMaker Cuda, a impressora usada foi a Ender 3 S1 Pro
-As figuras relacionadas ao CAD, podem ser encontradas no anexo \ref{att_fabricao_montagem_cad}, quanto a modelagem,
-anexo \ref{att_fabricao_montagem_modelagem}, e impressão 3D e montagem, anexo \ref{att_fabricao_montagem_impressao}.
+a geometria das peças foi convertida em código G para um impressora 3D usando o UltiMaker Cuda, a impressora usada foi a Ender 3 S1 Pro.
+
 
 \subsection{Lista geral de componentes e materiais}
 

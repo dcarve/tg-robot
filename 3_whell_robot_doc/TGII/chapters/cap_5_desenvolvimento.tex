@@ -10,11 +10,16 @@ essa ligação foi útil para realizar os testes, porém o uso cabos do tipo jum
 Para realizar testes finais, realizar junção dos cabos, e soldar os cabos a conectores JST devem resolver o problema de mau contado.
 
 
-\subsubsection{Diagrama da ligação dos componentes}
-Cada motor precisa de 2 sinais de PWM, então foi necessário usar 6 pinos de pwm do STM32, as duplas de pinos que suportam PWM foram PA9-PA10, PB6-PB7, PB8-PB9.
-E para cada encorder de motor, foi necessário mais 6 pinos, 2 pinos para cada fase dos 3 encoders,
+\subsubsection{Ligação dos componentes}
+Cada motor precisa de 2 sinais de PWM, então foi necessário usar 6 pinos de PWM do STM32, as duplas de pinos que suportam PWM foram $P_{B6}$ - $P_{B7}$, $P_{B8}$ - $P_{B9}$ e $P_{A9}$ - $P_{A10}$, respectivamente para os motores 1, 2 e 3
+E para cada encorder de motor, foi necessário mais 6 pinos, 2 pinos para cada fase dos 3 encoders, $P_{B0}$ - $P_{B1}$, $P_{A6}$ - $P_{B7}$ e $P_{B10}$ - $P_{B11}$, também respectivamente para os motores 1, 2 e 3, sendo os  $P_{B1}$, $P_{B7}$ e $P_{B11}$ definidos para a Fase A do encoder
+A alimentação dos encoders será feito pelo pino de 3.3v do STM32, e o GND também vindo do microcontrolador.
+O Módulo bluetooth HC-05 terá alimentação sendo fornecida pelo pino de 5v do microtrolador (GND sendo o mesmo usado para os encoders).
+Já a comunicação serial será feita conectando o TXD do módulo com o pino $P_{A3}$, que é o pino RX2 (RX da $USART\_2$), e o RXD do módulo conectado ao $P_{A2}$, pino TX2 (TX da $USART\_2$).
+Embora o HC-05 trabalhe com UART, o protocolo USART é compatível com UART, podendo usar os pinos de uma USART como se fossem uma UART.
 
-A figura \ref{fig:diagrama_montagem} contém o diagrama com as ligações entres os componentes.
+Os pinos de PWM são conectados nos drivers DVR8833, com  $P_{B6}$, $P_{B8}$ e $P_{A9}$ como inputs nos pinos $IN1$ de cada driver, e os demais pinos conectados aos pinos $IN2$.
+A alimentação dos drivers é feita por uma fonte de 6v, e os pinos $OUT1$ e $OUT2$ dos drivers conectados respectivamente as entradas $M1$ e $M2$ dos motores. A figura \ref{fig:diagrama_montagem} contém o diagrama com as ligações descritas.
 
 \begin{figure}[htb]
 	\centering
@@ -22,6 +27,16 @@ A figura \ref{fig:diagrama_montagem} contém o diagrama com as ligações entres
 	\caption{Diagrama de montagem dos componentes}
 	\label{fig:diagrama_montagem}
 \end{figure}
+
+
+\subsubsection{Modelagem e fabricação da estrutura}
+
+O desenvolvimento das peças usadas na estrutura do robô foram feitas usando AutoCAD, o chassi principal que possui a geometria circular do robô foi desenhado com base nas medidas finais do robô,
+com foco no raio até o centro das rodas, o raio planejado é de 100mm. Os mancais foram planejados com base nas dimensões dos motores. 
+
+As figuras relacionadas ao CAD, podem ser encontradas no anexo \ref{att_fabricao_montagem_cad}, quanto a modelagem,
+anexo \ref{att_fabricao_montagem_modelagem}, e impressão 3D e montagem, anexo \ref{att_fabricao_montagem_impressao}.
+
 
 
 \subsection{Controle de velocidade}
