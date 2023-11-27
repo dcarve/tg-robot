@@ -9,7 +9,7 @@ custo, bem como software disponível gratuitamente no site do fabricante.
 
 
 \section{Hardware}
-{\color{red} Esta seção especifica os componentes físicos envolvidos no robô desenvolvido para o projeto, descrevendo
+{\color{red} Esta seção específica os componentes físicos envolvidos no robô desenvolvido para o projeto, descrevendo
 também a função de cada um no desempenho das suas funções.}
 {\color{red} Inserir aqui tabela com o custo dos componentes.}
 
@@ -18,10 +18,10 @@ também a função de cada um no desempenho das suas funções.}
 
 \subsubsection{Motor DC e encoder}
 Para uma versão inicial do robô, foi decidido trabalhar com motor DC.
-Motores DC são mais difíceis de controlar que motores de passo, porém tem uma resposta mais rápida, e se o controle for bem aplicado, podem ter uma melhor performance que um motor de passo.
-A complexidade do controle de um motor DC aprenseta um bom desafio para aplicação dos conceitos e diciplinas do curso de IAR.
-O motor DC escolhido foi um de 6V 210rpm, com taxa de redução de 1:34. O motor já possui um encoder magnético acoplado, com 11 PPR (\textit{Pulses Per Revolution}),
-O que resulta em um encoder com resolução de 374 PPR. 
+Motores DC são mais difíceis de controlar que motores de passo, porém tem uma resposta mais rápida, e se o controle for bem aplicado, podem ter um melhor desempenho que um motor de passo.
+A complexidade do controle de um motor DC apresenta um bom desafio para aplicação dos conceitos e disciplinas do curso de Engenharia de Instrumental, Automação e Robôtica.
+O motor DC escolhido foi um de 6V 210rpm, com taxa de redução de 1:34. O motor já possui um encoder magnético acoplado, com 11 PPR (\textit{"Pulses Per Revolution"}),
+O que resulta em um encoder com resolução de 374 PPR.
 
 \begin{figure}[htb]
 	\centering
@@ -70,7 +70,7 @@ I2C (\textit{Inter-Integrated Circuit}), USART (\textit{Universal Synchronous
 Asynchronous Receiver Transmitter}), SPI (\textit{Serial Peripheral Interface}),
 CAN e USB 2.0.
 O STM32F103C8 possui 7 pinos que suportam canais de PWM de 5V, e outros 8 canais de 3.3V,  e pode ser alimentado via micro
-USB de 5V.
+USB de 5V. Existes 3 grupos de pinos, PA, PB e PC,  os pinos PA vão de PA0 a PA15, PB indo de PB0 a PB15, e PC com apenas 3 pinos, PC13, PC14 e PC15.
 
 Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utilizado.
 
@@ -81,11 +81,11 @@ Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utili
 \end{figure}
 
 \subsubsection{Alimentação}
-Para alimentar o microcontrolador, um powerbank com saida de 5v será usado, considerando que o STM32F103C8 funciona a
+Para alimentar o microcontrolador, um powerbank com saída de 5v será usado, considerando que o STM32F103C8 funciona a
 uma corrente abaixo de 100mA. Para alimentar os motores, para uso no desenvolvimento, optou-se por uma bateria de chumbo-ácido de 6V 4.5Ah
 
 \subsubsection{Comunicação Bluetooth para controle em aplicativo Android - Módulo HC-5}
-Para testar os movimento do robô, decidimos usar um app android para enviar via bluetooth valores para um módulo bluetooth o HC-05, figura \ref{fig:hc_05}.
+Para testar os movimentos do robô, decidimos usar um app android para enviar via bluetooth valores para um módulo bluetooth o HC-05, figura \ref{fig:hc_05}.
 A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 do stm32, o PA3 (RX2) e o PA2 (TX2).
 
 \begin{figure}[htb]
@@ -94,17 +94,6 @@ A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 
 	\caption{Módulo Bluetooth HC-05}
 	\label{fig:hc_05}
 	\cite{hc05_image}
-\end{figure}
-
-
-\subsubsection{Diagrama da ligação dos componentes}
-A figura \ref{fig:diagrama_montagem} contem o diagrama com as ligações entres os componentes.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{figures/diagrama_montagem}
-	\caption{Diagrama de montagem dos componentes}
-	\label{fig:diagrama_montagem}
 \end{figure}
 
 \subsection{Componentes estruturais}
@@ -141,10 +130,10 @@ anexo \ref{att_fabricao_montagem_modelagem}, e impressão 3D e montagem, anexo \
 		Módulo Bluetooth \cite{hc05_produto} &  35,00 & 1 &  35,00   \\ \hline
 		Mini Protoboard &  5,00 & 2 &  10,00   \\ \hline
 		Protoboard 830 &  16,00 & 1 &  16,00   \\ \hline
-		Jumper macho macho &  8,00 & 1 &  8,00   \\ \hline
+		Jumper macho-macho &  8,00 & 1 &  8,00   \\ \hline
 		Pasta de solda &  14,99 & 1 &  14,99   \\ \hline
 		Sugador de solda &  12,99 & 1 &  12,99   \\ \hline	
-		\textbf{CUSTO TOTAL} & & & \textbf{ 1129,66}   \\ \hline
+		\textbf{CUSTO TOTAL} & & & \textbf{ 1.129,66}   \\ \hline
 	\end{tabular}
 \end{quadro}
 

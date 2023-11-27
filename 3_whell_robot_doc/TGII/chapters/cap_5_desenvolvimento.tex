@@ -2,6 +2,28 @@
 
 \chapter{Desenvolvimento}
 
+
+\subsection{Montagem da parte elétrica}
+
+Os componentes foram ligados usando cabos do tipo jumper e protoboard para encaixar o microcontrolador e os drivers,
+essa ligação foi útil para realizar os testes, porém o uso cabos do tipo jumper e protoboard podem oferecer mau contado, causando falhas no funcionamento do robô.
+Para realizar testes finais, realizar junção dos cabos, e soldar os cabos a conectores JST devem resolver o problema de mau contado.
+
+
+\subsubsection{Diagrama da ligação dos componentes}
+Cada motor precisa de 2 sinais de PWM, então foi necessário usar 6 pinos de pwm do STM32, as duplas de pinos que suportam PWM foram PA9-PA10, PB6-PB7, PB8-PB9.
+E para cada encorder de motor, foi necessário mais 6 pinos, 2 pinos para cada fase dos 3 encoders,
+
+A figura \ref{fig:diagrama_montagem} contém o diagrama com as ligações entres os componentes.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/diagrama_montagem}
+	\caption{Diagrama de montagem dos componentes}
+	\label{fig:diagrama_montagem}
+\end{figure}
+
+
 \subsection{Controle de velocidade}
 
 \subsubsection{Medição de velicidade do motor}
@@ -115,6 +137,8 @@ o código pode ser visto no anexo \ref{att_limpeza_python}.
 O resultado da limpeza dos dados pode ser vizualiado na figura \ref{fig:medicao_pwm_x_rpm_dados_medios}.
 Após a limpeza dos dados, os dados foram importados para o matlab, anexo \ref{att_matlab},
 para obter um polinômio que possa definir a curva, o polinômio resultante é a equação \ref{eqn:polimonio_rpm}, e a figura \ref{fig:curva_ajustada} representa a curva ajustada.
+A equação do polinômio foi inserida no código do micrcontrolador, foi testado definir um RPM de 150, e a tabela \ref{medicao_motores} trás uma amostra dos resultados dos RPMs de cada motor.
+Com essa equação é mais fácil definir um comportamento linear, facilitando a aplicação de um controle PDI.
 
 \begin{equation}
     \begin{split}
