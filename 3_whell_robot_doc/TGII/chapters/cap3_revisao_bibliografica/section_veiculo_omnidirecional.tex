@@ -11,15 +11,15 @@ baseia em rodas equidistantes em uma circunferência, com 120° de separação e
 	\caption{Diagrama do modelo matemático do robô}
 \end{figure}
 
-Robôs omnidirecionais tais como esse são particularmente porque permitem maior
- manobrabilidade e eficiência, a um custo de maior complexidade na sua
+Robôs omnidirecionais tais como esse são particularmente úteis porque permitem
+ maior manobrabilidade e eficiência, a um custo de maior complexidade na sua
  construção e controle. \cite{dynamical_models_for_omni_directional_robots}
 
 \subsection{Modelagem Cinemática - Dedução da matriz por cinemática direta}
 
 $\overrightarrow{V}$ é o vetor de velocidade linear do robô, $V_{w1}$, $V_{w2}$,
 $V_{w3}$ são as velocidades lineares das rodas 1,2,3. 
-$\omega $ é a velocidade angular do robô a partir do centro geométrico do robô.
+$\omega $ é a velocidade angular do robô a partir do seu centro geométrico.
 $L$ é a distância entre o centro de geométrico da roda e o centro de geométrico
 do robô.
 
@@ -27,7 +27,8 @@ do robô.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/digram_model_dedution}
-	\caption{Diagrama do modelo matemático do robô, com valores dos ângulos das rodas}
+	\caption{Diagrama do modelo matemático do robô, com valores dos ângulos das
+	rodas}
 \end{figure}
 
 \begin{equation}
@@ -86,7 +87,9 @@ do robô.
 \end{gather}
 
 
-Matriz da cinemática direta.
+
+
+Matriz da cinemática direta:
 
 \begin{gather}
 	\begin{bmatrix}
@@ -120,13 +123,13 @@ Matriz inversa:
 \end{gather}
 
 
-A matriz gerada acima é a matriz de cinemática do robô.
+A matriz 3.5 é a matriz de cinemática do robô.
 As entradas são o vetor velocidade linear e a velocidade angular do robô, e as
 saídas são as velocidades lineares de cada uma das rodas.
 
 Desconsiderando a velocidade angular, é possível observar os vetores velocidades
- das rodas e o vetor velocidade linear do robô na figura \ref{simulacao} que foi
- gerada por meio de simulação em Python.
+ das rodas e o vetor velocidade linear do robô na figura \ref{simulacao}, que
+ foi gerada por meio de simulação em Python.
 
 \begin{figure}[ht]
 	\centering
