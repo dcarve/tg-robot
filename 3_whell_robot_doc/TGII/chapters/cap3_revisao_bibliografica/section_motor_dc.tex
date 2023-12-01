@@ -7,7 +7,8 @@ velocidades \cite{Maquinas_eletricas}. Devido a essas características, tornam-s
 boas candidatas para uso em eletrônica e robótica, uma vez que é viável
 utilizá-las com com baterias. Para controlar a velocidade de um motor, é
 necessário o uso de um encoder, que converte o sinal de posição em um valor
-mensurável de velocidade angular.
+mensurável de velocidade angular, e também um driver, que permite a
+microcontroladores controlarem a atuação do motor.
 
 \subsection{Encoder magnético}
 
@@ -23,8 +24,8 @@ mensurável de velocidade angular.
 	encoder magnético. Na representação de pulsos por revolução (PPR), o valor 
 	apresentado descreve o número de pulsos em valor alto que um encoder terá em
 	qualquer uma das suas duas saídas quadráticas. Uma outra representação comum
-	de resolução de encoders é CPR (countagens por revolução), que representa o
-	número de estados de quadatura decodificados que existem entre as duas
+	de resolução de encoders é CPR (contagens por revolução), que representa o
+	número de estados de quadratura decodificados que existem entre as duas
 	saídas do encoder (representando, portanto, o valor de uma resolução dada em
 	PPR multiplicada por 4). Outras formas de representar a resolução de um
 	encoder são LPR (linhas por revolução, referindo-se a às barras marcadas no
@@ -34,10 +35,10 @@ mensurável de velocidade angular.
 	equivale à representação em PPR (que é a representação adotada para
 	avaliação e apresentação dos componentes utilizados neste trabalho). 
 	
-	Por se utilizar um encoder PPR, são produzidas duas ondas quadradas como saídas,
-	A e B \cite{encoder_ppr}. As duas possuem 90° de fase entre si, e, caso a onda A
-	esteja adiantada em relação a B (\ref{encoder_ppr_ab}), o sentido de rotação é
-	positivo (anti-horário).
+	Em encoders magnéticos incrementais, são produzidas duas ondas quadradas
+	como saídas, A e B \cite{encoder_ppr}. As duas possuem 90° de fase entre si,
+	e, caso a onda A esteja adiantada em relação a B (\ref{encoder_ppr_ab}),
+	o sentido de rotação é positivo (anti-horário).
 
 \begin{figure}[h]
 	\centering
@@ -65,8 +66,8 @@ mensurável de velocidade angular.
 	a polaridade da alimentação do motor DC seja alterada. Devido a sua inércia,
 	o motor continua girando mesmo quando a energia é retirada, mas a ponte H
 	pode curto-circuitar seus terminais, gerando uma força eletromotriz de
-	frenagem. Outra razão para uso de um driver ponte, é lidar com a tensão
-	gerada pelo motor quando o rotor continua a girar após remover
+	frenagem. Outra razão para uso de um driver ponte é a necessidade de se lidar
+	com a tensão gerada pelo motor quando o rotor continua a girar após remover
 	alimentação - o motor se comporta com um gerador nesse momento, e a ponte H
 	fornece um caminho livre para essa corrente gerada.
 
