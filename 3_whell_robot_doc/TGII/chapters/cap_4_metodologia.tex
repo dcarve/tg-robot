@@ -1,14 +1,60 @@
 
 \chapter{Metodologia}
 
-{\color{red}Este capítulo dedica-se a prover uma visão geral das etapas necessárias à conclusão deste projeto, e também
-permite sua eventual reprodução no futuro.}
-
 Para a execução deste projeto, optou-se pelo uso de componentes amplamente disponíveis no mercado a relativamente baixo
-custo, bem como software disponível gratuitamente no site do fabricante.
+custo, bem como software disponível gratuitamente no site do fabricante. Essas escolhas visam facilitar a
+reproducibilidade do projeto, bem como tornar o resultado final do projeto mais eficiente, produzindo o resultado
+desejado com o menor custo. 
+
+Um outro fator relevante que impactou a escolha dos componentes a serem utilizados no projeto é a compatibilidade entre
+eles - seja ela mecânica, eletrônica ou mesmo de software. Diferentemente de uma solução completa oferecida por
+um só fabricante, em que há garantia de operação harmoniosa entre os componentes, este trabalho envolveu a composição de
+diferentes partes, pelo que se tornou necessário avaliar a viabilidade de se utilizar todas elas em conjunto.
+
+Ainda assim, dada a necessidade de se utilizar peças com formatos e dimensões específicas para a aplicação em questão,
+optou-se também pelo uso de técnicas de impressão 3D. Essa decisão é compatível com o objetivo geral de baixos custos, e
+também resolve problemas relacionados à montagem mecânica.
 
 
 \section{Hardware}
+A aquisição dos componentes de hardware empregados neste projeto se deu, em boa parte, por meio de lojas importadoras de
+componentes. Optou-se por componentes de baixo custo e, ao mesmo tempo, comumente utilizados em projetos dessa natureza,
+a fim de se ter amplo apoio da comunidade na resolução de eventuais problemas encontrados no desenvolvimento da solução.
+A tabela X apresenta os custos de cada componente de hardware adquirido para uso exclusivo neste projeto (excluindo,
+portanto, equipamentos empregados mas não utilizados apenas nele, como a impressora 3D).
+
+\subsection{Lista geral de componentes e materiais}
+\begin{quadro}[htb]
+	\caption{Lista de componentes, materiais e seus custos - valores em reais (R\$)}
+	 \begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Componente ou Material} & \textbf{Valor unitário} & \textbf{Quant} & \textbf{Valor Total} \\ \hline
+		Driver Ponte H L298N \cite{l298n_produto} &  22,90 & 3 &  68,70   \\ \hline
+		Motor DC 6V 210 RPM \cite{motor_dc_6v_produto} &  90,00 & 3 &  270,00   \\ \hline
+		Filamento PLA \cite{filamento_pla_produto} &  99,99 & 1 &  99,99   \\ \hline
+		Kit 4 rodas Omnidirecional \cite{omin_wheel_produto} &  131,35 & 1 &  131,35   \\ \hline
+		Kit 4 peças eixo roda \cite{omin_wheel_produto} &  42,15 & 1 &  42,15   \\ \hline
+		STM32 (microcontrolador) \cite{stm32_produto} &  46,90 & 1 &  46,90   \\ \hline
+		Bateria selada 6V \cite{bateria_6v_produto} &  69,90 & 1 &  69,90  \\ \hline
+		Powerbank &  119,90 & 1 &  119,90   \\ \hline
+		Paquímetro  &  49,90 & 1 &  49,90   \\ \hline
+		Ferro de solda &  43,20 & 1 &  43,20   \\ \hline
+		Solda &  12,99 & 1 &  12,99   \\ \hline
+		Conector mjjst macho &  4,90 & 3 &  14,70   \\ \hline
+		Conector mjjst femea &  4,90 & 3 &  14,70   \\ \hline
+		Garra jacaré &  1,65 & 2 &  3,30   \\ \hline
+		Driver Ponte H DTV8833 \cite{drv8833_produto} &  15,00 & 3 &  45,00   \\ \hline
+		Módulo Bluetooth \cite{hc05_produto} &  35,00 & 1 &  35,00   \\ \hline
+		Mini Protoboard &  5,00 & 2 &  10,00   \\ \hline
+		Protoboard 830 &  16,00 & 1 &  16,00   \\ \hline
+		Jumper macho-macho &  8,00 & 1 &  8,00   \\ \hline
+		Pasta de solda &  14,99 & 1 &  14,99   \\ \hline
+		Sugador de solda &  12,99 & 1 &  12,99   \\ \hline	
+		\textbf{CUSTO TOTAL} & & & \textbf{ 1.129,66}   \\ \hline
+	\end{tabular}
+\end{quadro}
+	
+
 {\color{red} Esta seção específica os componentes físicos envolvidos no robô desenvolvido para o projeto, descrevendo
 também a função de cada um no desempenho das suas funções.}
 {\color{red} Inserir aqui tabela com o custo dos componentes.}
@@ -30,10 +76,10 @@ O que resulta em um encoder com resolução de 374 PPR.
 \end{figure}
 
 \begin{quadro}[htb]
-	\caption{\label{Especificacoes_motordc_6v}Especificações do motor DC 6V}
+\caption{\label{Especificacoes_motordc_6v}Especificações do motor DC 6V}
 	 \begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Componente} & \textbf{Quant} \\ \hline
+		\textbf{Especificação} & \textbf{Valor} \\ \hline
 		Tensão nominal & DC 6V  \\ \hline
 		Velocidade sem carga  & 210RPM 0.13A  \\ \hline
 		Eficiência máxima & 2,0kg.cm/170rpm/2,0W/0,60A   \\ \hline
@@ -103,38 +149,6 @@ Foi decido fabricar o chassi e demais peças usando impressão 3D, usando filame
 O projeto das peças foi realizado no AutoCAD e depois modelado em 3D com SolidWorks, após a modelagem realizada,
 a geometria das peças foi convertida em código G para um impressora 3D usando o UltiMaker Cuda, a impressora usada foi a Ender 3 S1 Pro.
 
-
-\subsection{Lista geral de componentes e materiais}
-
-\begin{quadro}[htb]
-	\caption{Lista de componentes e materias e seus custos - valores em Real (R\$)}
-	 \begin{tabular}{|c|c|c|c|}
-		\hline
-		\textbf{Componente ou Material} & \textbf{Valor unitário} & \textbf{Quant} & \textbf{Valor Total} \\ \hline
-		Driver Ponte H L298N \cite{l298n_produto} &  22,90 & 3 &  68,70   \\ \hline
-		Motor DC 6V 210 RPM \cite{motor_dc_6v_produto} &  90,00 & 3 &  270,00   \\ \hline
-		Filamento PLA \cite{filamento_pla_produto} &  99,99 & 1 &  99,99   \\ \hline
-		Kit 4 rodas Omnidirecional \cite{omin_wheel_produto} &  131,35 & 1 &  131,35   \\ \hline
-		Kit 4 peças eixo roda \cite{omin_wheel_produto} &  42,15 & 1 &  42,15   \\ \hline
-		STM32 (microcontrolador) \cite{stm32_produto} &  46,90 & 1 &  46,90   \\ \hline
-		Bateria selada 6V \cite{bateria_6v_produto} &  69,90 & 1 &  69,90  \\ \hline
-		Powerbank &  119,90 & 1 &  119,90   \\ \hline
-		Paquímetro  &  49,90 & 1 &  49,90   \\ \hline
-		Ferro de solda &  43,20 & 1 &  43,20   \\ \hline
-		Solda &  12,99 & 1 &  12,99   \\ \hline
-		Conector mjjst macho &  4,90 & 3 &  14,70   \\ \hline
-		Conector mjjst femea &  4,90 & 3 &  14,70   \\ \hline
-		Garra jacaré &  1,65 & 2 &  3,30   \\ \hline
-		Driver Ponte H DTV8833 \cite{drv8833_produto} &  15,00 & 3 &  45,00   \\ \hline
-		Módulo Bluetooth \cite{hc05_produto} &  35,00 & 1 &  35,00   \\ \hline
-		Mini Protoboard &  5,00 & 2 &  10,00   \\ \hline
-		Protoboard 830 &  16,00 & 1 &  16,00   \\ \hline
-		Jumper macho-macho &  8,00 & 1 &  8,00   \\ \hline
-		Pasta de solda &  14,99 & 1 &  14,99   \\ \hline
-		Sugador de solda &  12,99 & 1 &  12,99   \\ \hline	
-		\textbf{CUSTO TOTAL} & & & \textbf{ 1.129,66}   \\ \hline
-	\end{tabular}
-\end{quadro}
 
 
 % \subsection{Joystick de controle}
