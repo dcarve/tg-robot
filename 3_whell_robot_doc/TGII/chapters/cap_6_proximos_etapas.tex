@@ -2,29 +2,15 @@
 
 \chapter{Próximas etapas}
 
-\section{Montagem do robô}
-Nesta etapa, será realizada a montagem mecânica do robô, com as ligações
-elétricas e mecânicas dos componentes segundo as especificações apresentadas
-até o momento.
+\section{Controle PID em motor DC}
+Após lidar com o problema da não linearidade da respostado do motor ao sinal PWM
+o próximo passo em controlar a velocidade é a implementação do controle PID.
+O desafio será controlar a posição no tempo, considerando a velocidade resultante do robô.
 
-\section{Calibração de controle nos atuadores}
-Nesta etapa, busca-se verificar se os parâmetros especificados para o controle
-do robô estão corretos - mais especificamente, busca-se saber se é possível
-controlar o robô diretamente, modificando sua velocidade, forçando-o a fazer
-curvas, testando sua holonomicidade, e afins.
+\section{Integração bluetooth}
+Para testar a cinematica do robô, iremos controla-lo via bluetooth. Para isso falta implementar a leitura via serial usando protocolo UART.
 
-\section{Mapeamento de ambientes}
-Nesta etapa, busca-se imbuir o robô da capacidade de receber mapas de ambientes
-internos em que ele possa operar. Procura-se aqui verificar se o formato de
-entrada é adequado e compatível com as habilidades de movimentação do robô.
-
-\section{Calibração de controle automático}
-Nesta etapa, o objetivo é definir corretamente os parâmetros de controle
-automático a operação do robô, correção de rotas, e similares. Espera-se fazer
-uso de um controlador PID para isso.
-
-\section{Testes autônomos}
-Nesta etapa, busca-se integrar as atividades realizadas até este momento,
-aferindo a capacidade do robô de se ater a rotas pré-determinadas, de acordo com
-o mapeamento do ambiente que lhe foi provido, a fim de atingir aos objetivos 
-propostos deste trabalho.
+\section{Teste com motor de passo de alto torque - bj42d15}
+Foi considerado trocar o tipo de motor e fazer um compartivo entre os diferentes tipos de controle e implementação necessário para cada tipo de motor,
+e apontar as diferenças de resultados.
+Foi sugerido usar o motor de passo bj42d15, comum em impressoras 3d, que possui um torque mais alto e bons resultados no uso de equipamentos que exigem precisão de posicionamento.
