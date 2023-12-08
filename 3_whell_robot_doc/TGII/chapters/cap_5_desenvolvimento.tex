@@ -205,5 +205,212 @@ Com essa equação é mais fácil definir um comportamento linear, facilitando a
 \subsection{Aplicativo andriod - Envio de dados via bluetooth}
 
 
-
 \subsection{Implementação da medição de rpm e filtro passa baixa no microcontrolador}
+
+Para medir a velocidade de um motor DC com base no encoder, foi necessário realizar a leitura das subidas dos calores de LOW para HIGH de uma das fases do enconder, e comparar com outra Fase
+Para isso usamos o sistema de interrupção do microcontrolador.
+Exemplo do trecho de código que realiza a leitura dos valores do encoder, e registra em um contador a quantidade de pulsos de uma fase.
+
+
+\lstset{language=C}
+\begin{lstlisting}
+
+long prevTime = 0;
+long currTime = micros();
+
+volatile int pos_i_1 = 0;
+
+int prevPosition_1 = 0;
+
+
+void setup() {
+
+    motorsSetupPins();
+    encodersSetupPins();
+
+    attachInterrupt(digitalPinToInterrupt(PB0), readEncoder1, RISING);
+    
+}
+
+void loop() {
+
+		int currPosition_1 = 0;
+
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+            currPosition_1 = pos_i_1;
+        };
+        
+		prevPosition_1 = currPosition_1;
+}
+
+void readEncoder1(){ 
+    int b = digitalRead(PB1);
+    if(b>0){
+        pos_i_1++;
+    }
+    else {
+        pos_i_1--;
+    }
+}
+
+\end{lstlisting}
+
+
+Após obtendo os a quantidade de pulsos é possivel calcular a taxa de pulsos por segundo, usando o diferencial da velocidade no dominio discreto, $\Delta$p/$\Delta$t.
+
+\lstset{language=C}
+\begin{lstlisting}
+
+#define HALL_RESOLUTION 374
+
+long prevTime = 0;
+long currTime = micros();
+
+volatile int pos_i_1 = 0;
+
+int prevPosition_1 = 0;
+
+
+float direction_angle = 90;
+void setup() {
+
+    motorsSetupPins();
+    encodersSetupPins();
+
+    attachInterrupt(digitalPinToInterrupt(PB0), readEncoder1, RISING);
+    
+}
+
+void loop() {
+
+	currTime = micros();
+
+	int currPosition_1 = 0;
+
+
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+		currPosition_1 = pos_i_1;
+	};
+	
+	float rpm1 = calc_rpm(currTime, prevTime, currPosition_1, prevPosition_1);
+
+	prevPosition_1 = currPosition_1;
+	prevPosition_3 = currPosition_3;
+
+	prevTime = currTime;  
+
+}
+
+void readEncoder1(){ 
+    int b = digitalRead(PB1);
+    if(b>0){
+        pos_i_1++;
+    }
+    else {
+        pos_i_1--;
+    }
+}
+
+
+float calc_rpm(long currT, long prevT, int pos, int posPrev){
+
+    float deltaT = ((float) (currT-prevT))/1.0e6;
+    float pulse_per_seconds = (pos - posPrev)/deltaT;
+    float rpm = 60*pulse_per_seconds/HALL_RESOLUTION;
+
+    return rpm;
+}
+
+\end{lstlisting}
+
+
+Porém calcular velocidade a cada ciclo do micrcontrolador acaba registrando valores de tempo muito pequenos, fazendo a velocidade tender ao infinito
+A solução foi estabelecer uma amostragem do registro da velocidade, porem a amostragem adiciona um ruido com frequências maiories que do sinal original e de amplitude definida.
+Para retirar essas frequência do sinal, o filtro passa baixa foi implementado no código.
+
+
+\lstset{language=C}
+\begin{lstlisting}
+
+#define HALL_RESOLUTION 374
+#define DT_TIME_SAMPLE_RATE_ENCODER 10 // encoder position reading update rate
+
+int nextChangeSampleRate  = (millis() + DT_TIME_SAMPLE_RATE_ENCODER);
+
+long prevTime = 0;
+long currTime = micros();
+
+volatile int pos_i_1 = 0;
+
+int prevPosition_1 = 0;
+
+float filterRpm_1 = 0;
+
+float prevRpm_1 = 0;
+
+
+void setup() {
+
+    encodersSetupPins();
+
+    attachInterrupt(digitalPinToInterrupt(PB0), readEncoder1, RISING);
+    
+}
+
+void loop() {
+
+    //Leitura da velocidade
+    if (millis()>=nextChangeSampleRate){
+
+        currTime = micros();
+
+        int currPosition_1 = 0;
+
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+            currPosition_1 = pos_i_1;
+        };
+        
+        float rpm1 = calc_rpm(currTime, prevTime, currPosition_1, prevPosition_1);
+
+        filterRpm_1 = low_pass_filter_first_order(rpm1, prevRpm_1, filterRpm_1);
+
+        prevPosition_1 = currPosition_1;
+
+        prevRpm_1 = rpm1;
+
+        prevTime = currTime;
+
+        nextChangeSampleRate = millis() + DT_TIME_SAMPLE_RATE_ENCODER;
+    }
+    
+}
+
+void readEncoder1(){ 
+    int b = digitalRead(PB1);
+    if(b>0){
+        pos_i_1++;
+    }
+    else {
+        pos_i_1--;
+    }
+}
+
+float calc_rpm(long currT, long prevT, int pos, int posPrev){
+
+    float deltaT = ((float) (currT-prevT))/1.0e6;
+    float pulse_per_seconds = (pos - posPrev)/deltaT;
+    float rpm = 60*pulse_per_seconds/HALL_RESOLUTION;
+
+    return rpm;
+}
+
+
+
+float low_pass_filter_first_order(float currRpm, float prevRpm, float prevFilterRpm){
+
+    float posFilterRpm = 0.881765*prevFilterRpm + 0.0591174*currRpm + 0.0591174*prevRpm;
+
+    return posFilterRpm;
+}
+
+\end{lstlisting}
