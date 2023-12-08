@@ -167,5 +167,29 @@ fim, a impressão das peças foi realizada em uma impressora Ender 3 S1 Pro.
 % descritos nesta subseção.}
 
 \section{Software}
-{\color{red} Esta seção se dedica a discorrer a respeito dos diversos componentes de software envolvidos no projeto.}
+No desenvolvimento deste projeto, algumas ferramentas de software foram e empregadas. As principais áreas em que seu uso
+se fez necessário foram na programação do STM32, no desenvolvimento do aplicativo para comunicação entre um Smartphone e
+o módulo HC-05, no projeto e impressão 3D das peças da estrutura do robô, e nas simulações para obtenção empírica de
+parâmetros de operação do robô.
 
+\subsection{Programação do microcontrolador}
+Nesta aplicação, o microcontrolador contém é responsável por coordenar a operação do robô. Por essa razão, foi
+necessário programar tal funcionalidade em sua memória. Neste processo, foi necessário configurar os diferentes pinos de
+entrada segundo suas capacidades e o uso desejado no projeto, bem como implementar o processamento dos sinais de entrada
+(referentes à velocidade dos motores) e a produção de saída (valores a serem enviados como variável manipulada para os
+motores do robô). É também do microcontrolador a tarefa de interpretar os comandos recebidos via Bluetooth pelo módulo 
+HC-05 (e transmitidos ao STM32 via comunicação serial) e convertê-los em sinal de controle.
+
+\subsection{Desenvolvimento de aplicativo Android}
+Por meio do uso da plataforma MIT App Inventor, vou possível simplificar significativamente o desenvolvimento de um app
+Android para uso neste trabalho. A plataforma fornece elementos visuais para produção da interface do app, bem como 
+permite implementação de algumas funcionalidades mais comuns (como acesso à comunicação Bluetooth de um Smartphone) a 
+serem associadas com esses elementos visual. A app desenvolvido tem por objetivo enviar comandos simples, relacionados
+a direções a serem seguidas pelo robô, como demonstra figura \ref{fig:mit_app_inventor}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/mit_app_inventor.png}
+	\caption{Interface da plataforma MIT App Inventor}
+	\label{fig:mit_app_inventor}
+\end{figure}
