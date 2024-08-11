@@ -20,12 +20,12 @@ também resolve problemas relacionados à montagem mecânica.
 A aquisição dos componentes de hardware empregados neste projeto se deu, em boa parte, por meio de lojas importadoras de
 componentes. Optou-se por componentes de baixo custo e, ao mesmo tempo, comumente utilizados em projetos dessa natureza,
 a fim de se ter amplo apoio da comunidade na resolução de eventuais problemas encontrados no desenvolvimento da solução.
-A tabela X apresenta os custos de cada componente de hardware adquirido para uso exclusivo neste projeto (excluindo,
-portanto, equipamentos empregados mas não utilizados apenas nele, como a impressora 3D).
+A tabela \ref{custos} apresenta os custos de cada componente de hardware adquirido para uso exclusivo neste projeto
+(excluindo, portanto, equipamentos empregados mas não utilizados apenas nele, como a impressora 3D).
 
-\subsection{Lista geral de componentes e materiais}
+
 \begin{quadro}[htb]
-	\caption{Lista de componentes, materiais e seus custos - valores em reais (R\$)}
+	\caption{Lista de componentes, materiais e seus custos - valores em reais (R\$) \label{custos}}
 	 \begin{tabular}{|c|c|c|c|}
 		\hline
 		\textbf{Componente ou Material} & \textbf{Valor unitário} & \textbf{Quant} & \textbf{Valor Total} \\ \hline
@@ -53,21 +53,16 @@ portanto, equipamentos empregados mas não utilizados apenas nele, como a impres
 		\textbf{CUSTO TOTAL} & & & \textbf{ 1.129,66}   \\ \hline
 	\end{tabular}
 \end{quadro}
-	
-
-{\color{red} Esta seção específica os componentes físicos envolvidos no robô desenvolvido para o projeto, descrevendo
-também a função de cada um no desempenho das suas funções.}
-{\color{red} Inserir aqui tabela com o custo dos componentes.}
-
 
 \subsection{Componentes eletrônicos}
 
 \subsubsection{Motor DC e encoder}
 Para a versão inicial do robô, foi decidido trabalhar com motor DC.
-Motores DC são mais difíceis de controlar que motores de passo, porém tem uma resposta mais rápida, e se o controle for bem aplicado, podem ter um melhor desempenho que um motor de passo.
-A complexidade do controle de um motor DC apresenta um bom desafio para aplicação dos conceitos e disciplinas do curso de Engenharia de Instrumental, Automação e Robótica.
-O motor DC escolhido foi um de 6V 210rpm, com taxa de redução de 1:34. O motor já possui um encoder magnético acoplado, com 11 PPR (\textit{"Pulses Per Revolution"}),
-O que resulta em um encoder com resolução de 374 PPR.
+Motores DC são mais difíceis de controlar que motores de passo, porém tem uma resposta mais rápida, e se o controle for
+bem aplicado, podem ter também um melhor desempenho. A complexidade do controle de um motor DC apresenta um bom desafio
+para aplicação dos conceitos e disciplinas do curso de Engenharia de Instrumental, Automação e Robótica. O motor DC 
+escolhido foi um de 6V 210rpm, com taxa de redução de 1:34. Tal motor já possui um encoder magnético acoplado, com 11
+PPR (\textit{"Pulses Per Revolution"}), resultando em um encoder com resolução de 374 PPR.
 
 \begin{figure}[htb]
 	\centering
@@ -93,12 +88,17 @@ O que resulta em um encoder com resolução de 374 PPR.
 
 
 \subsubsection{Driver de Motor}
-Inicialmente foi testado o driver Ponte H L298N para ligar cada motor, suporta até 2A em operação DC \cite{datasheel_l298n},
-a corrente de operação máxima do motor é de 1.1A, porém a corrente de parada é drenar 3.2A. 
-O L298N também causa uma queda de tensão, a 1A pode causar uma queda de 3.2V, fazendo com que o
-motor não receba a tensão necessária para operar nos valores desejados \cite{datasheel_l298n}. 
-O L298N é mais recomendado para tensões entre 12V a 40V, como o motor é de 6v, acaba tendo uma queda de tensão considerável.
-Com isso, um driver de para baixas tensões é recomendado, foi escolhido o DRV8833 \cite{datasheel_dvr8833}.
+Nas etapas iniciais do projeto, testou-se driver Ponte H L298N para ligar cada motor. Esse driver suporta até 2A em
+operação DC \cite{datasheel_l298n}. A corrente de operação máxima do motor é de 1.1A; contudo, a corrente de parada
+pode chegar a 3.2A. Além disso, o L298N também causa uma queda de tensão significativa: a uma corrente de 1A, a queda
+observada chegou a até 3.2V, fazendo com que o motor não receba a tensão necessária para operar nas condições
+desejadas \cite{datasheel_l298n}. As observações são compatíveis com as expectativas de faixa de operação do L298N - a
+seu uso é recomendado para tensões entre 12V a 40V, em que a queda de tensão observada não seja tão significativa
+relativamente. Devido à natureza da aplicação deste projeto, com o motor de 6v, a queda de tensão acaba sendo
+intolerável, inviabilizando assim o uso da ponte H L298N.
+
+Após essas considerações e observações, optou-se por um driver apropriado para uso em baixas tensões, o DRV8833
+\cite{datasheel_dvr8833}.
 
 
 \begin{figure}[htb]
@@ -109,16 +109,14 @@ Com isso, um driver de para baixas tensões é recomendado, foi escolhido o DRV8
 
 \subsubsection{Microcontrolador}
 
-Para microcontrolador, optou-se pelo uso do  STM32F103C8, também conhecido como Blue Pill.
-Possui como processador o ARM Cortex-M3, e tem 64Kbs de memória flash. 
-O STM32F103C8 possui 7 timers, 2 ADCs, e 9 interfaces de comunicação, incluindo
-I2C (\textit{Inter-Integrated Circuit}), USART (\textit{Universal Synchronous
-Asynchronous Receiver Transmitter}), SPI (\textit{Serial Peripheral Interface}),
-CAN e USB 2.0.
-O STM32F103C8 possui 7 pinos que suportam canais de PWM de 5V, e outros 8 canais de 3.3V,  e pode ser alimentado via micro
-USB de 5V. Existes 3 grupos de pinos,  $P_{A}$,  $P_{B}$ e  $P_{C}$,  os pinos PA vão de $P_{A0}$ a $P_{A15}$, PB indo de $P_{B0}$ a $P_{B15}$, e PC com apenas 3 pinos, $P_{C13}$, $P_{C14}$ e $P_{C15}$.
+Como opção de microcontrolador, optou-se pelo uso do STM32F103C8 (abreviado como STM32 ao longo deste trabalho),
+também conhecido como Blue Pill. Possui como processador o ARM Cortex-M3, e tem 64Kbs de memória flash.  Possui também 7 timers, 2 ADCs, e 9 interfaces de comunicação, incluindo I2C (\textit{Inter-Integrated Circuit}), USART 
+\textit{Universal Synchronous Asynchronous Receiver Transmitter}), SPI (\textit{Serial Peripheral Interface}), CAN e
+USB 2.0. O STM32 apresenta 7 pinos que suportam canais de PWM de 5V, e outros 8 canais de 3.3V, e pode ser alimentado
+via microUSB de 5V. Existem 3 grupos de pinos,  $P_{A}$,  $P_{B}$ e  $P_{C}$: os pinos PA vão de $P_{A0}$ 
+a $P_{A15}$, PB indo de $P_{B0}$ a $P_{B15}$, e PC com apenas 3 pinos, $P_{C13}$, $P_{C14}$ e $P_{C15}$.
 
-Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utilizado.
+Para carregar o projeto no microcontrolador, utilizou-se um gravador ST-LINK USB.
 
 \begin{figure}[htb]
 	\centering
@@ -127,12 +125,14 @@ Para carregar o projeto no microcontrolador, um gravador ST-LINK USB será utili
 \end{figure}
 
 \subsubsection{Alimentação}
-Para alimentar o microcontrolador, um powerbank com saída de 5v será usado, considerando que o STM32F103C8 funciona a
-uma corrente abaixo de 100mA. Para alimentar os motores, para uso no desenvolvimento, optou-se por uma bateria de chumbo-ácido de 6V 4.5Ah
+Para alimentar o microcontrolador, um powerbank com saída de 5V foi empregado usado, considerando que o STM32F103C8 
+funciona a uma corrente abaixo de 100mA. Para alimentar os motores, durante o desenvolvimento, optou-se por uma 
+bateria de chumbo-ácido de 6V 4.5Ah.
 
-\subsubsection{Comunicação Bluetooth para controle em aplicativo Android - Módulo HC-5}
-Para testar os movimentos do robô, decidimos usar um app android para enviar via bluetooth valores para um módulo bluetooth o HC-05, figura \ref{fig:hc_05}.
-A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 do stm32, o  $P_{A3}$ (RX2) e o  $P_{A2}$ (TX2).
+\subsubsection{Comunicação Bluetooth para controle em aplicativo Android - Módulo HC-05}
+Para controle de movimento do robô, desenvolveu-se um aplicativo Android, com uso da ferramenta MIT App Inventor. O app opera enviando para o microcontrolador comandos via Bluetooth. O STM32 recebe esses commands por meio 
+do módulo de Bluetooth HC-05 (figura \ref{fig:hc_05}). A comunicação entre o HC-05 e o STM32 é serial, fazendo uso 
+dos pinos da USART2 do STM32, $P_{A3}$ (RX2) e $P_{A2}$ (TX2).
 
 \begin{figure}[htb]
 	\centering
@@ -142,12 +142,11 @@ A comunicação entre o HC-05 e o stm32 será serial, usando os pinos da USART2 
 	\cite{hc05_image}
 \end{figure}
 
-\subsection{Componentes estruturais}
-
-\subsubsection{Fabricação e montagem}
-Foi decido fabricar o chassi e demais peças usando impressão 3D, usando filamento de PLA.
-O projeto das peças foi realizado no AutoCAD e depois modelado em 3D com SolidWorks, após a modelagem realizada,
-a geometria das peças foi convertida em código G para um impressora 3D usando o UltiMaker Cuda, a impressora usada foi a Ender 3 S1 Pro.
+\subsection{Fabricação e montagem}
+O chassi e demais peças foram fabricados por meio de impressão 3D, usando filamento de PLA (ácido poliáctico). As
+peças foram projetadas no AutoCAD, e posteriormente modeladas em 3D com o SolidWorks. A geometria do modelo
+resultante de cada peça foi convertida em código G para uma impressora 3D por meio do software UltiMaker Cuda. Por
+fim, a impressão das peças foi realizada em uma impressora Ender 3 S1 Pro.
 
 
 
@@ -168,5 +167,29 @@ a geometria das peças foi convertida em código G para um impressora 3D usando 
 % descritos nesta subseção.}
 
 \section{Software}
-{\color{red} Esta seção se dedica a discorrer a respeito dos diversos componentes de software envolvidos no projeto.}
+No desenvolvimento deste projeto, algumas ferramentas de software foram e empregadas. As principais áreas em que seu uso
+se fez necessário foram na programação do STM32, no desenvolvimento do aplicativo para comunicação entre um Smartphone e
+o módulo HC-05, no projeto e impressão 3D das peças da estrutura do robô, e nas simulações para obtenção empírica de
+parâmetros de operação do robô.
 
+\subsection{Programação do microcontrolador}
+Nesta aplicação, o microcontrolador contém é responsável por coordenar a operação do robô. Por essa razão, foi
+necessário programar tal funcionalidade em sua memória. Neste processo, foi necessário configurar os diferentes pinos de
+entrada segundo suas capacidades e o uso desejado no projeto, bem como implementar o processamento dos sinais de entrada
+(referentes à velocidade dos motores) e a produção de saída (valores a serem enviados como variável manipulada para os
+motores do robô). É também do microcontrolador a tarefa de interpretar os comandos recebidos via Bluetooth pelo módulo 
+HC-05 (e transmitidos ao STM32 via comunicação serial) e convertê-los em sinal de controle.
+
+\subsection{Desenvolvimento de aplicativo Android}
+Por meio do uso da plataforma MIT App Inventor, vou possível simplificar significativamente o desenvolvimento de um app
+Android para uso neste trabalho. A plataforma fornece elementos visuais para produção da interface do app, bem como 
+permite implementação de algumas funcionalidades mais comuns (como acesso à comunicação Bluetooth de um Smartphone) a 
+serem associadas com esses elementos visual. A app desenvolvido tem por objetivo enviar comandos simples, relacionados
+a direções a serem seguidas pelo robô, como demonstra figura \ref{fig:mit_app_inventor}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/mit_app_inventor.png}
+	\caption{Interface da plataforma MIT App Inventor}
+	\label{fig:mit_app_inventor}
+\end{figure}
