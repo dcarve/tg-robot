@@ -1,25 +1,6 @@
-#include <Arduino.h>
-#include <math.h>
-#include <util/atomic.h>
-#include "pinOutIn.h"
-
-void setup() {
-  // Declare pins as output:
-
-  //blueToothDriverPins();
-  //allDriversStep();
-  //stepperDriver1();
-  //stepperDriver2();
-  //stepperDriver3();
-
-  setup_teste_pins();
-
-}
-
-void loop() {
-  run_teste();
-}
-
+//#include <Arduino.h>
+//#include <math.h>
+//#include <util/atomic.h>
 
 //void setup() {
   // Declare pins as output:
