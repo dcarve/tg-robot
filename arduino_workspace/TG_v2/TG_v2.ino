@@ -2,22 +2,23 @@
 #include <math.h>
 #include <util/atomic.h>
 #include "pinOutIn.h"
+#include "runMotors.h"
 
 void setup() {
   // Declare pins as output:
 
-  //blueToothDriverPins();
-  //allDriversStep();
-  //stepperDriver1();
-  //stepperDriver2();
-  //stepperDriver3();
-
-  setup_teste_pins();
+  blueToothDriverPins();
+  allDriversStep();
+  stepperDriver1(); // 0°
+  stepperDriver2(); // 120° 
+  stepperDriver3(); // -120°
 
 }
 
 void loop() {
-  run_teste();
+
+  stepResolution(ONE_THIRTY_SECOND_STEP)
+
 }
 
 

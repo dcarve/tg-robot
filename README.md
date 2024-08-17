@@ -115,13 +115,15 @@ https://www.rugged-circuits.com/the-motor-driver-myth
 https://manuals.plus/bluetooth-module/bluetooth-jdy-18-4-2-ble-module-usage-manual#axzz7SX8YVBt9
 
 
+https://www.ti.com/lit/ds/symlink/drv8825.pdf
 
+https://capsistema.com.br/index.php/2022/05/31/como-controlar-um-motor-de-passo-com-driver-drv8825-e-arduino/	
 
-
+https://www.crescerengenharia.com/post/tudo-sobre-drv8825
 
 https://www.valuekart.in/motors/835-chihai-motor-gm25-370-dc-gear-motor-6v-100-210-300rpm-encoder-motor.html
 https://github.com/markjay4k/Audio-Spectrum-Analyzer-in-Python
 https://github.com/curiores/ArduinoTutorials
 
-
+https://github.com/RobTillaart/DRV8825
 https://www.youtube.com/watch?v=zOByx3Izf5U

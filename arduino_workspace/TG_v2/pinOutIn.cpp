@@ -9,7 +9,6 @@ void blueToothDriverPins(){
     pinMode(TX_STM, OUTPUT);  //TX - RXD
 };
 
-
 void allDriversStep(){ 
     pinMode(M2, OUTPUT); //M2
     pinMode(M1, OUTPUT); //M1
