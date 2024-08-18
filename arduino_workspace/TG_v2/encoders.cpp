@@ -41,10 +41,10 @@ void stepResolutionEncoder(int stepResolution, byte* driver_mode){
 }
 
 
-void delayMicrosecondsForStep(int stepResolution, float rpm){
+int delayMicrosecondsForStep(int stepResolution, float rpm){
     float delayValue;
 
-    delayValue = (6 * pow(10,9) * stepResolution)/rpm
+    delayValue = (6 * pow(10,9) * stepResolution)/rpm;
 
     return (int) delayValue;
 }

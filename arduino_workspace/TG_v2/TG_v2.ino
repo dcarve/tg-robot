@@ -3,6 +3,7 @@
 #include <util/atomic.h>
 #include "pinOutIn.h"
 #include "runMotors.h"
+#include "encoders.h"
 
 void setup() {
   // Declare pins as output:
@@ -17,7 +18,7 @@ void setup() {
 
 void loop() {
 
-  stepResolution(ONE_THIRTY_SECOND_STEP)
+  stepResolution(ONE_THIRTY_SECOND_STEP);
 
 }
 
