@@ -17,21 +17,21 @@ void allDriversStep(){
 
 void stepperDriver1(){ 
     pinMode(DIR_1, OUTPUT); //DIR
-    pinMode(SETP_1, OUTPUT);  //SETP
+    pinMode(STEP_1, OUTPUT);  //SETP
     pinMode(SLEEP_1, OUTPUT);  //SLEEP
     pinMode(RESET_1, OUTPUT); //RESET
 };
 
 void stepperDriver2(){
     pinMode(DIR_2, OUTPUT); //DIR 
-    pinMode(SETP_2, OUTPUT); //SETP
+    pinMode(STEP_2, OUTPUT); //SETP
     pinMode(SLEEP_2, OUTPUT);  //SLEEP
     pinMode(RESET_2, OUTPUT); //RESET
 };
 
 void stepperDriver3(){
     pinMode(DIR_3, OUTPUT); //DIR
-    pinMode(SETP_3, OUTPUT); //SETP
+    pinMode(STEP_3, OUTPUT); //SETP
     pinMode(SLEEP_3, OUTPUT); //SLEEP
     pinMode(RESET_3, OUTPUT);  //RESET
 };
@@ -42,7 +42,7 @@ void setup_teste_pins(){
   pinMode(M1, OUTPUT);
   pinMode(M0, OUTPUT);
   pinMode(DIR_1, OUTPUT);
-  pinMode(SETP_1, OUTPUT);
+  pinMode(STEP_1, OUTPUT);
   pinMode(SLEEP_1, OUTPUT);
   pinMode(RESET_1, OUTPUT);
   pinMode(PA11, OUTPUT);
@@ -51,7 +51,7 @@ void setup_teste_pins(){
   pinMode(PB3, OUTPUT);
   pinMode(PB4, OUTPUT);
   pinMode(DIR_2, OUTPUT);
-  pinMode(SETP_2, OUTPUT);
+  pinMode(STEP_2, OUTPUT);
   pinMode(SLEEP_2, OUTPUT);
   pinMode(RESET_2, OUTPUT);
   pinMode(PB9, OUTPUT);
@@ -68,7 +68,7 @@ void setup_teste_pins(){
   pinMode(PA1, OUTPUT);
   pinMode(RESET_3, OUTPUT);
   pinMode(SLEEP_3, OUTPUT);
-  pinMode(SETP_3, OUTPUT);
+  pinMode(STEP_3, OUTPUT);
   pinMode(DIR_3, OUTPUT);
 };
 
@@ -80,7 +80,7 @@ void run_teste(){
   digitalWrite(M1, HIGH);
   digitalWrite(M0, LOW);
   digitalWrite(DIR_1, HIGH);
-  digitalWrite(SETP_1, LOW);
+  digitalWrite(STEP_1, LOW);
   digitalWrite(SLEEP_1, HIGH);
   digitalWrite(RESET_1, LOW);
   digitalWrite(PA11, HIGH);
@@ -89,7 +89,7 @@ void run_teste(){
   digitalWrite(PB3, LOW);
   digitalWrite(PB4, HIGH);
   digitalWrite(DIR_2, LOW);
-  digitalWrite(SETP_2, HIGH);
+  digitalWrite(STEP_2, HIGH);
   digitalWrite(SLEEP_2, LOW);
   digitalWrite(RESET_2, HIGH);
   digitalWrite(PB9, LOW);
@@ -106,7 +106,7 @@ void run_teste(){
   digitalWrite(PA1, HIGH);
   digitalWrite(RESET_3, LOW);
   digitalWrite(SLEEP_3, HIGH);
-  digitalWrite(SETP_3, LOW);
+  digitalWrite(STEP_3, LOW);
   digitalWrite(DIR_3, HIGH);
 
   delayMicroseconds(3000000);
@@ -115,7 +115,7 @@ void run_teste(){
   digitalWrite(M1, LOW);
   digitalWrite(M0, HIGH);
   digitalWrite(DIR_1, LOW);
-  digitalWrite(SETP_1, HIGH);
+  digitalWrite(STEP_1, HIGH);
   digitalWrite(SLEEP_1, LOW);
   digitalWrite(RESET_1, HIGH);
   digitalWrite(PA11, LOW);
@@ -124,7 +124,7 @@ void run_teste(){
   digitalWrite(PB3, HIGH);
   digitalWrite(PB4, LOW);
   digitalWrite(DIR_2, HIGH);
-  digitalWrite(SETP_2, LOW);
+  digitalWrite(STEP_2, LOW);
   digitalWrite(SLEEP_2, HIGH);
   digitalWrite(RESET_2, LOW);
   digitalWrite(PB9, HIGH);
@@ -141,6 +141,6 @@ void run_teste(){
   digitalWrite(PA1, LOW);
   digitalWrite(RESET_3, HIGH);
   digitalWrite(SLEEP_3, LOW);
-  digitalWrite(SETP_3, HIGH);
+  digitalWrite(STEP_3, HIGH);
   digitalWrite(DIR_3, LOW);
 };

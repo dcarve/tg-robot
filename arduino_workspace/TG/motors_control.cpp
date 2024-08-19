@@ -79,7 +79,6 @@ float convert_degrees_to_radians(float degrees){
 }
 
 
-
 void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle, float angular_speed){
 
     float linear_speed_x = DEFAULT_SPEED * cos(convert_degrees_to_radians(direction_angle));
