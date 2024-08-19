@@ -4,9 +4,10 @@
 #include "pinOutIn.h"
 #include "runMotors.h"
 #include "encoders.h"
+#include "serial.h"
 
 
-#define DT_TIME_INCREASE_ENGINE 100 
+#define DT_TIME_SEND_MOTOR_DATA 10
 
 float w1 = 0;  
 float w2 = 0;
@@ -17,7 +18,7 @@ int w3_delay=0;
 float direction_angle = 90;
 float angular_speed = 0;
 
-int nextChangeVel  = (millis() + DT_TIME_INCREASE_ENGINE);
+int nextMotorData  = (millis() + DT_TIME_SEND_MOTOR_DATA);
 
 void setup() {
   // Declare pins as output:
@@ -29,15 +30,14 @@ void setup() {
   stepperDriver3(); // -120°
 
   stepResolution(HALF_STEP);
+  setUpSerialMonitor();
 
 }
 
 void loop() {
 
 
-
-
-  if (millis()>=nextChangeVel){
+  if (millis()>=nextMotorData){
 
     TransformationMatrix(
       &w1,
@@ -63,7 +63,7 @@ void loop() {
     SetStep(1, LOW);
     SetStep(1, LOW);
 
-    nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
+    nextMotorData = millis() + DT_TIME_SEND_MOTOR_DATA;
     
 
   }
