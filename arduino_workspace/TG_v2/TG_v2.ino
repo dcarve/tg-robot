@@ -6,6 +6,8 @@
 #include "encoders.h"
 
 
+#define DT_TIME_INCREASE_ENGINE 100 
+
 float w1 = 0;  
 float w2 = 0;
 float w3 = 0;
@@ -14,6 +16,8 @@ int w2_delay=0;
 int w3_delay=0;
 float direction_angle = 90;
 float angular_speed = 0;
+
+int nextChangeVel  = (millis() + DT_TIME_INCREASE_ENGINE);
 
 void setup() {
   // Declare pins as output:
@@ -31,29 +35,38 @@ void setup() {
 void loop() {
 
 
-  TransformationMatrix(
-    &w1,
-    &w2,
-    &w3,
-    direction_angle,
-    angular_speed
-  );
 
-  convertRpmToDelays(
-    &w1_delay,
-    &w2_delay,
-    &w3_delay,
-    w1,
-    w2,
-    w3,
-    HALF_STEP
-  );
 
-  SetSleep(1, LOW);
-  SetReset(1, LOW);
-  SetStep(1, LOW);
-  SetStep(1, LOW);
-  SetStep(1, LOW);
+  if (millis()>=nextChangeVel){
+
+    TransformationMatrix(
+      &w1,
+      &w2,
+      &w3,
+      direction_angle,
+      angular_speed
+    );
+
+    convertRpmToDelays(
+      &w1_delay,
+      &w2_delay,
+      &w3_delay,
+      w1,
+      w2,
+      w3,
+      HALF_STEP
+    );
+
+    SetSleep(1, LOW);
+    SetReset(1, LOW);
+    SetStep(1, LOW);
+    SetStep(1, LOW);
+    SetStep(1, LOW);
+
+    nextChangeVel = millis() + DT_TIME_INCREASE_ENGINE;
+    
+
+  }
 
 }
 
