@@ -7,7 +7,7 @@
 #include "serial.h"
 
 
-#define DT_TIME_SEND_MOTOR_DATA 10
+#define DT_TIME_SEND_MOTOR_DATA 1000
 
 float w1 = 0;  
 float w2 = 0;
@@ -31,6 +31,7 @@ void setup() {
 
   stepResolution(HALF_STEP);
   setUpSerialMonitor();
+  setUpSerialUart3();
 
 }
 
@@ -39,29 +40,34 @@ void loop() {
 
   if (millis()>=nextMotorData){
 
-    TransformationMatrix(
-      &w1,
-      &w2,
-      &w3,
-      direction_angle,
-      angular_speed
-    );
+    setUpSerialMonitor();
 
-    convertRpmToDelays(
-      &w1_delay,
-      &w2_delay,
-      &w3_delay,
-      w1,
-      w2,
-      w3,
-      HALF_STEP
-    );
+    //Serial.print(2);
+    //Serial3.print(1);
 
-    SetSleep(1, LOW);
-    SetReset(1, LOW);
-    SetStep(1, LOW);
-    SetStep(1, LOW);
-    SetStep(1, LOW);
+    // TransformationMatrix(
+    //   &w1,
+    //   &w2,
+    //   &w3,
+    //   direction_angle,
+    //   angular_speed
+    // );
+
+    // convertRpmToDelays(
+    //   &w1_delay,
+    //   &w2_delay,
+    //   &w3_delay,
+    //   w1,
+    //   w2,
+    //   w3,
+    //   HALF_STEP
+    // );
+
+    //SetSleep(1, LOW);
+    //SetReset(1, LOW);
+    //SetStep(1, LOW);
+    //SetStep(1, LOW);
+    //SetStep(1, LOW);
 
     nextMotorData = millis() + DT_TIME_SEND_MOTOR_DATA;
     

@@ -127,3 +127,7 @@ https://github.com/curiores/ArduinoTutorials
 
 https://github.com/RobTillaart/DRV8825
 https://www.youtube.com/watch?v=zOByx3Izf5U
+
+
+
+https://www.crescerengenharia.com/post/tudo-sobre-drv8825

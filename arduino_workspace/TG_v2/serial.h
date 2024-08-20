@@ -5,5 +5,6 @@
 void setUpSerialMonitor();
 void sendSerialMonitor();
 void setUpSerialUart();
+void setUpSerialUart3();
 
 #endif
