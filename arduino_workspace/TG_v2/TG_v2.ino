@@ -5,9 +5,12 @@
 #include "runMotors.h"
 #include "encoders.h"
 #include "serial.h"
+#include <HardwareSerial.h>
+#include <libmaple/usart.h>
 
 
 #define DT_TIME_SEND_MOTOR_DATA 1000
+#define DT_BLUETOOTH_DATA 100
 
 float w1 = 0;  
 float w2 = 0;
@@ -17,8 +20,12 @@ int w2_delay=0;
 int w3_delay=0;
 float direction_angle = 90;
 float angular_speed = 0;
+int inByte;
+float inFloat;
+char inChar;
 
 int nextMotorData  = (millis() + DT_TIME_SEND_MOTOR_DATA);
+int nextBtData  = (millis() + DT_BLUETOOTH_DATA);
 
 void setup() {
   // Declare pins as output:
@@ -38,12 +45,23 @@ void setup() {
 void loop() {
 
 
-  if (millis()>=nextMotorData){
+  if (millis()>=nextBtData){
 
-    setUpSerialMonitor();
 
-    //Serial.print(2);
-    //Serial3.print(1);
+    if (Serial3.available()) {
+
+        //Serial.write(BTSerial.read());
+
+        inByte = Serial3.read();
+        //inFloat = Serial3.read();
+        //inChar = Serial3.read();
+        Serial.println(inByte);
+        //Serial.println(inFloat);
+        //Serial.println(inChar);
+    } else {
+      Serial.println(' ');
+    }
+    //Serial3.write(1);
 
     // TransformationMatrix(
     //   &w1,
@@ -69,10 +87,11 @@ void loop() {
     //SetStep(1, LOW);
     //SetStep(1, LOW);
 
-    nextMotorData = millis() + DT_TIME_SEND_MOTOR_DATA;
+    nextBtData = millis() + DT_BLUETOOTH_DATA;
     
 
   }
+
 
 }
 
