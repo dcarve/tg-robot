@@ -10,7 +10,7 @@
 
 
 #define DT_TIME_SEND_MOTOR_DATA 1000
-#define DT_BLUETOOTH_DATA 100
+#define DT_BLUETOOTH_DATA 3000
 
 float w1 = 0;  
 float w2 = 0;
@@ -23,6 +23,10 @@ float angular_speed = 0;
 int inByte;
 float inFloat;
 char inChar;
+
+
+String readString;
+char c;
 
 int nextMotorData  = (millis() + DT_TIME_SEND_MOTOR_DATA);
 int nextBtData  = (millis() + DT_BLUETOOTH_DATA);
@@ -38,29 +42,63 @@ void setup() {
 
   stepResolution(HALF_STEP);
   setUpSerialMonitor();
+  //Serial.begin(9600);
+  //Serial3.begin(9600);
   setUpSerialUart3();
+
+  delay(10000);
+
+  Serial.println("*** AT commands mode ***");
 
 }
 
+
 void loop() {
+    while (Serial3.available()) 
+  {
+    delay(3);  
+    c = Serial3.read();
+    readString += c; 
+  }// end while
+  if (readString.length() >0) 
+  {  
+    Serial.println(readString);  
+   readString="";  
+  } // end if
+}
 
 
-  if (millis()>=nextBtData){
+// void loop ()
+// {
+//   // from bluetooth to Terminal.
+//   while (Serial3.available() > 0)
+//   {
+//     Serial.println( (char)Serial3.read());
+//   }
+//   // from termial to bluetooth
+//   if (Serial.available())
+//     Serial3.write( (char)Serial.read());
+// }
 
 
-    if (Serial3.available()) {
+//void loop() {
+
+
+
+ // if (millis()>=nextBtData){
+    //if (Serial3.available()) {
 
         //Serial.write(BTSerial.read());
 
-        inByte = Serial3.read();
+        //inByte = Serial3.read();
         //inFloat = Serial3.read();
         //inChar = Serial3.read();
-        Serial.println(inByte);
+        //Serial.println(inByte);
         //Serial.println(inFloat);
         //Serial.println(inChar);
-    } else {
-      Serial.println(' ');
-    }
+    //} else {
+    //  Serial.println(' ');
+    //}
     //Serial3.write(1);
 
     // TransformationMatrix(
@@ -87,13 +125,12 @@ void loop() {
     //SetStep(1, LOW);
     //SetStep(1, LOW);
 
-    nextBtData = millis() + DT_BLUETOOTH_DATA;
-    
+//    nextBtData = millis() + DT_BLUETOOTH_DATA;
+   
+   
+//  }
 
-  }
-
-
-}
+//}
 
 
 //void setup() {
