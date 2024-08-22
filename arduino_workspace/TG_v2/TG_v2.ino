@@ -10,7 +10,7 @@
 
 
 #define DT_TIME_SEND_MOTOR_DATA 1000
-#define DT_BLUETOOTH_DATA 3000
+#define DT_BLUETOOTH_DATA 100
 
 float w1 = 0;  
 float w2 = 0;
@@ -20,16 +20,14 @@ int w2_delay=0;
 int w3_delay=0;
 float direction_angle = 90;
 float angular_speed = 0;
-int inByte;
-float inFloat;
-char inChar;
-
-
 String readString;
-char c;
 
+// String readString;
+// char c;
+
+int deltatBtData = DT_BLUETOOTH_DATA;
 int nextMotorData  = (millis() + DT_TIME_SEND_MOTOR_DATA);
-int nextBtData  = (millis() + DT_BLUETOOTH_DATA);
+int nextBtData  = (millis() + deltatBtData);
 
 void setup() {
   // Declare pins as output:
@@ -42,95 +40,48 @@ void setup() {
 
   stepResolution(HALF_STEP);
   setUpSerialMonitor();
-  //Serial.begin(9600);
-  //Serial3.begin(9600);
-  setUpSerialUart3();
-
-  delay(10000);
-
-  Serial.println("*** AT commands mode ***");
+  setUpSerialUsart3();
 
 }
+
+
 
 
 void loop() {
-    while (Serial3.available()) 
-  {
-    delay(3);  
-    c = Serial3.read();
-    readString += c; 
-  }// end while
+
+  readString = readUsart3(&nextBtData, deltatBtData);
   if (readString.length() >0) 
-  {  
-    Serial.println(readString);  
-   readString="";  
-  } // end if
+    {  
+      Serial.println(readString);  
+    readString="";  
+    }
+
+
 }
 
 
-// void loop ()
-// {
-//   // from bluetooth to Terminal.
-//   while (Serial3.available() > 0)
-//   {
-//     Serial.println( (char)Serial3.read());
+
+// void loop() {
+//   // Get the current time
+//   unsigned long currentMillis = millis();
+
+//   // Non-blocking check for serial data at regular intervals
+//   if (currentMillis - previousMillis >= interval) {
+//     previousMillis = currentMillis;  // Update the last time we checked serial
+
+//     // Check if any data is available on the serial port
+//     if (Serial.available() > 0) {
+//       // Read the incoming data and print it to the serial monitor
+//       String incomingData = Serial.readString();
+//       Serial.println("Received: " + incomingData);
+//     }
 //   }
-//   // from termial to bluetooth
-//   if (Serial.available())
-//     Serial3.write( (char)Serial.read());
+
+//   // Other non-blocking code can go here
+//   // For example, sensor readings, LED blinking, etc.
 // }
 
 
-//void loop() {
-
-
-
- // if (millis()>=nextBtData){
-    //if (Serial3.available()) {
-
-        //Serial.write(BTSerial.read());
-
-        //inByte = Serial3.read();
-        //inFloat = Serial3.read();
-        //inChar = Serial3.read();
-        //Serial.println(inByte);
-        //Serial.println(inFloat);
-        //Serial.println(inChar);
-    //} else {
-    //  Serial.println(' ');
-    //}
-    //Serial3.write(1);
-
-    // TransformationMatrix(
-    //   &w1,
-    //   &w2,
-    //   &w3,
-    //   direction_angle,
-    //   angular_speed
-    // );
-
-    // convertRpmToDelays(
-    //   &w1_delay,
-    //   &w2_delay,
-    //   &w3_delay,
-    //   w1,
-    //   w2,
-    //   w3,
-    //   HALF_STEP
-    // );
-
-    //SetSleep(1, LOW);
-    //SetReset(1, LOW);
-    //SetStep(1, LOW);
-    //SetStep(1, LOW);
-    //SetStep(1, LOW);
-
-//    nextBtData = millis() + DT_BLUETOOTH_DATA;
-   
-   
-//  }
-
-//}
 
 
 //void setup() {
@@ -158,3 +109,47 @@ void loop() {
   //digitalWrite(PB0, LOW);
   //delay(1000);
 //}
+
+
+
+
+// void loop() {
+//     while (Serial3.available()) 
+//   {
+//     delay(3);  
+//     c = Serial3.read();
+//     readString += c; 
+//   }// end while
+//   if (readString.length() >0) 
+//   {  
+//     Serial.println(readString);  
+//    readString="";  
+//   } // end if
+// }
+
+
+
+
+    // TransformationMatrix(
+    //   &w1,
+    //   &w2,
+    //   &w3,
+    //   direction_angle,
+    //   angular_speed
+    // );
+
+    // convertRpmToDelays(
+    //   &w1_delay,
+    //   &w2_delay,
+    //   &w3_delay,
+    //   w1,
+    //   w2,
+    //   w3,
+    //   HALF_STEP
+    // );
+
+    //SetSleep(1, LOW);
+    //SetReset(1, LOW);
+    //SetStep(1, LOW);
+    //SetStep(1, LOW);
+    //SetStep(1, LOW);

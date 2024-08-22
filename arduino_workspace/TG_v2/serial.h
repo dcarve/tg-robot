@@ -3,8 +3,7 @@
 #include <Arduino.h>
 
 void setUpSerialMonitor();
-void sendSerialMonitor();
-void setUpSerialUart();
-void setUpSerialUart3();
+void setUpSerialUsart3();
+char* readUsart3(int *timmer, int delta);
 
 #endif
