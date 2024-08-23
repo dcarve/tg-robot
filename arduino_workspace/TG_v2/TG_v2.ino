@@ -22,8 +22,11 @@ float direction_angle = 90;
 float angular_speed = 0;
 String readString;
 
-// String readString;
-// char c;
+
+///variavel da parte do bleutooth LUCAS
+
+char c;
+///
 
 int deltatBtData = DT_BLUETOOTH_DATA;
 int nextMotorData  = (millis() + DT_TIME_SEND_MOTOR_DATA);
@@ -47,17 +50,17 @@ void setup() {
 
 
 
-void loop() {
+// void loop() {
 
-  readString = readUsart3(&nextBtData, deltatBtData);
-  if (readString.length() >0) 
-    {  
-      Serial.println(readString);  
-    readString="";  
-    }
+//   readString = readUsart3(&nextBtData, deltatBtData);
+//   if (readString.length() >0) 
+//     {  
+//       Serial.println(readString);  
+//     readString="";  
+//     }
 
 
-}
+// }
 
 
 
@@ -111,21 +114,21 @@ void loop() {
 //}
 
 
+///código que funciona com lendo blueTooth  LUCAS
 
-
-// void loop() {
-//     while (Serial3.available()) 
-//   {
-//     delay(3);  
-//     c = Serial3.read();
-//     readString += c; 
-//   }// end while
-//   if (readString.length() >0) 
-//   {  
-//     Serial.println(readString);  
-//    readString="";  
-//   } // end if
-// }
+void loop() {
+    while (Serial3.available()) 
+  {
+    delay(3);  
+    c = Serial3.read();
+    readString += c; 
+  }// end while
+  if (readString.length() >0) 
+  {  
+    Serial.println(readString);  
+   readString="";  
+  } // end if
+}
 
 
 
