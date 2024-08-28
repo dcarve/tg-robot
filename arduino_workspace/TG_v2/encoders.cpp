@@ -2,6 +2,7 @@
 #include <math.h>
 #include <Arduino.h>
 #include <util/atomic.h>
+#include <stdio.h>
 
 #define RADIUS_ROBOT 100  // in milimeters
 #define DEFAULT_SPEED 800 // mm/second
@@ -108,3 +109,62 @@ void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle
     *w3 = convert_speed_linear_to_rpm(aux3);
      
 }
+
+// float max_of_three(float a, float b, float c) {
+//     if (a >= b && a >= c) {
+//         return a;
+//     } else if (b >= a && b >= c) {
+//         return b;
+//     } else {
+//         return c;
+//     }
+// }
+
+// float min_of_three(float a, float b, float c) {
+//     if (a <= b && a <= c) {
+//         return a;
+//     } else if (b <= a && b <= c) {
+//         return b;
+//     } else {
+//         return c;
+//     }
+// }
+
+
+// void rgbToDiretionAngleAndMagnitude(const char *rgb){
+//     float r, g, b, max_color, min_color;
+
+//     sscanf(rgb, "%3f%3f%3f", &r, &g, &b);
+
+//     r = r/255.0
+//     g = g/255.0
+//     b = b/255.0
+
+//     max_color = max_of_three(r, g, b)
+//     min_color = min_of_three(r, g, b)
+//     l = (max_color + min_color) / 2.0
+
+//     if max_color == min_color:
+//         h = s = 0.0  # Achromatic
+//     else:
+//         delta = max_color - min_color
+//         s = delta / (2.0 - max_color - min_color) if l > 0.5 else delta / (max_color + min_color)
+
+//         if max_color == r:
+//             h = (g - b) / delta + (6.0 if g < b else 0.0)
+//         elif max_color == g:
+//             h = (b - r) / delta + 2.0
+//         else:
+//             h = (r - g) / delta + 4.0
+
+//         h /= 6.0
+
+//     h = round(((360 - (h * 360)) % 360), 2)  # Convert to degrees and round and invert in X axis
+//     s = round(s * 100, 2)  # Convert to percentage and round and remap of 50-100 to 0-100
+//     l = round(l * 100, 2)  # Convert to percentage and round
+    
+//     l = map(l, 50, 100, 100, 0)
+
+//     return h, l
+
+// }

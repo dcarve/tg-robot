@@ -10,7 +10,7 @@
 
 
 #define DT_TIME_SEND_MOTOR_DATA 1000
-#define DT_BLUETOOTH_DATA 100
+#define DT_BLUETOOTH_DATA 3000
 
 float w1 = 0;  
 float w2 = 0;
@@ -32,6 +32,11 @@ int deltatBtData = DT_BLUETOOTH_DATA;
 int nextMotorData  = (millis() + DT_TIME_SEND_MOTOR_DATA);
 int nextBtData  = (millis() + deltatBtData);
 
+
+const int bufferSize = 100; // Define the buffer size
+char inputBuffer[bufferSize]; // Buffer to store the input string
+int bufferIndex = 0; // Index for the buffer
+
 void setup() {
   // Declare pins as output:
 
@@ -48,8 +53,40 @@ void setup() {
 }
 
 
+void loop() {
+  // Check if data is available on the serial port
+  while (Serial3.available()) {
+    char incomingChar = Serial3.read(); // Read one character
+    //Serial.println(incomingChar);
 
+    // If the received character is the newline character, process the input
+    if (incomingChar == '\n') {
+      inputBuffer[bufferIndex] = '\0'; // Null-terminate the string
+      Serial.print("Received: ");
+      Serial.println(inputBuffer); // Print the received string
 
+      // Reset the buffer index for the next input
+      bufferIndex = 0;
+    } else {
+      // Store the incoming character in the buffer if there is space
+      if (bufferIndex < bufferSize - 1) {
+        inputBuffer[bufferIndex] = incomingChar;
+        bufferIndex++;
+      } else {
+        // If the buffer is full, discard the input and print a warning
+        Serial.println("Buffer overflow! Input too long.");
+        bufferIndex = 0; // Reset the buffer index
+      }
+    }
+  }
+
+  // if (millis()>=nextBtData){
+  //   Serial.println("NO DATA");
+
+  //   nextBtData = millis() + deltatBtData;
+  // }
+  
+}
 // void loop() {
 
 //   readString = readUsart3(&nextBtData, deltatBtData);
@@ -57,10 +94,84 @@ void setup() {
 //     {  
 //       Serial.println(readString);  
 //     readString="";  
+//    }
+
+//   if (Serial3.available()){
+
+//    c = Serial3.read();
+//    readString += c; 
+//   }
+
+//   if (readString.length() >0) 
+//  {  
+//    Serial.println(readString);  
+//    readString="";  
+
+// }
+
+
+
+
+// unsigned long previousMillis = 0;
+// unsigned long delayStartMillis = 0;
+// const long checkInterval = 10;
+// const long pseudoDelay = 3;
+
+// bool delayStarted = false;
+// String inputString = "";
+// bool stringComplete = false;  
+
+// void loop() {
+//   unsigned long currentMillis = millis();
+
+//   if (currentMillis - previousMillis >= checkInterval) {
+//     previousMillis = currentMillis;
+
+
+//     if (Serial3.available() && !delayStarted) {
+//       delayStartMillis = millis();
+//       delayStarted = true;
 //     }
 
 
+//     if (delayStarted && (currentMillis - delayStartMillis >= pseudoDelay)) {
+//       while (Serial3.available()) {
+
+//         char incomingByte = Serial3.read();
+//         inputString += incomingByte;
+
+        
+//         if (incomingByte == '\n') {
+//           stringComplete = true;
+//           delayStarted = false; 
+//           break; 
+//         }
+//       }
+//     }
+
+//     if (stringComplete) {
+//       Serial.print(inputString);
+//       inputString = "";
+//       stringComplete = false;
+//     }
+//   }
 // }
+
+
+// void loop() {
+//     while (Serial3.available()) 
+//   {
+//     //delay(3);  
+//     c = Serial3.read();
+//     readString += c; 
+//   }// end while
+//   if (readString.length() >0) 
+//   {  
+//     Serial.println(readString);  
+//    readString="";  
+//   } // end if
+// }
+
 
 
 
@@ -116,19 +227,19 @@ void setup() {
 
 ///código que funciona com lendo blueTooth  LUCAS
 
-void loop() {
-    while (Serial3.available()) 
-  {
-    delay(3);  
-    c = Serial3.read();
-    readString += c; 
-  }// end while
-  if (readString.length() >0) 
-  {  
-    Serial.println(readString);  
-   readString="";  
-  } // end if
-}
+// void loop() {
+//     while (Serial3.available()) 
+//   {
+//     delay(3);  
+//     c = Serial3.read();
+//     readString += c; 
+//   }// end while
+//   if (readString.length() >0) 
+//   {  
+//     Serial.println(readString);  
+//    readString="";  
+//   } // end if
+// }
 
 
 
