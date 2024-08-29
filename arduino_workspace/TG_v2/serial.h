@@ -4,6 +4,14 @@
 
 void setUpSerialMonitor();
 void setUpSerialUsart3();
-char* readUsart3(int *timmer, int delta);
+// void readRgbUsart(
+//   int bufferSize,
+//   int *timmer,
+//   int delta,
+//   char *inputBuffer[],
+//   int *bufferIndex,
+//   float *angle_degrees, 
+//   float *magnitude
+// );
 
 #endif

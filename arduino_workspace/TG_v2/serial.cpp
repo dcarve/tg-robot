@@ -3,6 +3,7 @@
 #include "pinOutIn.h"
 #include <HardwareSerial.h>
 #include <libmaple/usart.h>
+#include "encoders.h"
 //#include <SoftwareSerial.h>
 
 //#include <HardwareSerial.h>
@@ -15,22 +16,43 @@ void setUpSerialUsart3(){
     Serial3.begin(9600);
 }
 
-char* readUsart3(int *timmer, int delta){
-  char c;
-  char* readString;
+// void readRgbUsart(
+//   int bufferSize,
+//   int *timmer,
+//   int delta,
+//   char *inputBuffer,
+//   int *bufferIndex,
+//   float *angle_degrees, 
+//   float *magnitude
+// ){
 
-  if (millis()>=*timmer){
-
-    if (Serial3.available()) {
-        c = Serial3.read();
-        readString += c; 
-    }
-
-    *timmer = millis() + delta;
-    return readString;
-  }
-}
+//   if (millis()>=*timmer){
 
 
+//     while (Serial3.available()) {
+//       char incomingChar = Serial3.read();
+//       if (incomingChar == '\n') {
+//         inputBuffer[*bufferIndex] = '\0';
+//         float angle_degrees_axu = *angle_degrees;
+//         float magnitude_aux = *magnitude;
 
- //4800, 9600, 14400, 19200, 28800, 31250, 38400, 57600, and 115200
+//         //char inputBuffer_aux[100] = *inputBuffer;
+
+//         rgbToDiretionAngleAndMagnitude(inputBuffer, &angle_degrees_axu, &magnitude_aux);
+//         *angle_degrees = angle_degrees_axu;
+//         *magnitude = magnitude_aux;
+//         *bufferIndex = 0;
+//       } else {
+//         if (*bufferIndex < bufferSize - 1) {
+//           inputBuffer[*bufferIndex] = incomingChar;
+//           *bufferIndex++;
+//         } else {
+//           bufferIndex = 0;
+//         }
+//       }
+//     }
+
+
+//     *timmer = millis() + delta;
+//   }
+// }

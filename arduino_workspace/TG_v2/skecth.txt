@@ -1,0 +1,35 @@
+
+void loop() {
+
+
+
+  // Check if data is available on the serial port
+  while (Serial3.available()) {
+    char incomingChar = Serial3.read(); // Read one character
+    //Serial.println(incomingChar);
+
+    // If the received character is the newline character, process the input
+    if (incomingChar == '\n') {
+      inputBuffer[bufferIndex] = '\0'; // Null-terminate the string
+      //Serial.println(inputBuffer); // Print the received string
+      rgbToDiretionAngleAndMagnitude(inputBuffer, &angle_degrees, &magnitude);
+      //Serial.print(angle_degrees);
+      //Serial.print(" , ");
+      //Serial.println(magnitude);
+
+      // Reset the buffer index for the next input
+      bufferIndex = 0;
+    } else {
+      // Store the incoming character in the buffer if there is space
+      if (bufferIndex < bufferSize - 1) {
+        inputBuffer[bufferIndex] = incomingChar;
+        bufferIndex++;
+      } else {
+        // If the buffer is full, discard the input and print a warning
+        //Serial.println("Buffer overflow! Input too long.");
+        bufferIndex = 0; // Reset the buffer index
+      }
+    }
+  }
+  
+}

@@ -15,5 +15,9 @@ float convert_rpm_to_speed_linear(float rpm);
 float convert_degrees_to_radians(float degrees);
 void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle, float angular_speed);
 float convert_speed_linear_to_rpm(float w);
+float max_of_three(float a, float b, float c);
+float min_of_three(float a, float b, float c);
+void rgbToDiretionAngleAndMagnitude(char rgb[], float *h, float *l);
+float mapLogarithmic(float value, float inMin, float inMax, float outMin, float outMax);
 
 #endif
