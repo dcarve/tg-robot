@@ -50,11 +50,9 @@ void stepResolutionEncoder(int stepResolution, byte* driver_mode){
 }
 
 
-int delayMicrosecondsForStep(int stepResolution, float rpm){
+int delayMicrosecondsPerStep(int stepResolution, float rpm){
     float delayValue;
-
     delayValue = (3*pow(10,5))/(2*stepResolution*rpm);
-
     return (int) delayValue;
 }
 
@@ -130,26 +128,6 @@ float min_of_three(float a, float b, float c) {
     }
 }
 
-// float mapLogarithmic(float value) {
-//     // Ensure the input value is within the range
-//     if (value < 50 || value > 100) {
-//         printf("Value out of range!\n");
-//         return -1;
-//     }
-
-//     // Normalize the input value to a range [0, 1]
-//     float normalizedValue = (value - 50) / (100 - 50);
-    
-//     // Apply logarithmic scaling
-//     // Note: log(x) is undefined for x <= 0, so we use a small positive offset
-//     float logValue = log(1 + normalizedValue * 9); // log(1 + 9) = log(10) is a reasonable scaling
-    
-//     // Map the logarithmic value to the range [0, 100]
-//     // Normalize logValue to [0, 1] and then map to [100, 0]
-//     float result = 100 * (1 - (logValue / log(10))); // log(10) is the max value of logValue
-
-//     return result;
-// }
 
 float mapLogarithmic(float value, float inMin, float inMax, float outMin, float outMax) {
     if (value<58.0){
@@ -214,18 +192,10 @@ void rgbToDiretionAngleAndMagnitude(char rgb[], float *h, float *l){
         } else {
             *h = (r - g) / delta + 4.0;
         }
-
         *h /= 6.0;
     }
 
     *h = roundf(((360.0 - (*h * 360.0)) * 100.0) / 100.0); // Convert to degrees and invert the x-axis
-    *l = roundf(*l * 100.0 * 100.0) / 100.0;  // Convert to percentage
-    //*l = map(*l, 50, 100, 100, 0); //remap the value  of 50-100 to 100-0
-
+    *l = roundf(*l * 100.0 * 100.0) / 100.0; // Convert to percentage
     *l = mapLogarithmic(*l, 58.0, 90.0, 100.0, 0.0);
-    
-
-    //*l = mapLogarithmic(*l);
-
-
 }

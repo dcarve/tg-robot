@@ -10,7 +10,7 @@ const int SIXTEENTH_STEP = 16;
 const int ONE_THIRTY_SECOND_STEP = 32;
 
 void stepResolutionEncoder(int stepResolution, byte* driver_mode);
-int delayMicrosecondsForStep(int stepResolution, float rpm);
+int delayMicrosecondsPerStep(int stepResolution, float rpm);
 float convert_rpm_to_speed_linear(float rpm);
 float convert_degrees_to_radians(float degrees);
 void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle, float angular_speed);
