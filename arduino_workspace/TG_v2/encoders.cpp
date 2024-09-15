@@ -5,13 +5,9 @@
 #include <stdio.h>
 
 #define RADIUS_ROBOT 100  // in milimeters
-#define DEFAULT_SPEED 800 // mm/second
-#define RADIUS_WHEEL 34.55 //mmm - 58mm
+#define DEFAULT_SPEED 400 // mm/second
+#define RADIUS_WHEEL 42 //mmm - 58mm
 #define PI 3.141592653589
-
-
-float radius = RADIUS_ROBOT;
-
 
 void stepResolutionEncoder(int stepResolution, byte* driver_mode){
 
@@ -49,13 +45,13 @@ void stepResolutionEncoder(int stepResolution, byte* driver_mode){
     }
 }
 
+/* 
+int rpmPerSecondsToStepPerSeconds(int stepResolution, float rpm){
+    int stepPerSeconds;
 
-int delayMicrosecondsPerStep(int stepResolution, float rpm){
-    float delayValue;
-    delayValue = (3*pow(10,5))/(2*stepResolution*rpm);
-    return (int) delayValue;
+    stepPerSeconds = ((rpm * stepResolution * 200) / 60);
+    return (int) stepPerSeconds;
 }
-
 
 float convert_rpm_to_speed_linear(float rpm){
     float w;
@@ -72,7 +68,17 @@ float convert_speed_linear_to_rpm(float w){
     
     return rpm;
 }
+ */
 
+int speedLinearToStepPerSeconds(int stepResolution, float speedLinear){
+    float rpm;
+    int stepPerSeconds;
+
+    rpm = 60*speedLinear/(2*PI*RADIUS_WHEEL);
+
+    stepPerSeconds = ((rpm * stepResolution * 200) / 60);
+    return (int) stepPerSeconds;
+}
 
 float convert_degrees_to_radians(float degrees){
     float radians;
@@ -80,31 +86,37 @@ float convert_degrees_to_radians(float degrees){
     return radians;
 }
 
+void TransformationMatrixRpm(volatile long *w1, volatile long *w2, volatile long *w3, float linear_speed_percent, float direction_angle, float angular_speed){
 
-void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle, float angular_speed){
-
-    float linear_speed_x = DEFAULT_SPEED * cos(convert_degrees_to_radians(direction_angle));
-    float linear_speed_y = DEFAULT_SPEED * sin(convert_degrees_to_radians(direction_angle));
+    float linear_speed_x = linear_speed_percent * DEFAULT_SPEED * cos(convert_degrees_to_radians(direction_angle));
+    float linear_speed_y = linear_speed_percent * DEFAULT_SPEED * sin(convert_degrees_to_radians(direction_angle));
 
     float a11 = 0;
     float a12 = -2.0/3;
-    float a13 = radius/3;
+    float a13 = RADIUS_ROBOT/3;
     float a21 = 1/sqrt(3);
     float a22 = 1.0/3;
-    float a23 = radius/3;
+    float a23 = RADIUS_ROBOT/3;
     float a31 = -1/sqrt(3);
     float a32 = 1.0/3;
-    float a33 = radius/3;
+    float a33 = RADIUS_ROBOT/3;
 
-    float aux1, aux2, aux3;
+    float speedLinear1, speedLinear2, speedLinear3;
 
-    aux1 = (a11 * linear_speed_x) + (a12 * linear_speed_y) + (a13 * angular_speed);
-    aux2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed);
-    aux3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed);
+    speedLinear1 = (a11 * linear_speed_x) + (a12 * linear_speed_y) + (a13 * angular_speed);
+    speedLinear2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed);
+    speedLinear3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed);
     
-    *w1 = convert_speed_linear_to_rpm(aux1);
-    *w2 = convert_speed_linear_to_rpm(aux2);
-    *w3 = convert_speed_linear_to_rpm(aux3);
+    //Serial.print("speed linear 1: ");
+    //Serial.print(speedLinear1, 4);
+    //Serial.print(" , speed linear 2: ");
+    //Serial.print(speedLinear2, 4);
+    //Serial.print(" , speed linear 3: ");
+    //Serial.println(speedLinear3, 4);
+
+    *w1 = speedLinearToStepPerSeconds(HALF_STEP, speedLinear1);
+    *w2 = speedLinearToStepPerSeconds(HALF_STEP, speedLinear2);
+    *w3 = speedLinearToStepPerSeconds(HALF_STEP, speedLinear3);
      
 }
 
@@ -130,23 +142,14 @@ float min_of_three(float a, float b, float c) {
 
 
 float mapLogarithmic(float value, float inMin, float inMax, float outMin, float outMax) {
-    if (value<58.0){
-        value=58.0;
-    } 
-
-    // Normalize the input value to a 0-1 range
+    if (value<60.0){value=60.0;}
 
     float normalized = (value - inMin) / (inMax - inMin);
-    
-    // Apply the logarithmic transformation
     float logValue = log10(1 + 9 * normalized);
-    
-    // Scale to the output range
     float mappedValue = outMax + (outMin - outMax) * (1 - logValue);
-    if (mappedValue<0.0){
-        mappedValue=0.0;
-    } 
-    
+
+    if (mappedValue<0.0){mappedValue=0.0;}    
+
     return mappedValue;
 }
 
@@ -197,5 +200,6 @@ void rgbToDiretionAngleAndMagnitude(char rgb[], float *h, float *l){
 
     *h = roundf(((360.0 - (*h * 360.0)) * 100.0) / 100.0); // Convert to degrees and invert the x-axis
     *l = roundf(*l * 100.0 * 100.0) / 100.0; // Convert to percentage
-    *l = mapLogarithmic(*l, 58.0, 90.0, 100.0, 0.0);
+    *l = mapLogarithmic(*l, 60.0, 90.0, 100.0, 0.0);
+    *l = *l/100;
 }

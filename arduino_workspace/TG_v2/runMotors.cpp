@@ -18,6 +18,7 @@ void stepResolution(int stepResolution){
     digitalWrite(M2, driverMode[2]);
 }
 
+/* 
 void convertRpmToDelays(
     int *w1_delay,
     int *w2_delay,
@@ -33,9 +34,9 @@ void convertRpmToDelays(
     *w3_delay = delayMicrosecondsForStep(stepResolution, w3);
 
 }
+ */
 
-
-void SetSleep(int motor, byte value){
+void SetMotorSleep(int motor, byte value){
 
     switch (motor) {
         case 1:
@@ -51,7 +52,7 @@ void SetSleep(int motor, byte value){
 
 }
 
-void SetReset(int motor, byte value){
+void SetMotorReset(int motor, byte value){
 
     switch (motor) {
         case 1:
@@ -62,22 +63,6 @@ void SetReset(int motor, byte value){
             break;
         case 3:
             digitalWrite(RESET_3, value);
-            break; 
-    }
-
-}
-
-void SetStep(int motor, byte value){
-
-    switch (motor) {
-        case 1:
-            digitalWrite(STEP_1, value);
-            break;
-        case 2:
-            digitalWrite(STEP_2, value);
-            break;
-        case 3:
-            digitalWrite(STEP_3, value);
             break; 
     }
 

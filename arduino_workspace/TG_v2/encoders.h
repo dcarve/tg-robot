@@ -9,15 +9,35 @@ const int EIGHTH_STEP = 8;
 const int SIXTEENTH_STEP = 16;
 const int ONE_THIRTY_SECOND_STEP = 32;
 
-void stepResolutionEncoder(int stepResolution, byte* driver_mode);
-int delayMicrosecondsPerStep(int stepResolution, float rpm);
-float convert_rpm_to_speed_linear(float rpm);
+void stepResolutionEncoder(
+    int stepResolution,
+    byte* driver_mode
+);
+int speedLinearToStepPerSeconds(int stepResolution, float speedLinear);
+
+// int rpmPerSecondsToStepPerSeconds(int stepResolution, float rpm);
+// float convert_rpm_to_speed_linear(float rpm);
+//float convert_speed_linear_to_rpm(float w);
+
 float convert_degrees_to_radians(float degrees);
-void TransformationMatrix(float *w1, float *w2, float *w3, float direction_angle, float angular_speed);
-float convert_speed_linear_to_rpm(float w);
+void TransformationMatrixRpm(
+    volatile long *w1,
+    volatile long *w2,
+    volatile long *w3,
+    float linear_speed_percent,
+    float direction_angle,
+    float angular_speed
+);
+
 float max_of_three(float a, float b, float c);
 float min_of_three(float a, float b, float c);
 void rgbToDiretionAngleAndMagnitude(char rgb[], float *h, float *l);
-float mapLogarithmic(float value, float inMin, float inMax, float outMin, float outMax);
+float mapLogarithmic(
+    float value,
+    float inMin,
+    float inMax,
+    float outMin,
+    float outMax
+);
 
 #endif
