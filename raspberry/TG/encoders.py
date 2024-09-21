@@ -1,8 +1,6 @@
-#include "encoders.h"
-improt math
-#include <Arduino.h>
-#include <util/atomic.h>
-#include <stdio.h>
+# -*- coding: utf-8 -*-
+
+import math
 
 RADIUS_ROBOT = 100  #in milimeters
 DEFAULT_SPEED = 400 #mm/second
@@ -16,166 +14,86 @@ EIGHTH_STEP = 8
 SIXTEENTH_STEP = 16
 ONE_THIRTY_SECOND_STEP = 32
 
-def step_resolution_encoder(step_resolution):
-    driver_mode = format(int(math.log2(step_resolution)), '03b')
+def step_resolution_encoder(step_resolution, GPIO):
+    driver_mode = list(format(int(math.log2(step_resolution)), '03b'))
+    driver_mode.reverse()
+    driver_mode = [{'1':GPIO.HIGH,'0':GPIO.LOW}[i] for i in driver_mode]
+    
     return driver_mode
 
+def speed_linear_to_step_per_seconds(step_resolution, speed_linear):
+    rpm = 60*speed_linear/(2*math.pi*RADIUS_WHEEL)
 
-/* 
-int rpmPerSecondsToStepPerSeconds(int stepResolution, float rpm){
-    int stepPerSeconds;
+    step_per_seconds = ((rpm * step_resolution * 200) / 60)
+    return int(step_per_seconds)
 
-    stepPerSeconds = ((rpm * stepResolution * 200) / 60);
-    return (int) stepPerSeconds;
-}
 
-float convert_rpm_to_speed_linear(float rpm){
-    float w;
+def transformation_matrix_rpm(linear_speed_percent, direction_angle, angular_speed, step_resolution):
 
-    w = RADIUS_WHEEL*2*PI*rpm/(60);
+    linear_speed_x = linear_speed_percent * DEFAULT_SPEED * math.cos(math.radians(direction_angle))
+    linear_speed_y = linear_speed_percent * DEFAULT_SPEED * math.sin(math.radians(direction_angle))
+
+    a11 = 0
+    a12 = -2.0/3
+    a13 = RADIUS_ROBOT/3
+    a21 = 1/sqrt(3)
+    a22 = 1.0/3
+    a23 = RADIUS_ROBOT/3
+    a31 = -1/sqrt(3)
+    a32 = 1.0/3
+    a33 = RADIUS_ROBOT/3
+
+    speed_linear_1 = (a11 * linear_speed_x) + (a12 * linear_speed_y) + (a13 * angular_speed)
+    speed_linear_2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed)
+    speed_linear_3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed)
     
-    return w;
-}
-
-float convert_speed_linear_to_rpm(float w){
-    float rpm;
-
-    rpm = 60*w/(2*PI*RADIUS_WHEEL);
-    
-    return rpm;
-}
- */
-
-int speedLinearToStepPerSeconds(int stepResolution, float speedLinear){
-    float rpm;
-    int stepPerSeconds;
-
-    rpm = 60*speedLinear/(2*PI*RADIUS_WHEEL);
-
-    stepPerSeconds = ((rpm * stepResolution * 200) / 60);
-    return (int) stepPerSeconds;
-}
-
-float convert_degrees_to_radians(float degrees){
-    float radians;
-    radians = (degrees * 71) / 4068;
-    return radians;
-}
-
-void TransformationMatrixRpm(volatile long *w1, volatile long *w2, volatile long *w3, float linear_speed_percent, float direction_angle, float angular_speed){
-
-    float linear_speed_x = linear_speed_percent * DEFAULT_SPEED * cos(convert_degrees_to_radians(direction_angle));
-    float linear_speed_y = linear_speed_percent * DEFAULT_SPEED * sin(convert_degrees_to_radians(direction_angle));
-
-    float a11 = 0;
-    float a12 = -2.0/3;
-    float a13 = RADIUS_ROBOT/3;
-    float a21 = 1/sqrt(3);
-    float a22 = 1.0/3;
-    float a23 = RADIUS_ROBOT/3;
-    float a31 = -1/sqrt(3);
-    float a32 = 1.0/3;
-    float a33 = RADIUS_ROBOT/3;
-
-    float speedLinear1, speedLinear2, speedLinear3;
-
-    speedLinear1 = (a11 * linear_speed_x) + (a12 * linear_speed_y) + (a13 * angular_speed);
-    speedLinear2 = (a21 * linear_speed_x) + (a22 * linear_speed_y) + (a23 * angular_speed);
-    speedLinear3 = (a31 * linear_speed_x) + (a32 * linear_speed_y) + (a33 * angular_speed);
-    
-    //Serial.print("speed linear 1: ");
-    //Serial.print(speedLinear1, 4);
-    //Serial.print(" , speed linear 2: ");
-    //Serial.print(speedLinear2, 4);
-    //Serial.print(" , speed linear 3: ");
-    //Serial.println(speedLinear3, 4);
-
-    *w1 = speedLinearToStepPerSeconds(ONE_THIRTY_SECOND_STEP, speedLinear1);
-    *w2 = speedLinearToStepPerSeconds(ONE_THIRTY_SECOND_STEP, speedLinear2);
-    *w3 = speedLinearToStepPerSeconds(ONE_THIRTY_SECOND_STEP, speedLinear3);
+    w1 = speedLinearToStepPerSeconds(step_resolution, speed_linear_1)
+    w2 = speedLinearToStepPerSeconds(step_resolution, speed_linear_2)
+    w3 = speedLinearToStepPerSeconds(step_resolution, speed_linear_3)
      
-}
-
-float max_of_three(float a, float b, float c) {
-    if (a >= b && a >= c) {
-        return a;
-    } else if (b >= a && b >= c) {
-        return b;
-    } else {
-        return c;
-    }
-}
-
-float min_of_three(float a, float b, float c) {
-    if (a <= b && a <= c) {
-        return a;
-    } else if (b <= a && b <= c) {
-        return b;
-    } else {
-        return c;
-    }
-}
+    return w1, w2, w3
 
 
-float mapLogarithmic(float value, float inMin, float inMax, float outMin, float outMax) {
-    if (value<60.0){value=60.0;}
+def map_logarithmic(value, in_min, in_max, out_min, out_max):
+    if value<60.0:
+        value=60.0
 
-    float normalized = (value - inMin) / (inMax - inMin);
-    float logValue = log10(1 + 9 * normalized);
-    float mappedValue = outMax + (outMin - outMax) * (1 - logValue);
+    normalized = (value - in_min) / (in_max - in_min)
+    log_value = math.log10(1 + 9 * normalized)
+    mapped_value = out_max + (out_min - out_max) * (1 - log_value)
 
-    if (mappedValue<0.0){mappedValue=0.0;}    
+    if mapped_value<0.0:
+        mapped_value=0.0
 
-    return mappedValue;
-}
+    return mapped_value
 
 
+def rgb_to_diretion_angle_and_magnitude(rgb):
+    #baseado no algoritmo de conversão de rgb para hsl
+    
+    r = int(rgb[:3])/255.0
+    g = int(rgb[3:6])/255.0
+    b = int(rgb[6:])/255.0
 
-void rgbToDiretionAngleAndMagnitude(char rgb[], float *h, float *l){
-    //baseado no algoritmo de conversão de rgb para hsl
+    max_color = max(r, g, b)
+    min_color = min(r, g, b)
+    l = (max_color + min_color) / 2.0
 
-    float r, g, b;
+    if max_color == min_color:
+        h = 0.0  # Achromatic
+    else:
+        delta = max_color - min_color
 
-    char substr1[4]; // 4 to include the null terminator
-    strncpy(substr1, rgb, 3);
-    substr1[3] = '\0'; // Null terminate the substring
-    r = (float)atoi(substr1);
+        if max_color == r:
+            h = (g - b) / delta + (6.0 if g < b else 0.0)
+        elif max_color == g:
+            h = (b - r) / delta + 2.0
+        else:
+            h = (r - g) / delta + 4.0
 
-    char substr2[4];
-    strncpy(substr2, rgb + 3, 3);
-    substr2[3] = '\0';
-    g = (float)atoi(substr2);
+        h /= 6.0
 
-    char substr3[4];
-    strncpy(substr3, rgb + 6, 3);
-    substr3[3] = '\0';
-    b = (float)atoi(substr3);
+    h = round(((360.0 - (h * 360.0)) * 100.0) / 100.0,2) # Convert to degrees and invert the x-axis
+    l = round(map_logarithmic(l*100, 60.0, 90.0, 100.0, 0.0)/100,2)
 
-    r = r/255.0;
-    g = g/255.0;
-    b = b/255.0;
-
-    float max_color = max_of_three(r, g, b);
-    float min_color = min_of_three(r, g, b);
-    *l = (max_color + min_color) / 2.0;
-
-    if (max_color == min_color){
-        *h =  0.0;  //Achromatic
-    }  else {
-        float  delta = max_color - min_color;
-        
-        if (max_color == r) {
-            *h = (g - b) / delta + ((g < b) ? 6.0 : 0.0);
-        } else if (max_color == g) {
-            *h = (b - r) / delta + 2.0;
-        } else {
-            *h = (r - g) / delta + 4.0;
-        }
-        *h /= 6.0;
-    }
-
-    *h = roundf(((360.0 - (*h * 360.0)) * 100.0) / 100.0); // Convert to degrees and invert the x-axis
-    *l = roundf(*l * 100.0 * 100.0) / 100.0; // Convert to percentage
-    *l = mapLogarithmic(*l, 60.0, 90.0, 100.0, 0.0);
-    *l = *l/100;
-}
+    return h,l

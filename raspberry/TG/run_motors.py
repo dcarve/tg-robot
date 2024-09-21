@@ -1,73 +1,40 @@
 #include "runMotors.h"
 import encoders
-#include "pinOutIn.h"
+import pin_out_in
 
 #include <math.h>
 #include <Arduino.h>
 #include <util/atomic.h>
 
 
-class motors
-
+class motorSetup:
 
     def __init__(self, GPIO):
         self.GPIO = GPIO
 
 
-def stepResolution(step_resolution, GPIO):
-    encoders.step_resolution_encoder(step_resolution)
+    def step_resolution_output(self, step_resolution):
+        driver_mode = encoders.step_resolution_encoder(step_resolution, self.GPIO)
 
-    digitalWrite(M0, driverMode[0]);
-    digitalWrite(M1, driverMode[1]);
-    digitalWrite(M2, driverMode[2]);
-}
+        self.GPIO.output(pin_out_in.M0, driver_mode[0])
+        self.GPIO.output(pin_out_in.M1, driver_mode[1])
+        self.GPIO.output(pin_out_in.M2, driver_mode[2])
 
-/* 
-void convertRpmToDelays(
-    int *w1_delay,
-    int *w2_delay,
-    int *w3_delay,
-    float w1,
-    float w2,
-    float w3,
-    int stepResolution)
-{
 
-    *w1_delay = delayMicrosecondsForStep(stepResolution, w1);
-    *w2_delay = delayMicrosecondsForStep(stepResolution, w2);
-    *w3_delay = delayMicrosecondsForStep(stepResolution, w3);
+    def set_motor_sleep(self, motor, value):
+        if motor==1:
+            self.GPIO.output(pin_out_in.SLEEP_1, value)
+        elif motor==2:
+            self.GPIO.output(pin_out_in.SLEEP_2, value)
+        elif motor==3:
+            self.GPIO.output(pin_out_in.SLEEP_3, value)
 
-}
- */
 
-void SetMotorSleep(int motor, byte value){
 
-    switch (motor) {
-        case 1:
-            digitalWrite(SLEEP_1, value);
-            break;
-        case 2:
-            digitalWrite(SLEEP_2, value);
-            break;
-        case 3:
-            digitalWrite(SLEEP_3, value);
-            break; 
-    }
-
-}
-
-void SetMotorReset(int motor, byte value){
-
-    switch (motor) {
-        case 1:
-            digitalWrite(RESET_1, value);
-            break;
-        case 2:
-            digitalWrite(RESET_2, value);
-            break;
-        case 3:
-            digitalWrite(RESET_3, value);
-            break; 
-    }
-
-}
+    def set_motor_reset(self, motor, value):
+        if motor==1:
+            self.GPIO.output(pin_out_in.RESET_1, value)
+        elif motor==2:
+            self.GPIO.output(pin_out_in.RESET_2, value)
+        elif motor==3:
+            self.GPIO.output(pin_out_in.RESET_3, value)
