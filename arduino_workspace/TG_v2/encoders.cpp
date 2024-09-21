@@ -114,9 +114,9 @@ void TransformationMatrixRpm(volatile long *w1, volatile long *w2, volatile long
     //Serial.print(" , speed linear 3: ");
     //Serial.println(speedLinear3, 4);
 
-    *w1 = speedLinearToStepPerSeconds(HALF_STEP, speedLinear1);
-    *w2 = speedLinearToStepPerSeconds(HALF_STEP, speedLinear2);
-    *w3 = speedLinearToStepPerSeconds(HALF_STEP, speedLinear3);
+    *w1 = speedLinearToStepPerSeconds(ONE_THIRTY_SECOND_STEP, speedLinear1);
+    *w2 = speedLinearToStepPerSeconds(ONE_THIRTY_SECOND_STEP, speedLinear2);
+    *w3 = speedLinearToStepPerSeconds(ONE_THIRTY_SECOND_STEP, speedLinear3);
      
 }
 
