@@ -9,7 +9,7 @@ const byte  RESET_ALL = 13;
 const byte  RELES = 23;
 
 
-const byte  SLEEP_1 = ;
+const byte  SLEEP_1 = 17;
 const byte  SLEEP_2 = 16;
 const byte  SLEEP_3 = 4;
 

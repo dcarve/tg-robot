@@ -3,14 +3,11 @@
 #include <Arduino.h>
 
 
-void dummyCommand(){
-    Serial.println("dummy command");
-};
+
 
 void runBtCommands(int command){
 
     if (command == 1) {
-        Serial.println("Switch ON reles");
         switchOnReles();
     } else if (command == 2) {
         switchOffReles();
@@ -22,10 +19,16 @@ void runBtCommands(int command){
 
 };
 
+void dummyCommand(){
+    Serial.println("dummy command");
+};
+
 void switchOnReles(){ //on in LOW
+    Serial.println("Switch ON reles");
     digitalWrite(RELES, LOW);
 };
 
 void switchOffReles(){//off in HIGH
+    Serial.println("Switch OFF reles");
     digitalWrite(RELES, HIGH);
 };

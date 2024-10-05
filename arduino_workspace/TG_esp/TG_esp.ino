@@ -85,21 +85,21 @@ void btCommandSerial(){
 
       } else {
         rgbToDiretionAngleAndMagnitude(inputBuffer, &direction_angle, &linear_speed_percent);
-      }
 
-      Serial.print("D_A: ");
-      Serial.print(direction_angle, 4);
-      Serial.print(", L_S_P: ");
-      Serial.println(linear_speed_percent, 4);
+        Serial.print("D_A: ");
+        Serial.print(direction_angle, 4);
+        Serial.print(", L_S_P: ");
+        Serial.println(linear_speed_percent, 4);
 
-        
-      Serial.print("S_P_S_1: ");
-      Serial.print(w1);
-      Serial.print(", S_P_S_2: ");
-      Serial.print(w2);
-      Serial.print(", S_P_S_3: ");
-      Serial.println(w3);
+          
+        Serial.print("S_P_S_1: ");
+        Serial.print(w1);
+        Serial.print(", S_P_S_2: ");
+        Serial.print(w2);
+        Serial.print(", S_P_S_3: ");
+        Serial.println(w3);
       
+      }
       bufferIndex = 0;
     } else {
       if (bufferIndex < bufferSize - 1) {
