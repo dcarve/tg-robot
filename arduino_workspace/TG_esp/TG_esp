@@ -1,0 +1,56 @@
+
+#include "BluetoothSerial.h"
+#include <Arduino.h>
+#include <math.h>
+#include "pinOutIn.h"
+
+
+void setup() {
+
+  pinMode(RESET_ALL, OUTPUT);
+  pinMode(RELES, OUTPUT);
+
+  pinMode(SLEEP_1, OUTPUT);  
+  pinMode(SLEEP_2, OUTPUT);
+  pinMode(SLEEP_3, OUTPUT);
+
+  pinMode(DIR_1, OUTPUT);  
+  pinMode(STEP_1, OUTPUT);
+
+  pinMode(DIR_2, OUTPUT);
+  pinMode(STEP_2, OUTPUT);
+
+  pinMode(DIR_3, OUTPUT);
+  pinMode(STEP_3, OUTPUT);
+
+}
+
+
+
+void loop() {
+
+  digitalWrite(RESET_ALL, HIGH);
+
+  digitalWrite(SLEEP_1, HIGH);
+  digitalWrite(SLEEP_2, HIGH);
+  digitalWrite(SLEEP_3, HIGH);
+
+  digitalWrite(DIR_1, HIGH);
+  digitalWrite(DIR_2, HIGH);
+  digitalWrite(DIR_3, HIGH);
+
+
+
+  digitalWrite(STEP_1, HIGH);
+  digitalWrite(STEP_2, HIGH);
+  digitalWrite(STEP_3, HIGH);
+  delayMicroseconds(2000);
+  digitalWrite(STEP_1, LOW);
+  digitalWrite(STEP_2, LOW);
+  digitalWrite(STEP_3, LOW);
+  delayMicroseconds(2000);
+
+
+}
+
+
