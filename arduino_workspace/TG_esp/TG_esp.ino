@@ -3,8 +3,9 @@
 #include "pinOutIn.h"
 #include "stepperMotors.h"
 #include "encoders.h"
+#include "serial.h"
 #include <AccelStepper.h>
-#include "BluetoothSerial.h"
+//#include "BluetoothSerial.h"
 #include "btCommands.h"
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
@@ -38,7 +39,7 @@ AccelStepper stepper1(AccelStepper::DRIVER, STEP_1, DIR_1);
 AccelStepper stepper2(AccelStepper::DRIVER, STEP_2, DIR_2);
 AccelStepper stepper3(AccelStepper::DRIVER, STEP_3, DIR_3);
 
-BluetoothSerial SerialBT;
+//BluetoothSerial SerialBT;
 
 void setup() {
   allDriversStep();
@@ -46,10 +47,13 @@ void setup() {
   stepperDriver1(); // 0°
   stepperDriver2(); // 120° 
   stepperDriver3(); // -120°
+  switchOffReles();
 
-  Serial.begin(115200);
-  SerialBT.begin("RoboTG_espmodule");
-  Serial.println("The device started, now you can pair it with bluetooth!");
+  //Serial.begin(115200);
+  setupSerial();
+  setupBluetooth("RoboTG_espmodule");
+  //SerialBT.begin("RoboTG_espmodule");
+  //Serial.println("The device started, now you can pair it with bluetooth!");
 
   stepper1.setMaxSpeed(MAX_SPEED);  // Max speed (steps per second)
   stepper1.setAcceleration(MAX_ACCELERATION);  // Acceleration (steps per second^2)
@@ -64,8 +68,10 @@ void setup() {
 
 void btCommandSerial(){
 
-  while (SerialBT.available()) {
-    char incomingChar = SerialBT.read();
+  //while (SerialBT.available()) {
+  while (BluetoothAvailable()) {
+    //char incomingChar = SerialBT.read();
+    char incomingChar = readBluetoothMessage();
 
     if (incomingChar == '\n') {
       inputBuffer[bufferIndex] = '\0'; // Null-terminate the string
@@ -85,20 +91,7 @@ void btCommandSerial(){
 
       } else {
         rgbToDiretionAngleAndMagnitude(inputBuffer, &direction_angle, &linear_speed_percent);
-
-        Serial.print("D_A: ");
-        Serial.print(direction_angle, 4);
-        Serial.print(", L_S_P: ");
-        Serial.println(linear_speed_percent, 4);
-
-          
-        Serial.print("S_P_S_1: ");
-        Serial.print(w1);
-        Serial.print(", S_P_S_2: ");
-        Serial.print(w2);
-        Serial.print(", S_P_S_3: ");
-        Serial.println(w3);
-      
+        sendLogSpeed(direction_angle, linear_speed_percent, w1, w2, w3);
       }
       bufferIndex = 0;
     } else {

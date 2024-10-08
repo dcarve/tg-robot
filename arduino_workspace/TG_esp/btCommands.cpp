@@ -1,6 +1,7 @@
 #include "pinOutIn.h"
 #include "btCommands.h"
 #include <Arduino.h>
+#include "serial.h"
 
 
 
@@ -11,24 +12,24 @@ void runBtCommands(int command){
         switchOnReles();
     } else if (command == 2) {
         switchOffReles();
-    } else if (command == 3) {
-        dummyCommand();
     } else {
-        
+        dummyCommand();
     }
 
 };
 
 void dummyCommand(){
-    Serial.println("dummy command");
+    sendBluetoothMessageLn("dummy command");
 };
 
 void switchOnReles(){ //on in LOW
+    sendBluetoothMessageLn("Switch ON reles");
     Serial.println("Switch ON reles");
     digitalWrite(RELES, LOW);
 };
 
 void switchOffReles(){//off in HIGH
+    sendBluetoothMessageLn("Switch OFF reles");
     Serial.println("Switch OFF reles");
     digitalWrite(RELES, HIGH);
 };
