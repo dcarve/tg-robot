@@ -58,7 +58,27 @@ A tabela \ref{custos} apresenta os custos de cada componente de hardware adquiri
 
 \subsubsection{Motor de passo}
 
-teste
+Para a execução deste projeto, foi pensado inicialmente o uso de motores DC,  devido a facilidade de uso.
+Como os motores DC variam a velocidade com base na tensão disponível, tornando o acionamento simples.
+Porém o controle de velocidade é mais complexo, fazendo o uso de encoders.
+A leitura dos resultados do encoders possuem muitos ruidos de medição e variam muito com a frequência de amostragem, 
+mas remover os ruidos de alta frequência do sinal possa ser resolvido usando um algorítimo de filtro passa baixa discreto.
+Porém os motores DC tem a limitação de trabalharem em uma faixa de rpm específica, podendo o motor não alcançar um rpm mínimo desejado.
+Um motor de 6v/210 RPM usado tinha baixo torque a baixas velocidades, além de precisar de uma corrente de partida mais alta do que a tensão inicial fornecia.
+Trocar por motores de menor velocidade acabaria tendo o problema de não ser possível alçarem um velocidade mais alta quando necessário.
+Para usar um motor DC com uma boa variação de velocidade, seria necessário usar um conjunto de engrenagens para obter o rpm desejado sem grandes perdas de torque nos motores
+e sem problemas de corrente de partida insuficiente.
+
+Devido essas limitações se optou por motores de passo,  nema 17 bipolar, de uso padrão em impressoras 3D.
+A escolha foi motivada pela facilidade de aquisição e maior disponibilidade no mercado, tornando o preço mais baixo do que motores DC,
+Em média os valores de um Nema 17 chegam a metade do valor de um motor DC de baixo RPM.
+Outro motivo que levou a escolha, foi o fato de serem motores de reposição de uma impressora 3D usada no projeto.
+
+Pelo fato de motor de passo ser controlado em passos por segundo, o controle de velocidade é mais fácil,
+e as possíveis variações de rpm ocorrem a nível de ciclos do microcontrolador.
+
+Porém motores de passo exigem um cuidado maior, além de exigem uma alimentação maior, de 12v a 24v, os uso dos drivers para motor de passo exigem um maior cuidado na montagem.
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/JK42HS40_1704_13A}
@@ -70,72 +90,86 @@ teste
 	 \begin{tabular}{|c|c|c|c|}
 		\hline
 		\textbf{Especificação} & \textbf{Valor} \\ \hline
-		Tensão nominal & DC 6V  \\ \hline
-		Velocidade sem carga  & 210RPM 0.13A  \\ \hline
-		Eficiência máxima & 2,0kg.cm/170rpm/2,0W/0,60A   \\ \hline
-		Poder máximo & 5,2kg.cm/110rpm/3,1W/1,10A   \\ \hline
-		Torque de parada  & 10kg.cm 3.2A    \\ \hline
-		Taxa de Redução do Retardador & 1:34  \\ \hline
-		Resolução do salão & Razão Hall x 34,02 = 341,2PPR  \\ \hline
+		Corrente por fase & 1.7A  \\ \hline
+		Torque nomimal  & 4.2 KGF (~46 N) \\ \hline
+		Angulo de passo & 1.8° \\ \hline
+		Polaridade & bipolar \\ \hline
 	\end{tabular}
 	\fonte{\cite{chinhai_motor}}
 \end{quadro}
 
 
-\subsubsection{Driver de Motor}
-Nas etapas iniciais do projeto, testou-se driver Ponte H L298N para ligar cada motor. Esse driver suporta até 2A em
-operação DC \cite{datasheel_l298n}. A corrente de operação máxima do motor é de 1.1A; contudo, a corrente de parada
-pode chegar a 3.2A. Além disso, o L298N também causa uma queda de tensão significativa: a uma corrente de 1A, a queda
-observada chegou a até 3.2V, fazendo com que o motor não receba a tensão necessária para operar nas condições
-desejadas \cite{datasheel_l298n}. As observações são compatíveis com as expectativas de faixa de operação do L298N - a
-seu uso é recomendado para tensões entre 12V a 40V, em que a queda de tensão observada não seja tão significativa
-relativamente. Devido à natureza da aplicação deste projeto, com o motor de 6v, a queda de tensão acaba sendo
-intolerável, inviabilizando assim o uso da ponte H L298N.
+Outro desafio do motor de passo é idenfiticar as fases, pois cada fabricante pode ter uma ordem diferente dos pinos de saida do motor.
+Para idenfiticar quais pinos compõem cada fase, bastou verificar com o multimetro quais fases estavam em curto.
+Restando identicar somente o pontos A e B de cada fase de acordo com o diagrama a seguir.
 
-Após essas considerações e observações, optou-se por um driver apropriado para uso em baixas tensões, o DRV8833
-\cite{datasheel_dvr8833}.
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/motor_wiring}
+	\caption{Motor de passo - Fases Bipolar \cite{motor_dc_6v_encoder}}
+\end{figure}
+
+Para identificar quais eram os pontos A e B de cada fase, foi necessário um processo de tentantiva e erro,
+para relacionar o diagrama de fases com os pinos do motor, e o resultado esta ilustrado na figura \ref{nema_pinout}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/motor_pinout}
+	\caption{Motor de passo - Idetificação dos pinos  \cite{motor_dc_6v_encoder}}
+	\label{nema_pinout}
+\end{figure}
+
+
+
+\subsubsection{Driver de Motor}
+
+Diferente de um driver de motor DC, como o L289N e o DRV8833, que rececem um sinal PWM e convertem propocionalmente
+para o sinal de tensão a ser aplicado no motor,  os driver de motor de passo são responsáveis por aplicar uma corrente constante, independende da tensão de alimentação.
+sendo essa podendo variar de acordo com os limites dos motores e do próprio driver,  por convensão, para um Nema 17, é comnum se trabalhar com uma alimentação
+de 12v a 24v.
+
+O driver DRV8825 exige alguns cuidados, alguns informados em documentação e outros não.
+Um dos cuidado a ser informado é o ajuste do Vref, nas documentações é dito que é necessário apenas ligar a alimentação dos motores e o ground do microcontrolador
+porém em vários testes, alguns drivers pararam de funcionar,  foi então encontrado em fóruns que é recomendado que a carga (o motor) esteja ligado durante esse processo de ajuste do Vref
+e que e nenhuma hipotese o driver deve ser alimentado sem que a carga esteja conectada.
 
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/DRV8833-Dual-Driver-Pinout}
+	\includegraphics[width=0.7\textwidth]{figures/DRV8825}
 	\caption{Driver Ponte H DVR8833 \cite{DRV8833_image}}
 \end{figure}
 
+
 \subsubsection{Microcontrolador}
 
-Como opção de microcontrolador, optou-se pelo uso do STM32F103C8 (abreviado como STM32 ao longo deste trabalho),
-também conhecido como Blue Pill. Possui como processador o ARM Cortex-M3, e tem 64Kbs de memória flash.  Possui também 7 timers, 2 ADCs, e 9 interfaces de comunicação, incluindo I2C (\textit{Inter-Integrated Circuit}), USART 
-\textit{Universal Synchronous Asynchronous Receiver Transmitter}), SPI (\textit{Serial Peripheral Interface}), CAN e
-USB 2.0. O STM32 apresenta 7 pinos que suportam canais de PWM de 5V, e outros 8 canais de 3.3V, e pode ser alimentado
-via microUSB de 5V. Existem 3 grupos de pinos,  $P_{A}$,  $P_{B}$ e  $P_{C}$: os pinos PA vão de $P_{A0}$ 
-a $P_{A15}$, PB indo de $P_{B0}$ a $P_{B15}$, e PC com apenas 3 pinos, $P_{C13}$, $P_{C14}$ e $P_{C15}$.
+Inicialmente foi escolhido o STM32F103C8, porém a comunicação serial via microusb não pode ser usada ao mesmo tempo que
+a alimentação de 3.3v do gravador ST-link. isso pode causar danos no controlador. Por causa dessa limitação foi escolhido o ESP32 DevKit v1.
+Embora  quantidade de pinos disponíveis seja menor, não será necessário o uso de pinos de comunicação serial para usar com um módulo bluetooth,
+já que o ESP32 já possui bluetooth integrado.
 
-Para carregar o projeto no microcontrolador, utilizou-se um gravador ST-LINK USB.
+De acordo com o datasheet do ESP32 \cite{esp32_datasheet} e a análises disponíveis online de entusiastas do uso do ESP32 \cite{esp32_reference},
+existem alguns pinos recomendados para se usar, alguns que requerem atenção no uso, e outros que recomendam evitar.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1.0\textwidth]{figures/stm32f1_pinout}
-	\caption{Diagrama de pinos do STM32F103C8}
+	\includegraphics[width=1.0\textwidth]{figures/esp32_pinout}
+	\caption{Diagrama de pinos do ESP32 Devkit v1 \cite{esp32_reference}}
 \end{figure}
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.35\textwidth]{figures/esp32_pinout_ref}
+	\caption{Recomendação de uso dos pinos do ESP32 Devkit v1 \cite{esp32_reference}}
+\end{figure}
+
 
 \subsubsection{Alimentação}
 Para alimentar o microcontrolador, um powerbank com saída de 5V foi empregado usado, considerando que o STM32F103C8 
 funciona a uma corrente abaixo de 100mA. Para alimentar os motores, durante o desenvolvimento, optou-se por uma 
 bateria de chumbo-ácido de 6V 4.5Ah.
 
-\subsubsection{Comunicação Bluetooth para controle em aplicativo Android - Módulo HC-05}
-Para controle de movimento do robô, desenvolveu-se um aplicativo Android, com uso da ferramenta MIT App Inventor. O app opera enviando para o microcontrolador comandos via Bluetooth. O STM32 recebe esses commands por meio 
-do módulo de Bluetooth HC-05 (figura \ref{fig:hc_05}). A comunicação entre o HC-05 e o STM32 é serial, fazendo uso 
-dos pinos da USART2 do STM32, $P_{A3}$ (RX2) e $P_{A2}$ (TX2).
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/hc_05}
-	\caption{Módulo Bluetooth HC-05}
-	\label{fig:hc_05}
-	\cite{hc05_image}
-\end{figure}
 
 \subsection{Fabricação e montagem}
 O chassi e demais peças foram fabricados por meio de impressão 3D, usando filamento de PLA (ácido poliáctico). As
@@ -162,10 +196,9 @@ fim, a impressão das peças foi realizada em uma impressora Ender 3 S1 Pro.
 % descritos nesta subseção.}
 
 \section{Software}
-No desenvolvimento deste projeto, algumas ferramentas de software foram e empregadas. As principais áreas em que seu uso
-se fez necessário foram na programação do STM32, no desenvolvimento do aplicativo para comunicação entre um Smartphone e
-o módulo HC-05, no projeto e impressão 3D das peças da estrutura do robô, e nas simulações para obtenção empírica de
-parâmetros de operação do robô.
+Para controlar o robô, inicialmente foi pensando em usar uma aplicação drag\&drop para criar um app andriod que envia dados via bluetooth serial.
+Porem realizando um benchmark de outros app disponíveis para interações bluetooth com arduino optamos por usar dois desses app e usar de uma maneira diferente.
+
 
 \subsection{Programação do microcontrolador}
 Nesta aplicação, o microcontrolador contém é responsável por coordenar a operação do robô. Por essa razão, foi
@@ -175,7 +208,14 @@ entrada segundo suas capacidades e o uso desejado no projeto, bem como implement
 motores do robô). É também do microcontrolador a tarefa de interpretar os comandos recebidos via Bluetooth pelo módulo 
 HC-05 (e transmitidos ao STM32 via comunicação serial) e convertê-los em sinal de controle.
 
-\subsection{Desenvolvimento de aplicativo Android}
+\subsection{Aplicativo Android}
+
+O aplicativo Arduino Bluetooth Controller possui uma opção em que o aplicativo envia uma "string" representando as cores RGB em "int8".
+por exemplo,  vermelho seria "255000000" (r=255, g=0, b=0). E a interface é o modelo de cor HSV ém 2 dimensões de ponta cabeça,
+No modelo HSV, "H" significa "hue" ou matiz, e é um valor do angulo dentro do modelo HSV,  S é saturação.
+
+usando um algorítimo que converte RGB para HSV e invertendo o eixo Y
+
 Por meio do uso da plataforma MIT App Inventor, vou possível simplificar significativamente o desenvolvimento de um app
 Android para uso neste trabalho. A plataforma fornece elementos visuais para produção da interface do app, bem como 
 permite implementação de algumas funcionalidades mais comuns (como acesso à comunicação Bluetooth de um Smartphone) a 

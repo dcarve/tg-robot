@@ -34,28 +34,59 @@ def rgb_to_hsl(r, g, b):
 
     return h, s, l
 
+
+def rgb_to_hsv(r, g, b):
+    # Normalize the RGB values to range [0, 1]
+    r, g, b = r / 255.0, g / 255.0, b / 255.0
+
+    # Compute the minimum and maximum RGB values
+    cmax = max(r, g, b)
+    cmin = min(r, g, b)
+    diff = cmax - cmin
+
+    # Calculate Hue
+    if cmax == cmin:
+        h = 0
+    elif cmax == r:
+        h = (60 * ((g - b) / diff) + 360) % 360
+    elif cmax == g:
+        h = (60 * ((b - r) / diff) + 120) % 360
+    elif cmax == b:
+        h = (60 * ((r - g) / diff) + 240) % 360
+
+    # Calculate Saturation
+    if cmax == 0:
+        s = 0
+    else:
+        s = (diff / cmax) * 100
+
+    # Calculate Value
+    v = cmax * 100
+
+    return h, s, v
+
 # Example usage:
-r, g, b = 255, 0, 0  # Red color
-h, s, l = rgb_to_hsl(r, g, b)
+r, g, b = 63, 0, 0  # Red color
+h, s, l = rgb_to_hsv(r, g, b)
 print(f"H: {h}, S: {s}%, L: {l}%")
 
 
 
 # Example usage:
 r, g, b = 127, 0, 255  # Red color
-h, s, l = rgb_to_hsl(r, g, b)
+h, s, l = rgb_to_hsv(r, g, b)
 print(f"H: {h}, S: {s}%, L: {l}%")
 
 
 
 # Example usage:
 r, g, b = 127, 255, 0  # Red color
-h, s, l = rgb_to_hsl(r, g, b)
+h, s, l = rgb_to_hsv(r, g, b)
 print(f"H: {h}, S: {s}%, L: {l}%")
 
 # Example usage:
 r, g, b = 0, 0, 0  # Red color
-h, s, l = rgb_to_hsl(r, g, b)
+h, s, l = rgb_to_hsv(r, g, b)
 print(f"H: {h}, S: {s}%, L: {l}%")
 
 
