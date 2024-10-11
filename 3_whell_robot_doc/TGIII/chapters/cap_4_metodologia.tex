@@ -210,11 +210,77 @@ HC-05 (e transmitidos ao STM32 via comunicação serial) e convertê-los em sina
 
 \subsection{Aplicativo Android}
 
-O aplicativo Arduino Bluetooth Controller possui uma opção em que o aplicativo envia uma "string" representando as cores RGB em "int8".
-por exemplo,  vermelho seria "255000000" (r=255, g=0, b=0). E a interface é o modelo de cor HSV ém 2 dimensões de ponta cabeça,
-No modelo HSV, "H" significa "hue" ou matiz, e é um valor do angulo dentro do modelo HSV,  S é saturação.
+O aplicativo Arduino Bluetooth Controller possui uma opção em que o aplicativo envia uma 'string' representando as cores RGB em 'int8'.
+por exemplo,  vermelho seria '255000000' (r=255, g=0, b=0). E a interface é o modelo de cor HSV em 2 dimensões de ponta cabeça,
+figura \ref{arduino_bluetooth_controller_hsl_model}.
 
-usando um algorítimo que converte RGB para HSV e invertendo o eixo Y
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.40\textwidth]{figures/andriod_bluetooth_controller_hsl_model}
+	\caption{Tela de controle RGB do aplicativo Arduino Bluetooth Controller}
+	\label{arduino_bluetooth_controller_hsl_model}
+\end{figure}
+
+No modelo HSV,  figura  \ref{rbg_hsl_hsv}, 'H' significa "hue" ou matiz, e é um valor do angulo no modelo HSV, 'S' significa 'saturação' e corresponde a um valor de raio,
+por último, 'V' é valor, que corresponde a uma terceira dimensão, que não aparece no modelo bidimensional disponível no aplicativo.
+Exitem outros dois modelos parecidos que usam a mesma representação cilíndrica, HSL, e HSB, que possuem uma lógica semelhando ao HSV.
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/RBG_HSL_HSV}
+	\caption{Modelos RGB, HSL e HSV \cite{rbg_hsl_hsv}}
+	\label{rbg_hsl_hsv}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/HSV}
+	\caption{Modelo HSV bidimensional \cite{hsv_model}}
+\end{figure}
+
+
+O aplicativo retorna os valores em RGB, então usando um algorítimo que converte RGB para HSV e invertendo o eixo Y
+é possível ter os valores de angulo e módulo de um vetor velocidade.
+As imagens \ref{hsv_exemplo_1} e \ref{hsv_exemplo_2} possuem os seguintes valores de RGB, que aplicados no algorítimo de conversão geram os resultados no quadro :
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/example_1_arduino_color}
+	\caption{Modelo HSV bidimensional exemplos n1}
+	\label{hsv_exemplo_1}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/example_2_arduino_color}
+	\caption{Modelo HSV bidimensional exemplos n2}
+	\label{hsv_exemplo_2}
+\end{figure}
+
+\begin{quadro}[htb]
+	\caption{\label{HSV_resultado}Resultado algoritmo}
+		 \begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{RGB} & \textbf{Ângulo} & \textbf{Magniture} \\ \hline
+			196, 115, 255 & 275.0 & 54.9\% \\ \hline
+			131, 143, 255 & 234.0 & 48.63\% \\ \hline
+			123, 255, 245 & 175.0 & 51.76\% \\ \hline
+			105, 255, 159 & 142.0 & 58.82\% \\ \hline
+			198, 255, 124 & 86.0 & 51.37\% \\ \hline
+			255, 251, 115 & 58.0 & 54.9\% \\ \hline
+			255, 101, 107 & 358.0 & 60.39\% \\ \hline
+			255, 142, 247 & 304.0 & 44.31\% \\ \hline
+			001, 000, 255 & 240.0 & 100.0\% \\ \hline
+			000, 255, 242 & 177.0 & 100.0\% \\ \hline
+			000, 255, 023 & 125.0 & 100.0\% \\ \hline
+			130, 255, 000 & 89.0 & 100.0\% \\ \hline
+			255, 244, 000 & 57.0 & 100.0\% \\ \hline
+			255, 000, 005 & 359.0 & 100.0\% \\ \hline
+			254, 000, 255 & 300.0 & 100.0\% \\ \hline
+		\end{tabular}
+	\end{quadro}
 
 Por meio do uso da plataforma MIT App Inventor, vou possível simplificar significativamente o desenvolvimento de um app
 Android para uso neste trabalho. A plataforma fornece elementos visuais para produção da interface do app, bem como 

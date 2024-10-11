@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 27 21:58:18 2024
 
-@author: daniel carvalho
-"""
 def rgb_to_hsl(r, g, b):
     r /= 255.0
     g /= 255.0
@@ -65,32 +60,15 @@ def rgb_to_hsv(r, g, b):
 
     return h, s, v
 
-# Example usage:
-r, g, b = 63, 0, 0  # Red color
-h, s, l = rgb_to_hsv(r, g, b)
-print(f"H: {h}, S: {s}%, L: {l}%")
+def call_f(r,g,b):
+    
+    print("H: {}, S: {}%, L: {}%".format(*rgb_to_hsv(r, g, b)))
+    print("H: {}, S: {}%, L: {}%".format(*rgb_to_hsl(r, g, b)))
 
 
+call_f(r=63,g=0,b=0)
+call_f(r=127,g=0,b=255)
+call_f(r=127,g=255,b=0)
+call_f(r=255,g=255,b=255)
+call_f(r=63,g=0,b=0)
 
-# Example usage:
-r, g, b = 127, 0, 255  # Red color
-h, s, l = rgb_to_hsv(r, g, b)
-print(f"H: {h}, S: {s}%, L: {l}%")
-
-
-
-# Example usage:
-r, g, b = 127, 255, 0  # Red color
-h, s, l = rgb_to_hsv(r, g, b)
-print(f"H: {h}, S: {s}%, L: {l}%")
-
-# Example usage:
-r, g, b = 0, 0, 0  # Red color
-h, s, l = rgb_to_hsv(r, g, b)
-print(f"H: {h}, S: {s}%, L: {l}%")
-
-
-# Example usage:
-r, g, b = 255, 255, 255  # Red color
-h, s, l = rgb_to_hsl(r, g, b)
-print(f"H: {h}, S: {s}%, L: {l}%")
