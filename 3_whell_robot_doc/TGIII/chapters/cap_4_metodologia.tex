@@ -143,8 +143,12 @@ e que e nenhuma hipotese o driver deve ser alimentado sem que a carga esteja con
 
 \subsubsection{Microcontrolador}
 
-Inicialmente foi escolhido o STM32F103C8, porém a comunicação serial via microusb não pode ser usada ao mesmo tempo que
-a alimentação de 3.3v do gravador ST-link. isso pode causar danos no controlador. Por causa dessa limitação foi escolhido o ESP32 DevKit v1.
+
+Inicialmente foi escolhido o STM32F103C8, porém a comunicação serial via micro-USB-B não pode ser usada ao mesmo tempo que
+a alimentação de 3.3v do gravador ST-link. isso pode causar danos no controlador. 
+
+
+Por causa dessa limitação foi escolhido o ESP32 DevKit v1.
 Embora  quantidade de pinos disponíveis seja menor, não será necessário o uso de pinos de comunicação serial para usar com um módulo bluetooth,
 já que o ESP32 já possui bluetooth integrado.
 
@@ -163,6 +167,10 @@ existem alguns pinos recomendados para se usar, alguns que requerem atenção no
 	\includegraphics[width=0.35\textwidth]{figures/esp32_pinout_ref}
 	\caption{Recomendação de uso dos pinos do ESP32 Devkit v1 \cite{esp32_reference}}
 \end{figure}
+
+
+
+
 
 
 \subsubsection{Alimentação - ESP32}
@@ -192,9 +200,9 @@ e considerando que ferramentas elétricas possuem baterias padronizadas de 12v/1
 Cada bateria tem tensão nominal de 12v a 2Ah, do modelo GBA, que são usadas em aspirador de pó, esmerilhadeiras, furadeiras, plainas e serras circulares.
 
 
-https://www.bosch-professional.com/br/pt/products/gba-12v-max-2-0ah-1600A0021D
-https://www.bosch-professional.com/br/pt/products/gas-12v-06019E3000
-https://www.bosch-professional.com/br/pt/products/gwg-12v-50-s-06013A70E0
+% https://www.bosch-professional.com/br/pt/products/gba-12v-max-2-0ah-1600A0021D
+% https://www.bosch-professional.com/br/pt/products/gas-12v-06019E3000
+% https://www.bosch-professional.com/br/pt/products/gwg-12v-50-s-06013A70E0
 
 
 \subsection{Fabricação e montagem}
