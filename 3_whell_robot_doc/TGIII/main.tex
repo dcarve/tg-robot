@@ -1,8 +1,15 @@
+
+
 \input{config/config_class.tex}
+
+\renewcommand{\bibname}{Bibliografia}
 
 
 % Início do documento
 \begin{document}
+
+
+\include{abntex2-modelo-include-comandos}
 
 % Seleciona o idioma do documento (conforme pacotes do babel)
 %\selectlanguage{english}
@@ -13,31 +20,49 @@
 
 
 % ELEMENTOS PRÉ-TEXTUAIS
-	\input{pre_textual/pretextual_class.tex}
+
+	% Capa
+	\imprimircapa
+
+	% Folha de rosto
+	% (o * indica que haverá a ficha bibliográfica)
+	\imprimirfolhaderosto
+
+	% inserir lista de ilustrações
+	\pdfbookmark[0]{\listfigurename}{lof}
+	\listoffigures*
+	\cleardoublepage
+
+	% inserir lista de quadros
+	\pdfbookmark[0]{\listofquadrosname}{loq}
+	\listofquadros*
+	\cleardoublepage
+
+	% inserir lista de abreviaturas e siglas
+	\begin{siglas}
+		\item[ABNT] Associação Brasileira de Normas Técnicas
+		\item[abnTeX] ABsurdas Normas para TeX
+	\end{siglas}
+
+	% inserir o sumario
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage
+
 
 % ELEMENTOS TEXTUAIS
 \textual
 
 	% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
-	\chapter{Introdução}
 
-	\input{chapters/cap_1_introduction.tex}
+	\input{chapters/introducao.tex}
 
-	% Capitulo com exemplos de comandos inseridos de arquivo externo 
-	\include{abntex2-modelo-include-comandos}
+	\input{chapters/objetivos.tex}
+
+	\input{chapters/metodologia.tex}
 	
-	\input{chapters/cap_2_objetivos.tex}
-
-	\input{chapters/cap_3_revisao_bibliografica.tex}
-
-	\input{chapters/cap_4_metodologia.tex}
+	\input{chapters/resultados_e_discussao.tex}
 	
-	\input{chapters/cap_5_desenvolvimento.tex}
-
-	\input{chapters/cap_6_proximos_etapas.tex}
-
-
-
 	% ----------------------------------------------------------
 	% Finaliza a parte no bookmark do PDF
 	% para que se inicie o bookmark na raiz
@@ -45,20 +70,14 @@
 	% ----------------------------------------------------------
 	\phantompart
 
-
-	% Conclusão
-	%\input{chapters/conclusion.tex}
-
-
-	
-
 % ELEMENTOS PÓS-TEXTUAIS
 \postextual
 
 	% Referências bibliográficas
-	% \input{bibliography/bibliography.tex}
+
 	\bibliography{bibliography/bibliografia.bib}
 	%\printbibliography
+
 
 	% Glossário
 	%\input{glossary/glossary_class.tex}
@@ -67,14 +86,14 @@
 	%\input{apendices/apendices_class.tex}
 
 	% Anexos
-	\begin{anexosenv}
-	\partanexos
-	\input{attachments/medicoes_motores.tex}
-	\input{attachments/filtro_passa_baixa_deducao.tex}
-	\input{attachments/fabricacao.tex}
-	\input{attachments/limpeza_dados_python.tex}
-	\input{attachments/matlab_polymonio.tex}
-	\end{anexosenv}
+	% \begin{anexosenv}
+	% \partanexos
+	% \input{attachments/medicoes_motores.tex}
+	% \input{attachments/filtro_passa_baixa_deducao.tex}
+	% \input{attachments/fabricacao.tex}
+	% \input{attachments/limpeza_dados_python.tex}
+	% \input{attachments/matlab_polymonio.tex}
+	% \end{anexosenv}
 
 
 	
