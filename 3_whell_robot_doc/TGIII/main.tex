@@ -1,23 +1,15 @@
-
-
 \input{config/config_class.tex}
-
-\renewcommand{\bibname}{Bibliografia}
-
 
 % Início do documento
 \begin{document}
 
-
 \include{abntex2-modelo-include-comandos}
 
 % Seleciona o idioma do documento (conforme pacotes do babel)
-%\selectlanguage{english}
 \selectlanguage{brazil}
 
 % Retira espaço extra obsoleto entre as frases.
 \frenchspacing 
-
 
 % ELEMENTOS PRÉ-TEXTUAIS
 
@@ -39,9 +31,19 @@
 	\cleardoublepage
 
 	% inserir lista de abreviaturas e siglas
+
 	\begin{siglas}
-		\item[ABNT] Associação Brasileira de Normas Técnicas
-		\item[abnTeX] ABsurdas Normas para TeX
+		\item[ADC] Analog to Digital Converter
+		\item[DAC] Digital to Analog converter
+		\item[I2C] Inter-Integrated Circuit
+		\item[USART] Universal Synchronous Asynchronous Receiver Transmitter
+		\item[UART] Universal Asynchronous Receiver Transmitter
+		\item[I2S] Integrated Inter-IC Sound
+		\item[PWM] Pulse Width Modulation
+		\item[SPI] Serial Peripheral Interface
+		\item[USB 2.0] Universal Serial Bus 2.0
+		\item[ESP32] Após a seção Microcontrolador ESP32 se refere a placa ESP32 Devkit v1
+		\item[STM32] Após a seção Microcontrolador ESP32 se refere a placa BluePill
 	\end{siglas}
 
 	% inserir o sumario
@@ -53,8 +55,6 @@
 % ELEMENTOS TEXTUAIS
 \textual
 
-	% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
-
 	\input{chapters/introducao.tex}
 
 	\input{chapters/objetivos.tex}
@@ -62,12 +62,7 @@
 	\input{chapters/metodologia.tex}
 	
 	\input{chapters/resultados_e_discussao.tex}
-	
-	% ----------------------------------------------------------
-	% Finaliza a parte no bookmark do PDF
-	% para que se inicie o bookmark na raiz
-	% e adiciona espaço de parte no Sumário
-	% ----------------------------------------------------------
+
 	\phantompart
 
 % ELEMENTOS PÓS-TEXTUAIS
@@ -89,13 +84,7 @@
 	% \begin{anexosenv}
 	% \partanexos
 	% \input{attachments/medicoes_motores.tex}
-	% \input{attachments/filtro_passa_baixa_deducao.tex}
-	% \input{attachments/fabricacao.tex}
-	% \input{attachments/limpeza_dados_python.tex}
-	% \input{attachments/matlab_polymonio.tex}
 	% \end{anexosenv}
-
-
 	
 
 %---------------------------------------------------------------------
