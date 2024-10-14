@@ -1,0 +1,105 @@
+
+
+\chapter{Filtro passa baixa de primeira ordem}
+
+Tranformação da função de transferncia para domínio discreto usando o método bilinear.
+
+\begin{equation}
+    \begin{split}
+        H\left( s \right) = \frac{\omega_c}{s + \omega_c} = 
+        \frac{1}{1 + \frac{s}{\omega_c}}
+        =  \frac{Y \left( s \right)}{ U \left( s \right)}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        z = \frac{2}{T_s}\frac{z-1}{z+1}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        f=2Hz
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        Ts=1/100
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        \omega_c = 2 \pi f
+    \end{split}
+\end{equation}
+
+
+\begin{equation*}
+    \begin{split}
+        \frac{1}{1 + \frac{s}{\omega_c}}
+        = \frac{1}{1 + \frac{2}{T_s\omega_c}\frac{z-1}{z+1}} 
+        = \frac{z + 1}{z + 1 + \left( z-1 \right) \frac{2}{T_s\omega_c}} \\
+        = \frac{1 + z^{-1}}{1 + z^{-1} + \left( 1 - z^{-1} \right) \frac{2}{T_s\omega_c}}
+        = \frac{\left(1 + z^{-1} \right) \frac{T_s\omega_c}{2} }{\left(1 + z^{-1} \right) \frac{T_s\omega_c}{2} +  1 - z^{-1} } \\
+        = \frac{\left(1 + z^{-1} \right) \frac{T_s\omega_c}{2} }
+        { \left(\frac{T_s\omega_c}{2} + 1 \right) + \left(\frac{T_s\omega_c}{2} - 1 \right) z^{-1} }
+        = \frac{\left(1 + z^{-1} \right) \frac{T_s\omega_c}{2} \left( \frac{2}{T_s\omega_c + 2} \right) }
+        { 1 + \left( \frac{2}{T_s\omega_c + 2} \right) \left(\frac{T_s\omega_c}{2} - 1 \right) z^{-1} }
+    \end{split}
+\end{equation*}
+
+
+\begin{equation}
+    \begin{split}
+        H\left( s \right) = \frac{\left(1 + z^{-1} \right) \frac{T_s\omega_c}{T_s\omega_c + 2}  }
+        { 1 + \left( \frac{T_s\omega_c - 2}{T_s\omega_c + 2} \right) z^{-1} }
+    \end{split}
+\end{equation}
+
+
+\begin{equation*}
+    \begin{split}
+        = \frac{\left(1 + z^{-1} \right) \frac{0.01 \cdot 2 \pi f }{0.01 \cdot 2 \pi f + 2}  }
+        { 1 + \left( \frac{0.01 \cdot 2 \pi f - 2}{0.01 \cdot 2 \pi f + 2} \right) z^{-1} }
+    \end{split}
+\end{equation*}
+
+\begin{equation*}
+    \begin{split}
+        = \frac{\left(1 + z^{-1} \right) \frac{0.04 \pi}{0.04 \pi + 2}  }
+        { 1 + \left( \frac{0.04 \pi - 2}{0.04 \pi + 2} \right) z^{-1} }
+    \end{split}
+\end{equation*}
+
+\begin{equation}
+    \begin{split}
+        \frac{Y \left( z \right)}{ U \left( z \right)} = \frac{ 0.0591174 + 0.0591174 z^{-1} }
+        { 1 - 0.88176521 z^{-1} }
+    \end{split}
+\end{equation} 
+
+Obtendo a equação de diferença a ser usada no microcontrolador.
+
+\begin{equation*}
+    \begin{split}
+        U \left( z \right) 0.0591174 +  U \left( z \right) 0.0591174 z^{-1}
+        =  Y \left( z \right) - Y \left( z \right) 0.88176521 z^{-1}
+    \end{split}
+\end{equation*} 
+
+\begin{equation}
+        \begin{split}
+            X \left( z \right) = x[k] \\
+            X \left( z \right) z^{-1} = x[k - 1] \\
+        \end{split}
+\end{equation}
+
+
+\begin{equation}
+    \begin{split}
+        y[k] = 0.0591174 \cdot u \left[ k \right] +  0.0591174 \cdot u[k - 1] + 0.88176521 \cdot y[k - 1]
+    \end{split}
+\end{equation}

@@ -1,0 +1,43 @@
+\chapter{Limpeza dos dados realizada no python}
+\label{att_limpeza_python}
+
+
+\lstset{language=Python}
+\begin{lstlisting}
+    import json
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    res = open('medidas_capturadas.txt').read()
+    res = res.split('\n')
+    
+    res = [json.loads(i[i.find('''{"millis":'''):]) for i in res]
+    
+    dados_brutos = pd.DataFrame(res)
+    
+    dados_brutos = pd.concat([
+        dados_brutos[['w1','filterRpm_1']]
+        .rename(columns={'filterRpm_1':'filter_rpm_','w1':'w'}),
+        dados_brutos[['w2','filterRpm_2']]
+        .rename(columns={'filterRpm_2':'filter_rpm_','w2':'w'}),
+        dados_brutos[['w3','filterRpm_3']]
+        .rename(columns={'filterRpm_3':'filter_rpm_','w3':'w'})
+    ]).sort_values('w')
+    
+    
+    dados_medios = dados_brutos.groupby('w').agg({
+        'filter_rpm_':['mean']
+    }).reset_index()
+    
+    
+    dados_medios.columns = [''.join(i) for i in dados_medios.columns]
+    
+    dados_medios['cut'] = (dados_medios['w']/200).astype(int)
+    dados_medios_amostra = dados_medios.groupby('cut').first().reset_index()
+    
+    dados_medios_amostra[
+        ['filter_rpm_mean', 'w']
+    ].to_csv('amostra_invertida.csv', index=False)
+
+\end{lstlisting}
