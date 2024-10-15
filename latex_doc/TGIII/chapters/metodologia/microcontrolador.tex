@@ -32,6 +32,7 @@ que podem ser encontradas para compra em território nacional.
 		Nodemcu v3 ESP8266 & 22 - 35   \\ \hline
 		Raspberry pi pico (1, 2, W, H)  & 36 - 66  \\ \hline
 	\end{tabular}
+	\caption*{FONTE: Própria}
 \end{quadro}
 
 A pesquisa de preços foi feita nas principais lojas de componentes eletrônicos disponível online:
@@ -58,7 +59,7 @@ ST-Microelectronics. O processador empregado nessa família é o ARM Cortex-M3 \
 baseado em arquitetura Harvard. Tem 64Kbs de memória flash.
 
 De acordo com o \textit{livro Discovering the STM32 Microcontroller} \cite{stm_doc} e 
-a documentação colaborativa \cite{stm32_base_org} do projeto STM32-base \cite{stm32_base},
+a documentação colaborativa do projeto STM32-base.org \cite{stm32_base_org},
 possui também 7 timers, 2 ADCs, e 9 interfaces de comunicação, incluindo I2C,  USART, SPI, e USB 2.0. 
 O STM32 apresenta 7 pinos que suportam canais de PWM de 5V, e outros 8 canais de 3.3V, e pode ser alimentado
 via microUSB de 5V. Existem 3 grupos de pinos,  $P_{A}$,  $P_{B}$ e  $P_{C}$: os pinos PA vão de $P_{A0}$ 
@@ -67,13 +68,14 @@ A relação geral dos pinos pode ser melhor obervada na figura \ref{stm32f103c8_
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=1.0\textwidth]{figures/stm32f1_pinout}
 	\caption{Diagrama de pinos do STM32F103C8}
+	\includegraphics[width=1.0\textwidth]{figures/stm32f1_pinout}
+	\caption*{FONTE: Sistemas Microprocessados -Apostila com práticas e foco nos processadores ARM CORTEX \cite{apostila_microprossados}}
     \label{stm32f103c8_pinout}
 \end{figure}
 
 Para carregar o projeto no microcontrolador, tem por padrão o uso do gravador ST-LINK v2.
-O ST-link, cujo original (figura \ref{stlinkv2_original}) é fabricado pela ST-Microelectronics \cite{st_link_v2}, 
+O ST-link, cujo original (figura \ref{stlinkv2_original}) é fabricado pela ST-Microelectronics, 
 possui uma versão paralela mais barata
 comercializada online (figura \ref{stlinkv2_cheap}), porém a versão paralelo costuma ter fabricantes diversos e 
 muitas vezes não descritos na distribuição do produto 
@@ -88,25 +90,29 @@ e disponilizando 3.3v volts, mas 3.3v também estão sendo disponibizados direto
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_original}
 	\caption{St-Link V2 original fabricado pela ST-Microelectronics \cite{st_link_v2}}
+	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_original}
+	\caption*{FONTE: ST-Microelectronics - ST-Link V2}
     \label{stlinkv2_original}
 \end{figure}
 
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_cheap}
 	\caption{St-Link V2 paralelo de fabricação desconhecida \cite{stlinkv2_cheap_ref}}
+	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_cheap}
+	\caption*{FONTE: https://www.achavevirou.com.br/gravador-st-link-v2-para-stm32-e-stm8}
     \label{stlinkv2_cheap}
 \end{figure}
 
 
 \begin{figure}[htb]
 	\centering
+	\caption{St-Link V2 paralelo e o problema da não padronização de pinos}
 	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_cheap_pin_diff}
-	\caption{St-Link V2 paralelo e o problema da não padronização de pinos
-		(figura obtida ampliando as figuras disponíveis em \cite{stlinkv2_cheap_ref} e \cite{stlinkv2_cheap_pin_diff_ref})
+	\caption*{
+		FONTE: Adaptado de https://universal-solder.ca/st-link-v2-usb-programmer-debugger/
+		e https://www.achavevirou.com.br/gravador-st-link-v2-para-stm32-e-stm8
 	}
     \label{stlinkv2_cheap_pin_diff}
 \end{figure}
@@ -126,8 +132,9 @@ Entre os periféricos existem 15 canais ADC, 2 interfaces UART,
 
 \begin{figure}[ht]
 	\centering
+	\caption{Diagrama de pinos do ESP32 Devkit v1}
 	\includegraphics[width=1.0\textwidth]{figures/esp32_pinout}
-	\caption{Diagrama de pinos do ESP32 Devkit v1 \cite{esp32_reference}}
+	\caption*{FONTE: Adaptado https://lastminuteengineers.com/esp32-pinout-reference/}
 	\label{esp32_pinout}
 \end{figure}
 
@@ -138,8 +145,9 @@ Diferente do STM32 o ESP32 Devkit v1 pode ser gravado diretamente via USB.
 
 \begin{figure}[ht]
 	\centering
+	\caption{Recomendação de uso dos pinos do ESP32 Devkit v1}
 	\includegraphics[width=0.35\textwidth]{figures/esp32_pinout_ref}
-	\caption{Recomendação de uso dos pinos do ESP32 Devkit v1 \cite{esp32_reference}}
+	\caption*{FONTE: Adaptado https://lastminuteengineers.com/esp32-pinout-reference/}
 	\label{esp32_pinout_ref}
 \end{figure}
 
@@ -152,8 +160,9 @@ A partir desse ponto todas as menções a "ESP32" são referem diretamente a pla
 
 \begin{figure}[ht]
 	\centering
+	\caption{Interface Atollic}
 	\includegraphics[width=0.8\textwidth]{figures/atollic}
-	\caption{Interface Atollic \cite{apostila_microprossados}}
+	\caption*{FONTE: Sistemas Microprocessados -Apostila com práticas e foco nos processadores ARM CORTEX \cite{apostila_microprossados}}
 \end{figure}
 
 A IDE a ser usada para programar um STM32 seria o TrueSTUDIO, distribuído pela
@@ -175,8 +184,9 @@ com a versão 2.0.0 lançada em 2022 \cite{arduino_tag_2}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/arduino}
 	\caption{Interface Arduino}
+	\includegraphics[width=0.9\textwidth]{figures/arduino}
+	\caption*{FONTE: Própria}
 \end{figure}
 
 \subsection{Escolha do microcontrolador e IDE}
