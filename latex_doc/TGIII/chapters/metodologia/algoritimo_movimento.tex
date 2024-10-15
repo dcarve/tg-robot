@@ -5,13 +5,14 @@ Um veículo omnidirecional de 3 rodas no contexto deste trabalho é um robô
 holonômico capaz de se mover em translação e rotação simultaneamente e
 independentemente \cite{mobile_manipulator_robot}. Sua geometria básica se 
 baseia em rodas equidistantes em uma circunferência, com 120° de separação entre
- si, tangenciando o perímetro do chassi do veículo, como demonstrado na figura
- 1.
+si, tangenciando o circulo formado pelos centros geométricos das rodas, como demonstrado na figura
+1.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics{figures/model}
 	\caption{Diagrama do modelo matemático do robô}
+	\includegraphics{figures/model}
+	\caption*{FONTE: Própria}
 \end{figure}
 
 Robôs omnidirecionais tais como esse são particularmente úteis porque permitem
@@ -26,12 +27,12 @@ $\omega $ é a velocidade angular do robô a partir do seu centro geométrico.
 $L$ é a distância entre o centro de geométrico da roda e o centro de geométrico
 do robô.
 
-
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/digram_model_dedution}
 	\caption{Diagrama do modelo matemático do robô, com valores dos ângulos das
 	rodas}
+	\includegraphics[width=0.8\textwidth]{figures/digram_model_dedution}
+	\caption*{FONTE: Própria}
 \end{figure}
 
 \begin{equation}
@@ -52,20 +53,18 @@ do robô.
     \end{split}
 \end{equation}
 
-
 \begin{gather*}
         V_{l} \angle \theta =  
         V_{w1} \angle \left(-\frac{\pi}{2}\right) 
         + V_{w2} \angle \left(\frac{2\pi}{3}-\frac{\pi}{2}\right) 
         + V_{w3} \angle \left(\frac{4\pi}{3}-\frac{\pi}{2}\right) 
 \end{gather*}
-
-\begin{align*}
-    V_{l} \cos{ \theta } + jV_{l} \sin{\theta} =  
+\begin{gather*}
+    V_{l} \cos{ \theta } + jV_{l} \sin{\theta} =  \\
     V_{w1} \cos{ \left(-\frac{\pi}{2}\right)} + jV_{w1} \sin{ \left(-\frac{\pi}{2}\right) } \\
     + V_{w2}  \cos{ \left(\frac{\pi}{6}\right) } + jV_{w2}  \sin{ \left(\frac{\pi}{6}\right) }  \\
     + V_{w3} \cos{ \left(\frac{5\pi}{6}\right) } + jV_{w3}  \sin{ \left(\frac{5\pi}{6}\right) } 
-\end{align*}
+\end{gather*}
 
 \begin{equation*}
     \begin{split}
@@ -75,7 +74,6 @@ do robô.
         + \frac{V_{w3}}{L}
     \end{split}
 \end{equation*}
-
 
 \begin{gather}
 	\begin{bmatrix} V\cdot \cos{\theta} \\  V\cdot \sin{\theta} \\  \omega \end{bmatrix}
@@ -89,10 +87,7 @@ do robô.
 	\begin{bmatrix} V_{w1} \\  V_{w2} \\  V_{w3} \end{bmatrix}
 \end{gather}
 
-
-
 Matriz da cinemática direta:
-
 \begin{gather}
 	\begin{bmatrix}
 		\cos{\left(-\frac{\pi}{2}\right)} & \cos{\left(\frac{\pi}{6}\right)} & \cos{\left(\frac{5\pi}{6}\right)} \\
@@ -106,12 +101,7 @@ Matriz da cinemática direta:
 		1/L & 1/L & 1/L
 	\end{bmatrix}
 \end{gather}
-
-
-
 Matriz inversa:
-
-
 \begin{gather}
 	\begin{bmatrix} V_{w1} \\  V_{w2} \\  V_{w3} \end{bmatrix}
 	=
@@ -123,8 +113,6 @@ Matriz inversa:
 	\cdot
 	\begin{bmatrix} V\cdot \cos{\theta} \\  V\cdot \sin{\theta} \\  \omega \end{bmatrix}
 \end{gather}
-
-
 A matriz 3.5 é a matriz de cinemática do robô.
 As entradas são o vetor velocidade linear e a velocidade angular do robô, e as
 saídas são as velocidades lineares de cada uma das rodas.
@@ -136,8 +124,51 @@ foi gerada por meio de simulação em Python. O código fonte da simuação pode
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/simulacao}
 	\caption{Simulação dos vetores}
+	\includegraphics[width=0.7\textwidth]{figures/simulacao}
+	\caption*{FONTE: Própria}
 	\label{simulacao}
 \end{figure}
 
+\subsection{Transcrição da matriz de cinemática um bloco de código C}
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <math.h>
+#define RADIUS_ROBOT 100
+// mm, raio medido do centro ate o centro geometrico de cada roda
+#define DEFAULT_SPEED 400 // mm/second   velocidade linear do robo.
+#define RADIUS_WHEEL 34.5 //mm Raio da roda
+#define PI 3.141592653589
+
+float speedLinearToRpm(float speedLinear){
+    float rpm = 60*speedLinear/(2*PI*RADIUS_WHEEL);
+    return rpm;
+}
+
+void TransformationMatrixRpm(
+	volatile long *w1,
+	volatile long *w2,
+	volatile long *w3,
+	float linSpdPer, // percentagem da velocidade linear
+	float dirAngle,
+	float angSpd
+){
+	float linSpd_x, linSpd_y;
+	linSpd_x = linSpdPer * DEFAULT_SPEED * cos(dirAngle * (PI/180));
+	linSpd_y = linSpdPer * DEFAULT_SPEED * sin(dirAngle * (PI/180));
+
+	float a1[3] = {0, -2.0/3,  RADIUS_ROBOT/3};
+	float a2[3] = {1/sqrt(3), 1.0/3, RADIUS_ROBOT/3};
+	float a3[3] = {-1/sqrt(3), 1.0/3, RADIUS_ROBOT/3};
+
+	float spdLin1, spdLin2, spdLin3;
+	spdLin1 = (a1[0] * linSpd_y) + (a1[1] * linSpd_x) + (a1[2] * angSpd);
+	spdLin2 = (a2[0] * linSpd_y) + (a2[1] * linSpd_x) + (a2[2] * angSpd);
+	spdLin3 = (a3[0] * linSpd_y) + (a3[1] * linSpd_x) + (a3[2] * angSpd);
+	
+	*w1 = speedLinearToRpm(spdLin1);
+	*w2 = speedLinearToRpm(spdLin2);
+	*w3 = speedLinearToRpm(spdLin3);	
+}
+\end{lstlisting}

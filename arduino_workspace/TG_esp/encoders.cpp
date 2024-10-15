@@ -5,7 +5,7 @@
 
 #define RADIUS_ROBOT 100  // in milimeters
 #define DEFAULT_SPEED 400 // mm/second
-#define RADIUS_WHEEL 42 //mmm - 58mm
+#define RADIUS_WHEEL 34.5 //mmm 
 #define PI 3.141592653589
 
 int speedLinearToStepPerSeconds(int stepResolution, float speedLinear){
