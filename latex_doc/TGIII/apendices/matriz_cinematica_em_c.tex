@@ -1,0 +1,44 @@
+
+
+\chapter{Transcrição da matriz de cinemática em um bloco de código C}
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <math.h>
+#define RADIUS_ROBOT 100
+// mm, raio medido do centro ate o centro geometrico de cada roda
+#define DEFAULT_SPEED 400 // mm/second   velocidade linear do robo.
+#define RADIUS_WHEEL 34.5 //mm Raio da roda
+#define PI 3.141592653589
+
+float speedLinearToRpm(float speedLinear){
+    float rpm = 60*speedLinear/(2*PI*RADIUS_WHEEL);
+    return rpm;
+}
+
+void TransformationMatrixRpm(
+	volatile long *w1,
+	volatile long *w2,
+	volatile long *w3,
+	float linSpdPer, // percentagem da velocidade linear
+	float dirAngle,
+	float angSpd
+){
+	float linSpd_x, linSpd_y;
+	linSpd_x = linSpdPer * DEFAULT_SPEED * cos(dirAngle * (PI/180));
+	linSpd_y = linSpdPer * DEFAULT_SPEED * sin(dirAngle * (PI/180));
+
+	float a1[3] = {0, -2.0/3,  RADIUS_ROBOT/3};
+	float a2[3] = {1/sqrt(3), 1.0/3, RADIUS_ROBOT/3};
+	float a3[3] = {-1/sqrt(3), 1.0/3, RADIUS_ROBOT/3};
+
+	float spdLin1, spdLin2, spdLin3;
+	spdLin1 = (a1[0] * linSpd_y) + (a1[1] * linSpd_x) + (a1[2] * angSpd);
+	spdLin2 = (a2[0] * linSpd_y) + (a2[1] * linSpd_x) + (a2[2] * angSpd);
+	spdLin3 = (a3[0] * linSpd_y) + (a3[1] * linSpd_x) + (a3[2] * angSpd);
+	
+	*w1 = speedLinearToRpm(spdLin1);
+	*w2 = speedLinearToRpm(spdLin2);
+	*w3 = speedLinearToRpm(spdLin3);	
+}
+\end{lstlisting}

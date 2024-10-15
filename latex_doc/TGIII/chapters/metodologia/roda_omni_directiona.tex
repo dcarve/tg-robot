@@ -5,9 +5,10 @@ A roda omnidirecional aparece em vários modelos na literatura, tais como no des
 \cite{patent_US1305535A} e o de Josef Blumrich em 1972 \cite{patent_US3789947A}. A roda consiste de rolos
 perpendiculares à  sua direção de giro, cuja presença tem como efeito conferir à roda a capacidade de se locomover em
 qualquer direção no seu plano. Essa capacidade é o que confere aos robôs aqui discutidos suas características
-holonômicas, uma vez que as restrições de movimento a que eles estão sujeitos está normalmente atrelada à construção dasrodas \cite{TAKAHASHI}.
+holonômicas, uma vez que as restrições de movimento a que eles estão sujeitos está normalmente atrelada à construção das
+rodas \cite{TAKAHASHI}.
 
-\begin{figure}[h]
+\begin{figure}[h] 
 	\centering
 	\caption{Modelo de uma Roda Omnidirecional}
 	\includegraphics[width=0.5\textwidth]{figures/omniwheel}
@@ -20,18 +21,18 @@ A relação entre velocidade linear e angular da roda é dada por:
 
 em que $V_{w}$ é velocidade linear da roda, $r$ o raio da roda, $\omega_{w} $ e é a velocidade angular da roda.
 
-Uma variação da roda omnidirecional é a roda mecanum, criada por Bengt Ilon \cite{patent_US3876255A} - 
-a diferença fundamental entre elas é a construção dos rolos ligados à estrutura central  -
-os quais, no caso da roda mecanum, são posicionados a 45°.
+Uma variação da roda omnidirecional é a roda mecanum, criada por Bengt Ilon \cite{patent_US3876255A} - a diferença
+fundamental entre elas é a construção dos rolos ligados à estrutura central - os quais, no caso da roda mecanum, são
+posicionados a 45°.
 
-\subsection{Obtenção da roda omnidirecional}
+\subsection{Obtencão da roda omnidirecional}
 
-Inicialmente foram compradas roda prontas, fabricas fora do território nacional, por meio de importação.
-Mas o mesmo modelo pode ser encontrado sendo vendido no Brasil.
-O modelo adquirido inicialmente possui diametro de 58mm, largura de 26mm e possui um acoplamento para eixo de 4mm de diametro.
-Essas dimensões foram adquadas nos primeiros testes de contrução do robô enquanto se estava usando motores DC,
-mas quando o projeto passou a usar motores de passo Nema 17, as rodas não eram mais compatíveis com o eixo e as dimensões dos motores.
-(A mudança de tipos de motores será discutida na seção sobre motores).
+Inicialmente, utilizaram-se rodas omnidirecionais fabricadas fora do Brasil e disponíveis para importação. Também é
+possível adquirir o mesmo modelo com revendedores nacionais.
+Tal modelo possui diâmetro de 58mm, largura de 26mm e possui um acoplamento para eixo de 4mm de diâmetro. Essas
+dimensões eram adequadas nos primeiros testes de construção do robô, enquanto se estava usando motores DC. Uma vez que
+se passou a empregar motores de passo Nema 17 (mudança discutida na na seção sobre motores), contudo, as rodas não eram
+mais compatíveis com o eixo e as dimensões dos motores.
 
 \begin{figure}[h]
 	\centering
@@ -40,13 +41,14 @@ mas quando o projeto passou a usar motores de passo Nema 17, as rodas não eram 
     \caption*{FONTE: https://rapidroboticsaustralia.com/products/58mm-nylon-omni-directional-wheel-4mm-hub}
 \end{figure}
 
-A mudança de requisitores para as rodas levou a criar um design próprio e fabricado com impressoa 3d,
-parafusos sextavado de M3, e reutilizando os rolamentos das rodas de 58mm.
-As novas rodas possuem 69mm de diametro e 27mm de largura, fabricadas com filamento PLA.
+A mudança de requisitos para as rodas levou à criação de um design próprio, conforme figuras \ref{new_wheel_cad_design}
+- \ref{wheel_assembling}. As novas rodas possuem 69mm de diâmetro e 27mm de largura, e foram fabricadas com impressora
+3D (com filamento PLA), parafusos sextavado de M3, e reutilizando os rolamentos das rodas de 58mm.
 
 \begin{figure}[h]
 	\centering
-	\caption{Processo de desing da nova roda - AutoCAD}
+	\caption{Processo de design da nova roda - AutoCAD}
+	\label{new_wheel_cad_design}
 	\includegraphics[width=0.9\textwidth]{figures/roda_processo_desing_passo1}
     \caption*{FONTE: Própria}
 \end{figure}
@@ -60,14 +62,14 @@ As novas rodas possuem 69mm de diametro e 27mm de largura, fabricadas com filame
 
 \begin{figure}[h]
 	\centering
-	\caption{Desing final - Solidworks}
+	\caption{Design final - Solidworks}
 	\includegraphics[width=0.9\textwidth]{figures/roda_processo_desing_passo2}
     \caption*{FONTE: Própria}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\caption{Desing final - Preparação para impressão}
+	\caption{Design final - Preparação para impressão}
 	\includegraphics[width=0.9\textwidth]{figures/roda_processo_desing_passo3}
     \caption*{FONTE: Própria}
 \end{figure}
@@ -75,6 +77,7 @@ As novas rodas possuem 69mm de diametro e 27mm de largura, fabricadas com filame
 \begin{figure}[h]
 	\centering
 	\caption{Montagem da roda}
+	\label{wheel_assembling}
 	\includegraphics[width=0.9\textwidth]{figures/roda_processo_desing_passo4}
     \caption*{FONTE: Própria}
 \end{figure}
