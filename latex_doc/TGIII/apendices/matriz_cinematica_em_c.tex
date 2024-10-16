@@ -1,6 +1,6 @@
 
 
-\chapter{Transcrição da matriz de cinemática em um bloco de código C}
+\chapter{Transcrição da matriz de cinemática em um bloco de código C \label{matriz_cinematica_c}}
 
 \lstset{language=C}
 \begin{lstlisting}
@@ -17,12 +17,9 @@ float speedLinearToRpm(float speedLinear){
 }
 
 void TransformationMatrixRpm(
-	volatile long *w1,
-	volatile long *w2,
-	volatile long *w3,
+	volatile long *w1, volatile long *w2, volatile long *w3,
 	float linSpdPer, // percentagem da velocidade linear
-	float dirAngle,
-	float angSpd
+	float dirAngle, float angSpd
 ){
 	float linSpd_x, linSpd_y;
 	linSpd_x = linSpdPer * DEFAULT_SPEED * cos(dirAngle * (PI/180));

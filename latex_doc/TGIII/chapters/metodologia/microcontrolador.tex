@@ -1,5 +1,5 @@
 
-\section{Microcontrolador e IDE}
+\section{Microcontrolador e IDE} \label{microcontrolador_ide}
 
 \subsection{Microcontrolador}
 
@@ -21,12 +21,12 @@ por Bluetooth mostrou-se particularmente relevante neste contexto, tornando a
 placa uma boa candidata para esta aplicação. Tal integração integração será
 discutida nas seções a seguir.
 
-A tabela \ref{precos_placas} compara a faixa de preço entre as principais
+A \autoref{precos_placas} compara a faixa de preço entre as principais
 placas de desenvolvimento disponíveis para compra em território nacional.
 
-\begin{quadro}[htb]
-	\caption{Comparação de preços entre as placas de desenvolvimento
-	\label{precos_placas}}
+\begin{table}[ht]
+	\centering
+	\caption{Comparação de preços entre as placas de desenvolvimento \label{precos_placas}}
 	 \begin{tabular}{|c|c|}
 		\hline
 		\textbf{Placa de desenvolvimento} & \textbf{Faixa de preço em R\$} \\ \hline
@@ -37,7 +37,7 @@ placas de desenvolvimento disponíveis para compra em território nacional.
 		Raspberry pi pico (1, 2, W, H)  & 36 - 66  \\ \hline
 	\end{tabular}
 	\caption*{FONTE: Própria}
-\end{quadro}
+\end{table}
 
 Os preços aqui apresentados têm como base os valores praticados pelas principais
 lojas nacionais de componentes eletrônicos online:
@@ -74,7 +74,7 @@ pinos: $P_{A}$, $P_{B}$ e $P_{C}$. Os pinos $P_{A}$ vão de $P_{A0}$
 a $P_{A15}$, os $P_{B}$ vão de $P_{B0}$ a $P_{B15}$, e $P_{C}$, com apenas 3
 pinos, de $P_{C13}$, $P_{C14}$ e $P_{C15}$.
 A relação geral dos pinos pode ser melhor observada na figura 
-\ref{stm32f103c8_pinout}.
+\autoref{stm32f103c8_pinout}.
 
 \begin{figure}[ht]
 	\centering
@@ -85,12 +85,12 @@ A relação geral dos pinos pode ser melhor observada na figura
 \end{figure}
 
 O gravador ST-LINK v2 é o padrão para carregar projetos no microcontrolador.
-Esse gravador, cuja versão original (figura \ref{stlinkv2_original}) é fabricada
+Esse gravador, cuja versão original (\autoref{stlinkv2_original}) é fabricada
 pela ST-Microelectronics, pode ser encontrada em uma versão paralela a menores
-custos online (figura \ref{stlinkv2_cheap}). Contudo, as versões paralelas, por
+custos online (\autoref{stlinkv2_cheap}). Contudo, as versões paralelas, por
 serem produzidas por fabricantes diversos, e por vezes não claramente indicados 
 na descrição do produto. Por essa razão, pode haver variação na relação de
-pinos (figura \ref{stlinkv2_cheap_pin_diff}).
+pinos (\autoref{stlinkv2_cheap_pin_diff}).
 
 É possível modificar o firmware da placa STM32F103C8 para permitir o
 carregamento de projetos via USB, contudo tal esse procedimento
@@ -140,7 +140,7 @@ BluePill.
 \subsubsection{ESP32 Devkit v1}
 
 A placa ESP32 Devkit v1, de fabricação da DOIT.am, possui o microcontrolador
-ESP32-WROOM-32E (figura \ref{esp32_pinout}), fabricado pela Espressif Systems.
+ESP32-WROOM-32E (\autoref{esp32_pinout}), fabricado pela Espressif Systems.
 A série ESP32 foi lançada em 2016 \cite{anuncio_esp32}, e possui arquitetura de
 32 bits. Ela tem se tornado popular por possuir opções com integração Bluetooth
 e WiFi. O microcontrolador ESP32-WROOM-32E possui um processador dual core
@@ -162,7 +162,7 @@ e 9 interfaces de toque capacitivo
 Artigos contribuídos pela comunidade online sobre a placa ESP32 Devkit v1 
 \cite{esp32_reference_2} \cite{esp32_reference} sugerem que nem todos os 25
 pinos podem ser livremente utilizados - alguns possuem limitações de uso de
-acordo com o periférico em uso. A figura \ref{esp32_pinout_ref} resume as
+acordo com o periférico em uso. A \autoref{esp32_pinout_ref} resume as
 recomendações de uso do pinos. Diferentemente da placa STM32, é possível
 carregar projetos na placa ESP32 Devkit v1 nativamente via USB.
 
