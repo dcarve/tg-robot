@@ -1,0 +1,42 @@
+
+
+\chapter{Transcrição da conversão de RGB para HSV em um bloco de código C \label{rgb_to_hsv}}
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <stdio.h>
+float maxOfThree(float a, float b, float c) {
+	if ((a >= b) && (a >= c)) return a;
+	else if ((b >= a) && (b >= c)) return b;
+	else return c;
+}
+float minOfThree(float a, float b, float c) {
+	if ((a <= b) && (a <= c)) return a;
+	else if ((b <= a) && (b <= c)) return b;
+	else return c;
+}
+void rgbToDirAngAndMag(int r, int g, int b, float *h, float *s) {
+	float r_norm = r / 255.0, g_norm = g / 255.0, b_norm = b / 255.0;
+	float cmax = maxOfThree(r_norm, g_norm, b_norm);
+	float cmin = minOfThree(r_norm, g_norm, b_norm);
+	float diff = cmax - cmin;
+	if (cmax == cmin) {
+		*h = 0;
+	} else if (cmax == r_norm) {
+		*h = fmod((60 * ((g_norm - b_norm) / diff) + 360), 360);
+	} else if (cmax == g_norm) {
+		*h = fmod((60 * ((b_norm - r_norm) / diff) + 120), 360);
+	} else if (cmax == b_norm) {
+		*h = fmod((60 * ((r_norm - g_norm) / diff) + 240), 360);
+	}
+	if (cmax == 0) {*s = 0;} else {*s = (diff / cmax) * 100;}
+	*h = 360 - *h;
+}
+void main() {
+	int r = 255, g = 0, b = 255; float h, s;
+	rgbToDirAngAndMag(r, g, b, &h, &s);
+	printf("Direction (Hue): %.2f\n", h); // res = 60
+	printf("Magnitude (Saturation): %.2f\n", s); // res = 100
+}
+	
+\end{lstlisting}
