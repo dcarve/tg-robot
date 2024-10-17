@@ -18,7 +18,7 @@ como demonstrado \autoref{modelo_geometrico}.
 
 Robôs omnidirecionais tais como esse são particularmente úteis porque permitem
  maior manobrabilidade e eficiência, a um custo de maior complexidade na sua
- construção e controle. \cite{dynamical_models_for_omni_directional_robots}
+ construção e controle. \cite{vectorial_speeds_simulations}
 
 \subsection{Modelagem Cinemática - Dedução da matriz por cinemática direta}
 
@@ -118,6 +118,7 @@ Matriz inversa:
 A equação \eqref{matriz_inversa} é a matriz de cinemática do robô.
 As entradas são o vetor velocidade linear e a velocidade angular do robô, e as
 saídas são as velocidades lineares de cada uma das rodas.
+O algoritmo da matriz inversa de cinemática transcrito em C, pode ser encontrado no apêndice \ref{matriz_cinematica_c}
 
 Desconsiderando a velocidade angular, é possível observar os vetores velocidades
 das rodas e o vetor velocidade linear do robô na \autoref{simulacao}, que
@@ -131,5 +132,3 @@ disponível em \url{https://github.com/dcarve/tg-robot/tree/master/simulation/ve
 	\caption*{FONTE: Própria}
 	\label{simulacao}
 \end{figure}
-
-O algoritmo da matriz inversa de cinemática transcrito em C, pode ser encontrado no apêndice \ref{matriz_cinematica_c}

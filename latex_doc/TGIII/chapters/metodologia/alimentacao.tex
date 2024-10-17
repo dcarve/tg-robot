@@ -4,21 +4,30 @@
 
 \subsection{Microcontrolador}
 
-Para alimentação do ESP32, pode usar tanto uma bateria de 5v ou 3.3v, pois possui dois pinos para alimentação: 
+Para ambos os microcontroladores testados, STM32 e ESP32,
+podem ser usados os pinos de 5v  e 3.3v e a porta micro-USB-B
 
 \subsubsubsection{Pino de 5v não regulado}
 
-Fontes divergem em relação à tensão máxima (\cite{esp32_reference_power_supply_1}, \cite{esp32_reference_power_supply_2}),
-que pode ser usada, porém, a maioria concorda em manter de 6v a 7v.
+Para o ESP32, fontes divergem em relação à tensão mínima e máxima 
+que pode ser usada, porém, a maioria concorda em manter de
+6v a 7v \cite{esp32_reference_power_supply_1,esp32_reference_power_supply_2, esp32_reference_2}.
+Para o STM32 não se encontra informações que discutam o limite máximo de tensão no pino, mas segundo \cite{stm_doc},
+o recomendado é manter em 5v.
 
 \subsubsubsection{Pino de 3.3v regulado}
-Esse pino pode receber no máximo 3.3v, podendo funcionar entre 3.1v e 3.3v sem problema.
+Em ambos as placas, esse pino é mais sensível a variações, pois esta em curto com a alimentação
+dos chips, então o ideal é manter entre 3.1v e 3.3v.
 
-\subsubsubsection{micro USB}
-Essa opção permite usar um powerbank, porém o conector do ESP32 é um Micro-USB B, modelo que usa protocolo USB 2.0, que pode fornece apenas a 500mA a 5v \cite{micro_usb_b}.
-500mA É suficiente para alimentar o ESP32, que pode consumir até 260mA \cite{esp_max_current}.
-Porem um powerbank pode ser uma solução muito ineficiente do ponto de vista energético, os modelos populares possuem baterias de lítio de 3.7v, que é convertido para 5v,
-e posteriormente dentro do ESP32 a tensão é convertida novamente para 3.3v. Apenas no modelo PN-952 da CNHPineng sai de 5000mAh a 3.7v  para 3160mAh a 5v,
+\subsubsubsection{micro-USB-B}
+Essa opção permite usar um powerbank, porém o conector das placas é um Micro-USB-B,
+modelo que usa protocolo USB 2.0, que pode fornece apenas a 500mA a 5v \cite{micro_usb_b}.
+500mA É suficiente para alimentar o ESP32 e o STM32, que podem consumir até 260mA \cite{esp_max_current} e 150mA \cite{stm32_datasheet}, respectivamente.
+
+Porem um powerbank pode ser uma solução muito ineficiente do ponto de vista energético,
+os modelos populares possuem baterias de lítio de 3.7v, que é convertido para 5v,
+e posteriormente dentro do ESP32 a tensão é convertida novamente para 3.3v
+No modelo PN-952 da CNHPineng sai de 5000mAh a 3.7v  para 3160mAh a 5v,
 podendo novamente perder mais corrente por hora ao ser convertido para 3.3v no ESP32
 
 
@@ -29,6 +38,18 @@ podendo novamente perder mais corrente por hora ao ser convertido para 3.3v no E
 
 Os motores de passo NEMA 17 podem ser alimentados, através do driver, com 12v a 24v.
 Observando a possibilidade de uma bateria de 12v/24v ficar sem uso depois do projeto,
-e considerando que ferramentas elétricas possuem baterias padronizadas de 12v/18v/36V, foi considerando utilizar 3 baterias de 12v da bosch, que já estavam disponíveis para uso.
-Cada bateria tem tensão nominal de 12v a 2Ah, do modelo GBA, que são usadas em aspirador de pó, esmerilhadeiras, furadeiras, plainas e serras circulares.
+e considerando que ferramentas elétricas possuem baterias padronizadas de 12v/18v/36V, 
+foi considerando utilizar 3 baterias de 12v da bosch, que já estavam disponíveis para uso.
+Cada bateria tem tensão nominal de 12v a 2Ah, do modelo GBA, 
+que são usadas em aspirador de pó, esmerilhadeiras, furadeiras, plainas e serras circulares.
+De acordo com as instruções do pacote da bateria tem pico máximo de carga 12v, porém em uso a bateria possui 10.8v
+Durante os testes com os motores NEMA 17,  as baterias apresentação uma tensão variando de 10.6 a 10.7
+Como essas baterias já haviam sido adquiridas antes desse projeto para uso pessoal,
+usá-las no projeto se tornou uma opção economicamente viável e sustentável,
+já que as baterias ainda usadas em ferramentas pessoais.
+
+Porém usar essas baterias trás um desafio diferente, a instalação.  Esse tópico será discutido na seção de fabricação.
+
+
+%https://www.lojaboschferramentas.com.br/bateria-de-ions-de-litio-bosch-gba-12v-20ah-bateria-bosch/p
 
