@@ -64,13 +64,13 @@ E a interface é o modelo de cor HSV em 2 dimensões de ponta cabeça,
 	\centering
 	\caption{Tela de controle RGB do aplicativo Arduino Bluetooth Controller}
 	\includegraphics[width=0.40\textwidth]{figures/andriod_bluetooth_controller_hsl_model}
-    \caption*{FONTE: Própria}
+	\fonte{Própria}
 	\label{arduino_bluetooth_controller_hsl_model}
 \end{figure}
 
-No modelo HSV,  a \autoref{rbg_hsl_hsv}, 'H' significa "hue" ou matiz, e é 
-um valor do angulo no modelo HSV, 'S' significa 'saturação' e corresponde a um valor de raio,
-por último, 'V' é valor, que corresponde a uma terceira dimensão, 
+No modelo HSV,  a \autoref{rbg_hsl_hsv}, ``H'' significa ``hue'' ou matiz, e é 
+um valor do angulo no modelo HSV, ``S'' significa saturação e corresponde a um valor de raio,
+por último, ``V'' é valor, que corresponde a uma terceira dimensão, 
 que não aparece no modelo bidimensional disponível no aplicativo.
 Exitem outros dois modelos parecidos que usam a mesma representação cilíndrica, 
 HSL, e HSB, que possuem uma lógica semelhando ao HSV.
@@ -80,10 +80,7 @@ HSL, e HSB, que possuem uma lógica semelhando ao HSV.
 	\centering
 	\caption{Modelos RGB, HSL e HSV}
 	\includegraphics[width=0.6\textwidth]{figures/RBG_HSL_HSV}
-	\caption*{
-        FONTE: Saturation-aware human attention region of interest algorithm for
-        efficient video compression - N'guessan, Sylvia and Ling, Nam \cite{rbg_hsl_hsv}
-    }
+	\fonte{\cite{rbg_hsl_hsv}}
 	\label{rbg_hsl_hsv}
 \end{figure}
 
@@ -91,7 +88,7 @@ HSL, e HSB, que possuem uma lógica semelhando ao HSV.
 	\centering
 	\caption{Modelo HSV bidimensional}
 	\includegraphics[width=0.8\textwidth]{figures/HSV}
-	\caption*{FONTE: An adaptation of the GAIA visualization method for cartography - Lidouh, Karim and De Smet, Yves and Zimanyi, Esteban \cite{hsv_model}}
+	\fonte{ \cite{hsv_model}}
 \end{figure}
 
 
@@ -109,7 +106,7 @@ então para obter o angulo representado pelo aplicativo, basta de 360 o subtrair
 	\centering
 	\caption{Aplicativo Android - Valores RGB e posição}
 	\includegraphics[width=1.0\textwidth]{figures/example_1_arduino_color}
-	\caption*{FONTE: Própria}
+	\fonte{Própria}
 	\label{hsv_exemplo_1}
 \end{figure}
 
@@ -138,7 +135,7 @@ então para obter o angulo representado pelo aplicativo, basta de 360 o subtrair
 	\end{tabular}
 \end{table}
 
-O algoritmo de conversão de RGB para HSV transtrito em C, pode ser encontrado no apêndice \ref{rgb_to_hsv}.
+O algoritmo de conversão de RGB para HSV transtrito em C, pode ser encontrado no apêndice \ref{anx_rgb_to_hsv}.
 É possível modificar o algoritmo para que o valor de magnitude seja mapeado em uma escala logaritma
 para uma saida de velocidades maiores que zero de maineira mais suave,
 e também é possível definir um diametro mínimo onde os valores
@@ -155,6 +152,6 @@ e atrelar textos predeterminados em botões de ação.
 	\centering
 	\caption{Tela do aplicativoSerial Bluetooth Terminal}
 	\includegraphics[width=0.40\textwidth]{figures/serialbluetoothterminal}
-    \caption*{FONTE: Própria}
+	\fonte{Própria}
 	\label{serialbluetoothterminal_tela}
 \end{figure}

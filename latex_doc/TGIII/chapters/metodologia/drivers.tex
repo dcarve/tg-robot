@@ -1,4 +1,18 @@
 
 \section{Drivers}
 
-\lipsum[1]
+
+
+
+\subsubsection{Driver de Motor}
+Nas etapas iniciais do projeto, testou-se driver Ponte H L298N para ligar cada motor. Esse driver suporta até 2A em
+operação DC \cite{datasheel_l298n}. A corrente de operação máxima do motor é de 1.1A; contudo, a corrente de parada
+pode chegar a 3.2A. Além disso, o L298N também causa uma queda de tensão significativa: a uma corrente de 1A, a queda
+observada chegou a até 3.2V, fazendo com que o motor não receba a tensão necessária para operar nas condições
+desejadas \cite{datasheel_l298n}. As observações são compatíveis com as expectativas de faixa de operação do L298N - a
+seu uso é recomendado para tensões entre 12V a 40V, em que a queda de tensão observada não seja tão significativa
+relativamente. Devido à natureza da aplicação deste projeto, com o motor de 6v, a queda de tensão acaba sendo
+intolerável, inviabilizando assim o uso da ponte H L298N.
+
+Após essas considerações e observações, optou-se por um driver apropriado para uso em baixas tensões, o DRV8833
+\cite{datasheel_dvr8833}.

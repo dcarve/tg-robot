@@ -1,7 +1,5 @@
-\chapter{Limpeza dos dados realizada no python}
-\label{att_matlab}
+\chapter{Obtenção do polinômio da curva atraves do matlab das medições dos motores DC} \label{anx_matlab}
 
-Matlab
 \lstset{language=Matlab}
 \begin{lstlisting}
     T = readtable('amostra_invertida.csv');
@@ -10,7 +8,7 @@ Matlab
     f=fit(filter_rpm_mean,w,'poly4')
 
     f = 
-    
+
          Linear model Poly4:
          f(x) = p1*x^4 + p2*x^3 + p3*x^2 + p4*x + p5
          Coefficients (with 0.95 confidence bounds):
