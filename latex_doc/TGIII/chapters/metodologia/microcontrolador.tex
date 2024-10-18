@@ -106,25 +106,25 @@ gravador ST-link.
 
 \begin{figure}[ht]
 	\centering
-	\caption{St-Link V2 original fabricado pela ST-Microelectronics \cite{st_link_v2}}
+	\caption{St-Link V2 original}
 	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_original}
-	\caption*{FONTE: ST-Microelectronics - ST-Link V2}
+	\caption*{FONTE: ST-Microelectronics - ST-Link V2 \cite{st_link_v2}}
     \label{stlinkv2_original}
 \end{figure}
 
 
 \begin{figure}[ht]
 	\centering
-	\caption{St-Link V2 paralelo de fabricação desconhecida \cite{stlinkv2_cheap_ref}}
+	\caption{St-Link V2 paralelo}
 	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_cheap}
 	\caption*{FONTE: https://www.achavevirou.com.br/gravador-st-link-v2-para-stm32-e-stm8}
     \label{stlinkv2_cheap}
 \end{figure}
 
 
-\begin{figure}[htb]
+\begin{figure}[ht]
 	\centering
-	\caption{St-Link V2 paralelo e o problema da não padronização de pinos}
+	\caption{St-Link V2 paralelo e pinos despadronizados}
 	\includegraphics[width=0.5\textwidth]{figures/stlinkv2_cheap_pin_diff}
 	\caption*{
 		FONTE: Adaptado de https://universal-solder.ca/st-link-v2-usb-programmer-debugger/
@@ -149,7 +149,7 @@ WiFi 2.4Ghz de até 150Mbps e Bluetooth 4.2. Embora a placa tenha 48 GPIOs, elas
 estão endereçadas em apenas 25 pinos. Entre os periféricos, existem 15 canais
 ADC, 2 interfaces UART, 2 canais DAC, 25 PWM, uma interface de SPI, I2C e I2S,
 e 9 interfaces de toque capacitivo
-\cite{esp32_reference_2} \cite{esp32_reference}.
+\cite{esp32_reference_2,esp32_reference}.
 
 \begin{figure}[ht]
 	\centering
@@ -160,7 +160,7 @@ e 9 interfaces de toque capacitivo
 \end{figure}
 
 Artigos contribuídos pela comunidade online sobre a placa ESP32 Devkit v1 
-\cite{esp32_reference_2} \cite{esp32_reference} sugerem que nem todos os 25
+\cite{esp32_reference_2,esp32_reference} sugerem que nem todos os 25
 pinos podem ser livremente utilizados - alguns possuem limitações de uso de
 acordo com o periférico em uso. A \autoref{esp32_pinout_ref} resume as
 recomendações de uso do pinos. Diferentemente da placa STM32, é possível
